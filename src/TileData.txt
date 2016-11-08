@@ -1,0 +1,51 @@
+loop counters
+1,1,3,1,1,2,4,1,2,8,3,2,3,2,9,2,3,2,4,5,3,3,3,3; (last tile start)
+//1 x all city
+ccccc;ccccc;ccccc;ccccc;ccccc;
+//1x endpoint 4 roads
+ffrff;ffrff;rrerr;ffrff;ffrff;
+//3x  sided city w/ no shield
+ccccc;ccccc;ccfcc;cfffc;fffff;
+//1x 3 sided city w/ shield
+ccccc;ccccc;ccfcc;cfffc;fffff;
+//1x 3 sided city w/ road no shield
+ccccc;ccccc;ccrcc;cfrfc;ffrff;
+//2x 3 sided city w/ road and shield
+ccccc;ccccc;ccrcc;cfrfc;ffrff;
+//4x 3 way road w/ endpoint
+fffff;fffff;rrerr;ffrff;ffrff;
+//1x 2 sided city city at top and bottom
+fffff;cfffc;ccccc;cfffc;fffff;
+//2x 2 sided city city at top and bottom w/ shield
+fffff;cfffc;ccccc;cfffc;fffff;
+//8x top bottom road
+ffrff;ffrff;ffrff;ffrff;ffrff;
+//3x 2 sided city 2 sided field
+ccccf;cccff;ccfff;cffff;fffff;
+//2x 2 sidec city 2 sided field w/ shield
+ccccf;cccff;ccfff;cffff;fffff;
+//3x 2 sided city 2 sided field with road
+ccccf;cccff;ccffr;cffrf;ffrff;
+//2x 2 sided city 2 sided field with road w/ shield
+ccccf;cccff;ccffr;cffrf;ffrff;
+//9x 2 side road and field
+fffff;fffff;rrrff;ffrff;ffrff;
+//2x sided city on edge
+fcccf;ffccf;fffcf;ffffc;fffff;
+//2x sided city on left and on right
+fffff;cfffc;ccfcc;cfffc;fffff;
+//2x monastary with 1 road to bottom
+fffff;fffff;ffmff;ffrff;ffrff;
+//4x monastary on a field
+fffff;fffff;ffmff;fffff;fffff;
+//5x top city and field
+fcccf;ffcff;fffff;fffff;fffff;
+//3x top city road bottom to right
+fcccf;ffcff;ffffr;fffrf;ffrff;
+//3x top city road bottom to left
+fcccf;ffcff;rffff;frfff;ffrff;
+//3x top city with 3 way endpoint
+fcccf;ffcff;fffff;rrerr;ffrff;
+//3+1 top city road middle field
+fcccf;fffff;rrrrr;fffff;fffff;
+
