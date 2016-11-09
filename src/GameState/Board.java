@@ -10,6 +10,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class Board {
 
+    /*
+     * Do NOT modify this enumeration. The order of this enumeration is connascent with the PointUtilities class implementation
+     *
+     */
+
     public enum Orientation {
 
         NORTH,
