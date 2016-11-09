@@ -4,7 +4,9 @@ import Utilities.PointUtilities;
 import Utilities.Tuple;
 
 import java.awt.Point;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -131,37 +133,9 @@ public class Board {
 
     }
 
-    public HashMap<Point, Tile> getTiles() {
+    public Map<Point, Tile> getTiles() {
 
-        HashMap<Point, Tile> tiles = new HashMap<>();
-
-        Queue<Tuple<Point, Tile>> elements = new LinkedBlockingQueue<>();
-        elements.add(Tuple.Create(new Point(0, 0), getTile(new Point(0, 0))));
-
-        while (!elements.isEmpty()) {
-
-            Tuple<Point, Tile> tuple = elements.poll();
-            Point point = tuple.item1;
-            Tile tile = tuple.item2;
-
-           for (Orientation orientation : Orientation.values()) {
-
-               Point orientedPoint = PointUtilities.getPointFromOrientation(point, orientation);
-
-               if (boardContainsElement(orientedPoint) && !tiles.containsKey(orientedPoint)) {
-
-                   Tile neighbor = getTile(orientedPoint);
-                   elements.add(Tuple.Create(orientedPoint, neighbor));
-
-               }
-
-           }
-
-           tiles.put(point, tile);
-
-        }
-
-        return tiles;
+        return Collections.unmodifiableMap(board);
 
     }
 

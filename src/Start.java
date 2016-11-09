@@ -2,7 +2,6 @@ import GameState.Board;
 import GameState.Tile;
 
 import java.awt.*;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,7 +16,7 @@ public class Start {
         board.addTile(new Point(2, 0), new Tile());
 //        board.addTile(new Point(4, 0), new Tile());
 
-        HashMap<Point, Tile> tiles = board.getTiles();
+        Map<Point, Tile> tiles = board.getTiles();
 
         for (Map.Entry<Point, Tile> entry : tiles.entrySet()) {
 
