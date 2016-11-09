@@ -35,6 +35,12 @@ public class Board {
 
     private HashMap<Point, BoardElement> board = new HashMap<>();
 
+    /*
+     * The board ensures that tiles are only added to the map on spots that aren't already occupied,
+     * and also ensures that you only add tiles adjacent to already placed tiles.
+     *
+     */
+
     public Board() {
 
         BoardElement startElement = new BoardElement();
@@ -60,7 +66,7 @@ public class Board {
 
         if (boardContainsElement(point)) {
 
-            throw new RuntimeException("Cannot add item1 tile where one already exists. Point = (" + point + ")");
+            throw new RuntimeException("Cannot add tile where one already exists. Point = (" + point + ")");
 
         }
 
@@ -85,7 +91,7 @@ public class Board {
 
         if (!hasNeighbor) {
 
-            throw new RuntimeException("Tile does not connect to item1 place that currently exists on the map, and therefore cannot be added");
+            throw new RuntimeException("Tile does not connect to an already placed tile and therefore cannot be added. Point = (" + point + ")");
 
         }
 

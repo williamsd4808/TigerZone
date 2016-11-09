@@ -14,6 +14,8 @@ public class Start {
 
         Board board = new Board();
         board.addTile(new Point(1, 0), new Tile());
+        board.addTile(new Point(2, 0), new Tile());
+//        board.addTile(new Point(4, 0), new Tile());
 
         HashMap<Point, Tile> tiles = board.getTiles();
 
