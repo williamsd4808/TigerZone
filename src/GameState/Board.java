@@ -30,15 +30,7 @@ public class Board {
 
     }
 
-    private class BoardElement {
-
-        private HashMap<Orientation, Tile> neighbors = new HashMap<>();
-
-        private Tile currentTile;
-
-    }
-
-    private HashMap<Point, BoardElement> board = new HashMap<>();
+    private HashMap<Point, Tile> board = new HashMap<>();
 
     /*
      * The board ensures that tiles are only added to the map on spots that aren't already occupied,
@@ -48,10 +40,7 @@ public class Board {
 
     public Board() {
 
-        BoardElement startElement = new BoardElement();
-        startElement.currentTile = new Tile();
-
-        board.put(new Point(0, 0), startElement); // add the start tile here
+        board.put(new Point(0, 0), new Tile()); // add the start tile here
 
     }
 
@@ -75,9 +64,6 @@ public class Board {
 
         }
 
-        BoardElement element = new BoardElement();
-        element.currentTile = tile;
-
         for (Orientation orientation : Orientation.values()) {
 
             Point orientedPoint = PointUtilities.getPointFromOrientation(point, orientation);
@@ -85,10 +71,7 @@ public class Board {
             if (boardContainsElement(orientedPoint)) {
 
                 hasNeighbor = true;
-
-                BoardElement neighbor = board.get(orientedPoint);
-                neighbor.neighbors.put(orientation.getOpposite(), tile);
-                element.neighbors.put(orientation, neighbor.currentTile);
+                break;
 
             }
 
@@ -100,7 +83,7 @@ public class Board {
 
         }
 
-        board.put(point, element);
+        board.put(point, tile);
 
     }
 
@@ -118,7 +101,7 @@ public class Board {
 
         }
 
-        return getBoardElement(point).currentTile;
+        return board.get(point);
 
     }
 
@@ -136,7 +119,15 @@ public class Board {
 
         }
 
-        return getBoardElement(point).neighbors.get(orientation);
+        Point orientedPoint = PointUtilities.getPointFromOrientation(point, orientation);
+
+        if (!boardContainsElement(orientedPoint)) {
+
+            return null;
+
+        }
+
+        return getTile(orientedPoint);
 
     }
 
@@ -144,29 +135,29 @@ public class Board {
 
         HashMap<Point, Tile> tiles = new HashMap<>();
 
-        Queue<Tuple<Point, BoardElement>> elements = new LinkedBlockingQueue<>();
-        elements.add(Tuple.Create(new Point(0, 0), getBoardElement(new Point(0, 0))));
+        Queue<Tuple<Point, Tile>> elements = new LinkedBlockingQueue<>();
+        elements.add(Tuple.Create(new Point(0, 0), getTile(new Point(0, 0))));
 
         while (!elements.isEmpty()) {
 
-            Tuple<Point, BoardElement> tuple = elements.poll();
+            Tuple<Point, Tile> tuple = elements.poll();
             Point point = tuple.item1;
-            BoardElement element = tuple.item2;
+            Tile tile = tuple.item2;
 
            for (Orientation orientation : Orientation.values()) {
 
                Point orientedPoint = PointUtilities.getPointFromOrientation(point, orientation);
-               BoardElement neighbor = getBoardElement(orientedPoint);
 
-               if (neighbor != null && !tiles.containsKey(orientedPoint)) {
+               if (boardContainsElement(orientedPoint) && !tiles.containsKey(orientedPoint)) {
 
+                   Tile neighbor = getTile(orientedPoint);
                    elements.add(Tuple.Create(orientedPoint, neighbor));
 
                }
 
            }
 
-           tiles.put(point, element.currentTile);
+           tiles.put(point, tile);
 
         }
 
@@ -177,12 +168,6 @@ public class Board {
     private boolean boardContainsElement(Point point) {
 
         return board.containsKey(point);
-
-    }
-
-    private BoardElement getBoardElement(Point point) {
-
-        return board.get(point);
 
     }
 
