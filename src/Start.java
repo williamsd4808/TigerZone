@@ -23,6 +23,11 @@ public class Start {
 
             System.out.println("Key: " + entry.getKey() + " | Value: " + entry.getValue());
 
+            System.out.println("\tNorth: " + board.getTileNeighbor(entry.getKey(), Board.Orientation.NORTH));
+            System.out.println("\tEast: " + board.getTileNeighbor(entry.getKey(), Board.Orientation.EAST));
+            System.out.println("\tSouth: " + board.getTileNeighbor(entry.getKey(), Board.Orientation.SOUTH));
+            System.out.println("\tWest: " + board.getTileNeighbor(entry.getKey(), Board.Orientation.WEST));
+
         }
 
     }
