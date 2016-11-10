@@ -42,7 +42,7 @@ public class Board {
 
     public Board() {
 
-        board.put(new Point(0, 0), new Tile()); // add the start tile here
+        board.put(new Point(0, 0), new Tile("Start Tile")); // add the start tile here
 
     }
 
