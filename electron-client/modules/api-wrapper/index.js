@@ -64,7 +64,7 @@ class TigerZone extends Server {
 
   watch_board(out, err) {
     return this
-      .LISTEN('/watch_board', out, err);
+      .LISTEN('/watch-board', out, err);
   }
 }
 
