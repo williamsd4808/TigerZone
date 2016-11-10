@@ -61,6 +61,11 @@ class TigerZone extends Server {
       .POST('/place-meeple', { board: board, location: location })
       .then(JSON.parse);
   }
+
+  watch_board(out, err) {
+    return this
+      .LISTEN('/watch_board', out, err);
+  }
 }
 
 module.exports = TigerZone;
