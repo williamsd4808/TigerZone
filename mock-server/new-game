@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+console.log(JSON.stringify({
+  turn: 0,
+  board: [[]],
+  players: 0
+}));

@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+const process = require('process');
+
+const args = JSON.parse(decodeURIComponent(process.argv[2]));
+
+console.log(args);

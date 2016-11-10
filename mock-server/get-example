@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+const datastore = require("./../mock-server/sample-datastore.json");
+
+console.log(datastore);

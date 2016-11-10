@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+const process = require('process');
+
+const { card, location } = JSON.parse(decodeURIComponent(process.argv[2]));
+
+console.log(JSON.stringify([
+  [true, false, false],
+  [true, true, false],
+  [true, false, false]
+]));

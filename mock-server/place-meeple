@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+const process = require('process');
+
+const { board, location } = JSON.parse(decodeURIComponent(process.argv[2]));
+
+const new_board = board;
+new_board[location.x][location.y] = '*';
+
+console.log(JSON.stringify(new_board));
