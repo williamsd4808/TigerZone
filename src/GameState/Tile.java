@@ -240,6 +240,15 @@ public class Tile {
 					new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}													
 				};				
 				break;
+			case "Start Tile":
+				this.subGrid = new Feature[][] {
+					new Feature[] {Feature.FIELD, Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD},
+					new Feature[] {Feature.FIELD, Feature.FIELD, Feature.CITY, Feature.FIELD, Feature.FIELD},
+					new Feature[] {Feature.ROAD, Feature.ROAD, Feature.FIELD, Feature.ROAD, Feature.ROAD},
+					new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
+					new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}													
+				};				
+				break;				
 		}		
 
 	}

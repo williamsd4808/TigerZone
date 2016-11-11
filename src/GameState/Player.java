@@ -29,6 +29,10 @@ public class Player {
 		this.score = score;
 	}
 
+	public void getNumOfMeeples() {
+		return this.numOfMeeples;
+	}
+
 	public void placeMeeple() throws OutofMeeplesException {
 		if(numOfMeeples == 0) {
 			throw new OutofMeeplesException("no more meeples!");
