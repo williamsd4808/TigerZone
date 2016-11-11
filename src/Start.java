@@ -1,4 +1,5 @@
 import GameState.Deck;
+import GameState.Tile;
 
 /**
  * Created by Austin Seber2 on 11/8/2016.
@@ -27,12 +28,21 @@ public class Start {
 
         Deck deck = new Deck(1);
 
-        while (deck.hasTileToDraw()) {
+        Tile temp = deck.drawTile();
+        printTileTest(temp);
 
-            System.out.println(deck.drawTile());
+        // while (deck.hasTileToDraw()) {
 
-        }
+        //     System.out.println(deck.drawTile());
 
+        // }        
     }
-
+    public static void printTileTest(Tile temp) {
+        for(int i = 0; i < 5; i++) {
+            for(int j = 0; j < 5; j++) {
+                System.out.print(temp.subGrid[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
 }

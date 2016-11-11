@@ -3,7 +3,7 @@ package GameState;
 public class Tile {
 
 	//2d array 5x5 of tile attributes
-	Feature[][] subGrid;
+	public Feature[][] subGrid;
 	private String name;
 	private boolean shield = false;
 	private final int id = 0;
