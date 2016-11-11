@@ -52,8 +52,8 @@ public class Deck {
         addTilesToPicker(tilePicker, new Tile("Triple corssroads"), 4); // 4 - triple crossroads
         addTilesToPicker(tilePicker, new Tile("Straight road"), 8); // 8 - straight road
         addTilesToPicker(tilePicker, new Tile("Elbow road"), 9); // 9 - elbow road
-        addTilesToPicker(tilePicker, new Tile("Monestary"), 4); // 4 - monestary
-        addTilesToPicker(tilePicker, new Tile("Monestary with road"), 2); // 2 - monestary with road
+        addTilesToPicker(tilePicker, new Tile("Monastary"), 4); // 4 - monestary
+        addTilesToPicker(tilePicker, new Tile("Monastary with road"), 2); // 2 - monestary with road
         addTilesToPicker(tilePicker, new Tile("1/2 city with elbow road"), 3); // 3 - 1/2 city with elbow road
         addTilesToPicker(tilePicker, new Tile("1/2 shielded city with elbow road"), 2); // 2 - 1/2 shielded city with elbow road
         addTilesToPicker(tilePicker, new Tile("Tunnel city"), 1); // 1 - tunnel city
