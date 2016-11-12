@@ -46,7 +46,7 @@ class TigerZone extends Server {
 
   get_moves(card) {
     return this
-      .POST('/get-moves', card)
+      .GET('/get-moves')
       .then(JSON.parse);
   }
 

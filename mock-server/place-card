@@ -1,9 +1,25 @@
 #!/usr/bin/env node
 
 const process = require('process');
+const fs = require('fs');
 
 const { card, location } = JSON.parse(decodeURIComponent(process.argv[2]));
 
-console.log(JSON.stringify([
-  [x: 1, y: 4, orientation: 2]
-]));
+const board = require('./sample-datastore.json');
+
+board.turn++;
+
+board.board.push({
+  x: parseInt(location.x, 10),
+  y: parseInt(location.y, 10),
+  orientation: parseInt(location.orientation, 10),
+  tile: card
+});
+
+fs.writeFile("mock-server/sample-datastore.json", JSON.stringify(board), function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log(JSON.stringify(board));
+});

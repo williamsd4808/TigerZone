@@ -20,6 +20,6 @@ function debounce(func, wait, immediate) {
 fs.watch('mock-server/sample-datastore.json', debounce((curr, prev) => {
   fs.readFile('mock-server/sample-datastore.json', 'utf8', (err, data) => {
     if (err) throw err;
-    console.log(data);
+    console.log(JSON.stringify(data));
   });
 }, 250));
