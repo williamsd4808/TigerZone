@@ -1,7 +1,50 @@
 {
-  "turn": 3,
+  "turn": 14,
   "board": [
-    []
+    [
+    	{
+    		"name": "Monestary with road", "x": 3, "y": 4, "orientation": 2
+    	},
+    	{
+    		"name": "Monestary", "x": 2, "y": 4, "orientation": 1
+    	},
+    	{
+    		"name": "3/4 city", "x": 1, "y": 4, "orientation": 3
+    	},
+    	{
+    		"name": "1/2 shielded city", "x": 1, "y": 3, "orientation": 4
+    	},
+    	{
+    		"name": "Elbow road", "x": 1, "y": 2, "orientation": 2
+    	},
+    	{
+    		"name": "Two bubble cities side by side", "x": 1, "y": 1, "orientation": 4
+    	},
+    	{
+    		"name": "Single bubble city", "x": 2, "y": 1, "orientation": 1
+    	},
+    	{
+    		"name": "Straight road", "x": 2, "y": 2, "orientation": 3
+    	},
+    	{
+    		"name": "Tunnel City", "x": 2, "y": 3, "orientation": 1
+    	},
+    	{
+    		"name": "Two bubble sities across from one another", "x": 2, "y": 4, "orientation": 2
+    	},
+    	{
+    		"name": "1/2 shielded city", "x": 2, "y": 5, "orientation": 3
+    	},
+    	{
+    		"name": "Monestary", "x": 3, "y": 2, "orientation": 1
+    	},
+    	{
+    		"name": "Triple crossroads", "x": 3, "y": 1, "orientation": 1
+    	},
+    	{
+    		"name": "Triple crossroads", "x": 3, "y": 3, "orientation": 2
+    	}
+    ],
   ],
   "players": 2
 }
