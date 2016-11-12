@@ -5,35 +5,50 @@
     <title>Hello World!</title>
   </head>
   <body>
-    <div id="active-card"></div>
-    <div id="bottom-hud">
-      <p id="player-name">You are player <span id="player-id"></span></p>
+    <div id="right-hud">
+      <div id="active-card"></div>
+      <p id="player-name">Player <span id="player-id"></span></p>
       <div id="new-game-container">
         <button id="new-game">New Game</button>
       </div>
     </div>
     <div id="board"></div>
     <style>
-      #active-card {
-        position: absolute;
-        top: 1em;
-        right: 1em;
-        height: 90px;
-        width: 90px;
+      #new-game {
+        background-color: #4DD0E1;
+        height: 2em;
+        width: 90%;
+        border: none;
+        color: white;
       }
 
-      #bottom-hud {
+      #new-game:hover {
+        background-color: #26C6DA;
+      }
+
+      #active-card {
+        height: 90px;
+        width: 90px;
+        margin: auto;
+        box-shadow: 1px 1px 1px #78909C;
+      }
+
+      #right-hud {
         position: absolute;
-        bottom: 0px;
-        height: 4em;
-        width: 100%;
-        background-color: red;
-        opacity: 0.8;
+        top: 2em;
+        right: 3em;
+        width: 100px;
+        padding: 1em;
+        background-color: #ECEFF1;
+        border: 1px solid #B2EBF2;
+        box-shadow: 2px 2px 2px #78909C
       }
 
       #player-name {
         margin: auto;
         text-align: center;
+        font-family: sans-serif;
+        color: #2B2B2B;
       }
 
       #new-game-container {
@@ -45,7 +60,7 @@
         flex-shrink: 0;
         overflow-y: scroll;
         overflow-x: scroll;
-        max-height: 600px;
+        max-height: 660px;
       }
 
       .col {
@@ -66,7 +81,13 @@
       div.potential {
         width: 90px;
         height: 90px;
-        background-color: blue;
+        background-image: url(tiles/potential.png);
+        box-sizing: border-box;
+        background-position: center;
+      }
+
+      div.potential:hover {
+        border: 4px solid #b2ebf2;
       }
     </style>
     <script src="client.js"></script>

@@ -1,8 +1,33 @@
 #!/usr/bin/env node
 
+const tiles = [
+  "Single bubble city with straight road",
+  "Complete shielded city",
+  "3/4 city",
+  "3/4 shielded city",
+  "3/4 city with road",
+  "3/4 shielded city with road",
+  "Quadruple crossroads",
+  "Triple corssroads",
+  "Straight road",
+  "Elbow road",
+  "Monastary",
+  "Monastary with road",
+  "1/2 city with elbow road",
+  "1/2 shielded city with elbow road",
+  "Tunnel city",
+  "Tunnel shielded city",
+  "1/2 city",
+  "1/2 shielded city",
+  "Two bubble cities side by side",
+  "Two bubble cities across from one another",
+  "Single bubble city",
+  "Single bubble city with elbow road",
+  "Single bubble city with elbow road other direction",
+  "Single bubble city with triple crossroads"
+];
+
 console.log(JSON.stringify({
-  id: "Quadruple crossroads",
-  subgrid: [[]],
-  x: 70,
-  y: 70
+  id: tiles[Math.floor(Math.random()*tiles.length)],
+  subgrid: [[]]
 }));
