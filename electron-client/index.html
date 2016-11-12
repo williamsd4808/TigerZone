@@ -5,11 +5,70 @@
     <title>Hello World!</title>
   </head>
   <body>
-    <p>You are player <span id="player-id"></span></p>
-    <div><pre id="board"></pre></div>
-    <div>
-      <button id="new-game">New Game</button>
+    <div id="active-card"></div>
+    <div id="bottom-hud">
+      <p id="player-name">You are player <span id="player-id"></span></p>
+      <div id="new-game-container">
+        <button id="new-game">New Game</button>
+      </div>
     </div>
+    <div id="board"></div>
+    <style>
+      #active-card {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        height: 90px;
+        width: 90px;
+      }
+
+      #bottom-hud {
+        position: absolute;
+        bottom: 0px;
+        height: 4em;
+        width: 100%;
+        background-color: red;
+        opacity: 0.8;
+      }
+
+      #player-name {
+        margin: auto;
+        text-align: center;
+      }
+
+      #new-game-container {
+        text-align: center;
+      }
+
+      #board {
+        display: flex;
+        flex-shrink: 0;
+        overflow-y: scroll;
+        overflow-x: scroll;
+        max-height: 600px;
+      }
+
+      .col {
+        flex: 1;
+      }
+
+      div.cell {
+        /*background-color: green;*/
+        height: 90px;
+      }
+
+      div.occupied {
+        width: 90px;
+        height: 90px;
+        background-color: red;
+      }
+
+      div.potential {
+        width: 90px;
+        height: 90px;
+        background-color: blue;
+      }
+    </style>
     <script src="client.js"></script>
   </body>
 </html>
