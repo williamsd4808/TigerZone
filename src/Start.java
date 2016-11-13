@@ -1,5 +1,13 @@
+import GameState.Board;
 import GameState.Deck;
 import GameState.Tile;
+import Utilities.BoardUtilities;
+import Utilities.TileUtilities;
+import Utilities.Tuple;
+
+import java.awt.*;
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * Created by Austin Seber2 on 11/8/2016.
@@ -8,41 +16,25 @@ public class Start {
 
     public static void main(String[] args) {
 
-        /*Board board = new Board();
-        board.addTile(new Point(1, 0), new Tile());
-        board.addTile(new Point(2, 0), new Tile());
-//        board.addTile(new Point(4, 0), new Tile());
-
-        Map<Point, Tile> tiles = board.getTiles();
-
-        for (Map.Entry<Point, Tile> entry : tiles.entrySet()) {
-
-            System.out.println("Key: " + entry.getKey() + " | Value: " + entry.getValue());
-
-            System.out.println("\tNorth: " + board.getTileNeighbor(entry.getKey(), Board.Orientation.NORTH));
-            System.out.println("\tEast: " + board.getTileNeighbor(entry.getKey(), Board.Orientation.EAST));
-            System.out.println("\tSouth: " + board.getTileNeighbor(entry.getKey(), Board.Orientation.SOUTH));
-            System.out.println("\tWest: " + board.getTileNeighbor(entry.getKey(), Board.Orientation.WEST));
-
-        }*/
-
         Deck deck = new Deck(1);
 
-        Tile temp = deck.drawTile();
-        printTileTest(temp);
+        Board board = new Board();
+        board.addTile(new Point(0, 1), deck.drawTile(), Board.Orientation.NORTH);
+        board.addTile(new Point(0, 2), deck.drawTile(), Board.Orientation.NORTH);
+        board.addTile(new Point(1, 0), deck.drawTile(), Board.Orientation.NORTH);
+        board.addTile(new Point(1, 1), deck.drawTile(), Board.Orientation.NORTH);
+        board.addTile(new Point(1, 2), deck.drawTile(), Board.Orientation.NORTH);
+        board.addTile(new Point(2, 0), deck.drawTile(), Board.Orientation.NORTH);
+        board.addTile(new Point(2, 1), deck.drawTile(), Board.Orientation.NORTH);
+        board.addTile(new Point(2, 2), deck.drawTile(), Board.Orientation.NORTH);
 
-        // while (deck.hasTileToDraw()) {
+        Collection<Tuple<Board.Orientation, Board.Orientation>> possibleOrientations = TileUtilities.getPossibleConnections(board.getTile(new Point(0, 0)), deck.drawTile(), board);
 
-        //     System.out.println(deck.drawTile());
+        for (Tuple<Board.Orientation, Board.Orientation> possibleOrientation : possibleOrientations) {
 
-        // }        
-    }
-    public static void printTileTest(Tile temp) {
-        for(int i = 0; i < 5; i++) {
-            for(int j = 0; j < 5; j++) {
-                System.out.print(temp.subGrid[i][j] + " ");
-            }
-            System.out.println();
+            System.out.println(possibleOrientation.item1 + " | " + possibleOrientation.item2);
+
         }
+
     }
 }

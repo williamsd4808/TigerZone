@@ -1,9 +1,11 @@
 package GameState;
 
+import java.awt.*;
+
 public class Tile {
 
 	//2d array 5x5 of tile attributes
-	public Feature[][] subGrid;
+	private Feature[][] subGrid;
 	private String name;
 	private boolean shield = false;
 	private final int id = 0;
@@ -241,6 +243,18 @@ public class Tile {
 				};				
 				break;
 		}		
+
+	}
+
+	public Feature getFeature(int x, int y) {
+
+		return subGrid[x][y];
+
+	}
+
+	public Feature getFeature(Point point) {
+
+		return getFeature(point.x, point.y);
 
 	}
 

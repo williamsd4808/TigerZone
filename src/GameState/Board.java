@@ -7,8 +7,6 @@ import java.awt.Point;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class Board {
 
@@ -32,7 +30,63 @@ public class Board {
 
     }
 
-    private HashMap<Point, Tile> board = new HashMap<>();
+    private interface Transform {
+
+        Tuple<Integer, Integer> Transform(int x, int y);
+
+    }
+
+    public static class PlacedTile {
+
+        private static final HashMap<Orientation, Transform> conversionMatrices = new HashMap<Orientation, Transform>() {
+
+            {
+
+                put(Orientation.NORTH, (x, y) -> Tuple.Create(x, y));
+                put(Orientation.EAST, (x, y) -> Tuple.Create(4 - y, x));
+                put(Orientation.SOUTH, (x, y) -> Tuple.Create(4 - x, 4 - y));
+                put(Orientation.WEST, (x, y) -> Tuple.Create(y, 4 - x));
+
+            }
+
+        };
+
+        public final Tile tile;
+        public final Orientation placementOrientation;
+        public final Point location;
+
+        public PlacedTile(Tile tile, Orientation placementOrientation, Point location) {
+
+            this.tile = tile;
+            this.placementOrientation = placementOrientation;
+            this.location = location;
+
+        }
+
+        public Feature getFeature(int x, int y) {
+
+            Transform transformationMatrix = conversionMatrices.get(placementOrientation);
+            Tuple<Integer, Integer> newValues = transformationMatrix.Transform(x, y);
+
+            return tile.getFeature(newValues.item1, newValues.item2);
+
+        }
+
+        public Feature getFeature(Point point) {
+
+            return getFeature(point.x, point.y);
+
+        }
+
+        public String toString() {
+
+            return super.toString() + " (Point = " + location + ")";
+
+        }
+
+    }
+
+    private HashMap<Point, PlacedTile> board = new HashMap<>();
 
     /*
      * The board ensures that tiles are only added to the map on spots that aren't already occupied,
@@ -42,7 +96,7 @@ public class Board {
 
     public Board() {
 
-        board.put(new Point(0, 0), new Tile("Start Tile")); // add the start tile here
+        putTileInSet(new Point(0, 0), new Tile("Single bubble city with straight road"), Orientation.NORTH);
 
     }
 
@@ -56,11 +110,11 @@ public class Board {
      *
      */
 
-    public void addTile(Point point, Tile tile) {
+    public void addTile(Point point, Tile tile, Orientation placementOrientation) {
 
         boolean hasNeighbor = false;
 
-        if (boardContainsElement(point)) {
+        if (containsElement(point)) {
 
             throw new RuntimeException("Cannot add tile where one already exists. Point = (" + point + ")");
 
@@ -70,7 +124,7 @@ public class Board {
 
             Point orientedPoint = PointUtilities.getPointFromOrientation(point, orientation);
 
-            if (boardContainsElement(orientedPoint)) {
+            if (containsElement(orientedPoint)) {
 
                 hasNeighbor = true;
                 break;
@@ -85,7 +139,7 @@ public class Board {
 
         }
 
-        board.put(point, tile);
+        putTileInSet(point, tile, placementOrientation);
 
     }
 
@@ -95,9 +149,9 @@ public class Board {
      *
      */
 
-    public Tile getTile(Point point) {
+    public PlacedTile getTile(Point point) {
 
-        if (!boardContainsElement(point)) {
+        if (!containsElement(point)) {
 
             throw new RuntimeException("Point (" + point + " does not exist on board");
 
@@ -113,9 +167,9 @@ public class Board {
      *
      */
 
-    public Tile getTileNeighbor(Point point, Orientation orientation) {
+    public PlacedTile getTileNeighbor(Point point, Orientation orientation) {
 
-        if (!boardContainsElement(point)) {
+        if (!containsElement(point)) {
 
             throw new RuntimeException("Point (" + point + " does not exist on board");
 
@@ -123,7 +177,7 @@ public class Board {
 
         Point orientedPoint = PointUtilities.getPointFromOrientation(point, orientation);
 
-        if (!boardContainsElement(orientedPoint)) {
+        if (!containsElement(orientedPoint)) {
 
             return null;
 
@@ -133,15 +187,21 @@ public class Board {
 
     }
 
-    public Map<Point, Tile> getTiles() {
+    public Map<Point, PlacedTile> getTiles() {
 
         return Collections.unmodifiableMap(board);
 
     }
 
-    private boolean boardContainsElement(Point point) {
+    public boolean containsElement(Point point) {
 
         return board.containsKey(point);
+
+    }
+
+    private void putTileInSet(Point location, Tile tile, Orientation orientation) {
+
+        board.put(location, new PlacedTile(tile, orientation, location));
 
     }
 
