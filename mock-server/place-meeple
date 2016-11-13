@@ -2,9 +2,9 @@
 
 const process = require('process');
 
-const { board, location } = JSON.parse(decodeURIComponent(process.argv[2]));
+#! Depenedent on Meeple impl, location referring to tile subgrid
+const { player, location } = JSON.parse(decodeURIComponent(process.argv[2]));
 
-const new_board = board;
-new_board[location.x][location.y] = '*';
-
-console.log(JSON.stringify(new_board));
+console.log(JSON.stringify([
+  [player: 1, location.x: 3, location.y: 4]
+]))

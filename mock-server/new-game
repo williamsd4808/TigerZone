@@ -1,7 +1,25 @@
 #!/usr/bin/env node
+const fs = require('fs');
 
-console.log(JSON.stringify({
+const output = JSON.stringify({
   turn: 0,
-  board: [[]],
+  board: [
+    {
+      x: 0,
+      y: 0,
+      orientation: 0,
+      tile: {
+        id: "Single bubble city with straight road"
+      }
+    }
+  ],
   players: 2
-}));
+});
+
+fs.writeFile("mock-server/sample-datastore.json", output, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log(output);
+});
