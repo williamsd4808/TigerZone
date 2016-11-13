@@ -1,5 +1,7 @@
 import GameState.Deck;
 import GameState.Tile;
+import GameState.Player;
+import GameState.Meeple;
 
 /**
  * Created by Austin Seber2 on 11/8/2016.
@@ -35,7 +37,11 @@ public class Start {
 
         //     System.out.println(deck.drawTile());
 
-        // }        
+        // } 
+        Player player1 = new Player("ricky");
+        Meeple meeple = new Meeple(player1);
+        System.out.println(meeple.getOwner());
+
     }
     public static void printTileTest(Tile temp) {
         for(int i = 0; i < 5; i++) {
