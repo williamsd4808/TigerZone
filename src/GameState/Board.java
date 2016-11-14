@@ -1,5 +1,6 @@
 package GameState;
 
+import Utilities.BoardUtilities;
 import Utilities.PointUtilities;
 import Utilities.Tuple;
 
@@ -120,8 +121,9 @@ public class Board {
 
     /*
      * This method will throw exceptions in two cases:
-     *      1. if item1 tile is trying to be added where one already exists
-     *      2. if item1 tile does not connect to item1 tile already on the map,
+     *      1. if the tile should not be placed on the map due to game rules
+     *      2. if item1 tile is trying to be added where one already exists
+     *      3. if item1 tile does not connect to item1 tile already on the map,
      *         it will not be added to the map
      *
      * This method guarantees that internally, all neighbors are set properly
@@ -129,6 +131,12 @@ public class Board {
      */
 
     public void addTile(Point point, Tile tile, Orientation placementOrientation) {
+
+        if (!BoardUtilities.canPlaceTileAtLocation(tile, point, placementOrientation, this)) {
+
+            throw new RuntimeException("Cannot add tile there as it is not a valid location for this type of tile");
+
+        }
 
         boolean hasNeighbor = false;
 
