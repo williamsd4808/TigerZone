@@ -5,11 +5,15 @@ import Utilities.PointUtilities;
 import Utilities.Tuple;
 
 import java.awt.Point;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Board {
+public class Board implements Serializable {
 
     /*
      * Do NOT modify this enumeration. The order of this enumeration is connascent with the PointUtilities class implementation
@@ -37,7 +41,7 @@ public class Board {
 
     }
 
-    public static class PlacedTile {
+    public static class PlacedTile implements Serializable {
 
         private static final HashMap<Orientation, Transform> conversionMatrices = new HashMap<Orientation, Transform>() {
 
@@ -51,6 +55,8 @@ public class Board {
             }
 
         };
+
+        private static final long serialVersionUID = -1486570415012074966L;
 
         public final Tile tile;
         public final Orientation placementOrientation;
@@ -105,6 +111,8 @@ public class Board {
 
     }
 
+    private static final long serialVersionUID = -6037642475395251125L;
+
     private HashMap<Point, PlacedTile> board = new HashMap<>();
 
     /*
@@ -115,7 +123,7 @@ public class Board {
 
     public Board() {
 
-        putTileInSet(new Point(0, 0), new Tile("Single bubble city with straight road"), Orientation.NORTH);
+        putTileInMap(new Point(0, 0), new Tile("Single bubble city with straight road"), Orientation.NORTH);
 
     }
 
@@ -165,7 +173,7 @@ public class Board {
 
         }
 
-        putTileInSet(point, tile, placementOrientation);
+        putTileInMap(point, tile, placementOrientation);
 
     }
 
@@ -225,9 +233,20 @@ public class Board {
 
     }
 
-    private void putTileInSet(Point location, Tile tile, Orientation orientation) {
+    private void putTileInMap(Point location, Tile tile, Orientation orientation) {
 
         board.put(location, new PlacedTile(tile, orientation, location));
+
+    }
+
+    private void readObject(ObjectInputStream inputStream) throws ClassNotFoundException, IOException {
+
+        inputStream.defaultReadObject();
+
+    }
+    private void writeObject(ObjectOutputStream outputStream) throws IOException {
+
+        outputStream.defaultWriteObject();
 
     }
 
