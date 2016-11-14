@@ -80,7 +80,25 @@ public class Board {
 
         public String toString() {
 
-            return super.toString() + " (Point = " + location + ")";
+            StringBuilder builder = new StringBuilder(tile.toString() + ", Point = " + location + ", Orientation: " + placementOrientation);
+
+            builder.append("\n");
+
+            for (int i = 0; i < 5; i++) {
+
+                builder.append("\t");
+
+                for (int j = 0; j < 5; j++) {
+
+                    builder.append(getFeature(i, j) + (j == 4 ? "" : ", "));
+
+                }
+
+                builder.append("\n");
+
+            }
+
+            return builder.toString();
 
         }
 

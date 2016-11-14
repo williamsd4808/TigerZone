@@ -2,8 +2,6 @@ import GameState.Board;
 import GameState.Deck;
 import GameState.Tile;
 import Utilities.BoardUtilities;
-import Utilities.TileUtilities;
-import Utilities.Tuple;
 
 import java.awt.*;
 import java.util.Collection;
@@ -16,25 +14,32 @@ public class Start {
 
     public static void main(String[] args) {
 
-        Deck deck = new Deck(1);
-
+        Deck deck = new Deck(1000);
         Board board = new Board();
-        board.addTile(new Point(0, 1), deck.drawTile(), Board.Orientation.NORTH);
-        board.addTile(new Point(0, 2), deck.drawTile(), Board.Orientation.NORTH);
-        board.addTile(new Point(1, 0), deck.drawTile(), Board.Orientation.NORTH);
-        board.addTile(new Point(1, 1), deck.drawTile(), Board.Orientation.NORTH);
-        board.addTile(new Point(1, 2), deck.drawTile(), Board.Orientation.NORTH);
-        board.addTile(new Point(2, 0), deck.drawTile(), Board.Orientation.NORTH);
-        board.addTile(new Point(2, 1), deck.drawTile(), Board.Orientation.NORTH);
-        board.addTile(new Point(2, 2), deck.drawTile(), Board.Orientation.NORTH);
+        board.addTile(new Point(0, 1), deck.drawTile(), Board.Orientation.EAST);
+        board.addTile(new Point(1, 1), deck.drawTile(), Board.Orientation.WEST);
 
-        Collection<Tuple<Board.Orientation, Board.Orientation>> possibleOrientations = TileUtilities.getPossibleConnections(board.getTile(new Point(0, 0)), deck.drawTile(), board);
+        Tile newTile = deck.drawTile();
 
-        for (Tuple<Board.Orientation, Board.Orientation> possibleOrientation : possibleOrientations) {
+        System.out.println(newTile);
 
-            System.out.println(possibleOrientation.item1 + " | " + possibleOrientation.item2);
+        Map<Point, Collection<Board.Orientation>> validPointsAndOrientations = BoardUtilities.getValidAdjacentPoints(newTile, board);
+
+        for (Map.Entry<Point, Collection<Board.Orientation>> entry : validPointsAndOrientations.entrySet()) {
+
+            Point point = entry.getKey();
+            Collection<Board.Orientation> orientations = entry.getValue();
+
+            System.out.println(point);
+
+            for (Board.Orientation orientation : orientations) {
+
+                System.out.println("\t" + orientation);
+
+            }
 
         }
 
     }
+
 }

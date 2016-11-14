@@ -242,6 +242,8 @@ public class Tile {
 					new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}													
 				};				
 				break;
+            default:
+                throw new RuntimeException("Invalid tile created!");
 		}		
 
 	}
@@ -260,7 +262,7 @@ public class Tile {
 
 	public String toString() {
 
-		return name;
+        return name;
 
 	}
 
