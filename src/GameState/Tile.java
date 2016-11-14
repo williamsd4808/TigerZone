@@ -1,9 +1,11 @@
 package GameState;
 
+import java.awt.*;
+
 public class Tile {
 
 	//2d array 5x5 of tile attributes
-	public Feature[][] subGrid;
+	private Feature[][] subGrid;
 	private String name;
 	private boolean shield = false;
 	private final int id = 0;
@@ -240,22 +242,27 @@ public class Tile {
 					new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}													
 				};				
 				break;
-			case "Start Tile":
-				this.subGrid = new Feature[][] {
-					new Feature[] {Feature.FIELD, Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD},
-					new Feature[] {Feature.FIELD, Feature.FIELD, Feature.CITY, Feature.FIELD, Feature.FIELD},
-					new Feature[] {Feature.ROAD, Feature.ROAD, Feature.FIELD, Feature.ROAD, Feature.ROAD},
-					new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-					new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}													
-				};				
-				break;				
-		}		
+            default:
+                throw new RuntimeException("Invalid tile created!");
+		}
+
+	}
+
+	public Feature getFeature(int x, int y) {
+
+		return subGrid[x][y];
+
+	}
+
+	public Feature getFeature(Point point) {
+
+		return getFeature(point.x, point.y);
 
 	}
 
 	public String toString() {
 
-		return name;
+        return name;
 
 	}
 

@@ -29,7 +29,7 @@ public class Player {
 		this.score = score;
 	}
 
-	public void getNumOfMeeples() {
+	public int getNumOfMeeples() {
 		return this.numOfMeeples;
 	}
 

@@ -1,5 +1,11 @@
+import GameState.Board;
 import GameState.Deck;
 import GameState.Tile;
+import Utilities.BoardUtilities;
+
+import java.awt.*;
+import java.util.Collection;
+import java.util.Map;
 import GameState.Player;
 import GameState.Meeple;
 
@@ -10,45 +16,52 @@ public class Start {
 
     public static void main(String[] args) {
 
-        /*Board board = new Board();
-        board.addTile(new Point(1, 0), new Tile());
-        board.addTile(new Point(2, 0), new Tile());
-//        board.addTile(new Point(4, 0), new Tile());
+        Deck deck = new Deck(1000);
+        Board board = new Board();
+        board.addTile(new Point(0, 1), deck.drawTile(), Board.Orientation.EAST);
+        board.addTile(new Point(1, 1), deck.drawTile(), Board.Orientation.WEST);
 
-        Map<Point, Tile> tiles = board.getTiles();
+        Tile newTile = deck.drawTile();
 
-        for (Map.Entry<Point, Tile> entry : tiles.entrySet()) {
+        System.out.println(newTile);
 
-            System.out.println("Key: " + entry.getKey() + " | Value: " + entry.getValue());
+        Map<Point, Collection<Board.Orientation>> validPointsAndOrientations = BoardUtilities.getValidAdjacentPoints(newTile, board);
 
-            System.out.println("\tNorth: " + board.getTileNeighbor(entry.getKey(), Board.Orientation.NORTH));
-            System.out.println("\tEast: " + board.getTileNeighbor(entry.getKey(), Board.Orientation.EAST));
-            System.out.println("\tSouth: " + board.getTileNeighbor(entry.getKey(), Board.Orientation.SOUTH));
-            System.out.println("\tWest: " + board.getTileNeighbor(entry.getKey(), Board.Orientation.WEST));
+        for (Map.Entry<Point, Collection<Board.Orientation>> entry : validPointsAndOrientations.entrySet()) {
 
-        }*/
+            Point point = entry.getKey();
+            Collection<Board.Orientation> orientations = entry.getValue();
 
-        Deck deck = new Deck(1);
+            System.out.println(point);
 
-        Tile temp = deck.drawTile();
-        printTileTest(temp);
+            for (Board.Orientation orientation : orientations) {
 
-        // while (deck.hasTileToDraw()) {
+                System.out.println("\t" + orientation);
 
-        //     System.out.println(deck.drawTile());
+            }
 
-        // } 
+        }
+
         Player player1 = new Player("ricky");
         Meeple meeple = new Meeple(player1);
         System.out.println(meeple.getOwner());
 
     }
+
     public static void printTileTest(Tile temp) {
+
         for(int i = 0; i < 5; i++) {
+
             for(int j = 0; j < 5; j++) {
-                System.out.print(temp.subGrid[i][j] + " ");
+
+                System.out.print(temp.getFeature(i, j) + " ");
+
             }
+
             System.out.println();
+
         }
+
     }
+
 }
