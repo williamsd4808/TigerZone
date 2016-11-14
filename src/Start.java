@@ -6,6 +6,8 @@ import Utilities.BoardUtilities;
 import java.awt.*;
 import java.util.Collection;
 import java.util.Map;
+import GameState.Player;
+import GameState.Meeple;
 
 /**
  * Created by Austin Seber2 on 11/8/2016.
@@ -37,6 +39,26 @@ public class Start {
                 System.out.println("\t" + orientation);
 
             }
+
+        }
+
+        Player player1 = new Player("ricky");
+        Meeple meeple = new Meeple(player1);
+        System.out.println(meeple.getOwner());
+
+    }
+
+    public static void printTileTest(Tile temp) {
+
+        for(int i = 0; i < 5; i++) {
+
+            for(int j = 0; j < 5; j++) {
+
+                System.out.print(temp.getFeature(i, j) + " ");
+
+            }
+
+            System.out.println();
 
         }
 

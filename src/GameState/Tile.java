@@ -244,7 +244,7 @@ public class Tile {
 				break;
             default:
                 throw new RuntimeException("Invalid tile created!");
-		}		
+		}
 
 	}
 
