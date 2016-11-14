@@ -1,8 +1,5 @@
 module.exports = function(name) {
   const table = {
-<<<<<<< HEAD
-    "Quadruple crossroads": "http://russcon.org/RussCon/carcassonne/road4.png"
-=======
     "Single bubble city with straight road": "tiles/city1rwe.png",
     "Complete shielded city": "tiles/city4.png",
     "3/4 city": "tiles/city3.png",
@@ -27,7 +24,6 @@ module.exports = function(name) {
     "Single bubble city with elbow road": "tiles/city1rse.png",
     "Single bubble city with elbow road other direction": "tiles/city1rsw.png",
     "Single bubble city with triple crossroads": "tiles/city1rswe.png"
->>>>>>> origin/master
   };
 
   return table[name];

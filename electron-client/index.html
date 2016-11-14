@@ -5,38 +5,15 @@
     <title>Hello World!</title>
   </head>
   <body>
-<<<<<<< HEAD
-    <div id="active-card"></div>
-    <div id="bottom-hud">
-      <p id="player-name">You are player <span id="player-id"></span></p>
-=======
     <div id="right-hud">
       <div id="active-card"></div>
       <p id="player-name">Player <span id="player-id"></span></p>
->>>>>>> origin/master
       <div id="new-game-container">
         <button id="new-game">New Game</button>
       </div>
     </div>
     <div id="board"></div>
     <style>
-<<<<<<< HEAD
-      #active-card {
-        position: absolute;
-        top: 1em;
-        right: 1em;
-        height: 90px;
-        width: 90px;
-      }
-
-      #bottom-hud {
-        position: absolute;
-        bottom: 0px;
-        height: 4em;
-        width: 100%;
-        background-color: red;
-        opacity: 0.8;
-=======
       #new-game {
         background-color: #4DD0E1;
         height: 2em;
@@ -44,18 +21,15 @@
         border: none;
         color: white;
       }
-
       #new-game:hover {
         background-color: #26C6DA;
       }
-
       #active-card {
         height: 90px;
         width: 90px;
         margin: auto;
         box-shadow: 1px 1px 1px #78909C;
       }
-
       #right-hud {
         position: absolute;
         top: 2em;
@@ -65,64 +39,44 @@
         background-color: #ECEFF1;
         border: 1px solid #B2EBF2;
         box-shadow: 2px 2px 2px #78909C
->>>>>>> origin/master
       }
-
       #player-name {
         margin: auto;
         text-align: center;
-<<<<<<< HEAD
-=======
         font-family: sans-serif;
         color: #2B2B2B;
->>>>>>> origin/master
       }
-
       #new-game-container {
         text-align: center;
       }
-
       #board {
         display: flex;
         flex-shrink: 0;
         overflow-y: scroll;
         overflow-x: scroll;
-<<<<<<< HEAD
-        max-height: 600px;
-=======
         max-height: 660px;
->>>>>>> origin/master
       }
-
       .col {
         flex: 1;
       }
-
       div.cell {
         /*background-color: green;*/
         height: 90px;
       }
-
       div.occupied {
         width: 90px;
         height: 90px;
         background-color: red;
       }
-
       div.potential {
         width: 90px;
         height: 90px;
-<<<<<<< HEAD
-        background-color: blue;
-=======
         background-image: url(tiles/potential.png);
         box-sizing: border-box;
         background-position: center;
       }
-
       div.potential:hover {
         border: 4px solid #b2ebf2;
->>>>>>> origin/master
       }
     </style>
     <script src="client.js"></script>
