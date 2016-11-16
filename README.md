@@ -10,12 +10,4 @@ The client now allows you to add tiles and view possible moves. It does not curr
 
 ## Java Server
 
-To run the Java server from a different directory, you need to include the `classpath` option, i.e.
-
-`$ java -classpath rel/dir/ Class`
-
-To run the server from the root of the project, run
-
-`$ java -classpath src Start`
-
- Replacing 'Start' with the appropriate endpoint
+To run the Java server, use the shell scripts provided.
