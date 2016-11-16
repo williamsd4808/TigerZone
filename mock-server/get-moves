@@ -2,14 +2,13 @@
 
 const process = require('process');
 
-// const card = JSON.parse(decodeURIComponent(process.argv[2]));
 const board = require('./sample-datastore.json');
 
 const neighbors = board.board
-  .map(({ x, y }) => ({ x: parseInt(x, 10), y: parseInt(y, 10)}))
-  .map(({ x, y }) => [ { x: x, y: y + 1}, { x: x + 1, y: y }, { x: x, y: y - 1 }, { x: x - 1, y: y}])
-  .reduce((a, b) => a.concat(b), [])
-  .filter((loc) => !board.board.map(({ x, y }) => [x, y]).includes([loc.x, loc.y]))
-  .map(({ x, y }) => ({ x: x, y: y, orientation: Math.floor(Math.random()*4)}))
+ .map(({ x, y }) => ({ x: parseInt(x, 10), y: parseInt(y, 10)}))
+ .map(({ x, y }) => [ { x: x, y: y + 1}, { x: x + 1, y: y }, { x: x, y: y - 1 }, { x: x - 1, y: y}])
+ .reduce((a, b) => a.concat(b), [])
+ .filter((loc) => !board.board.map(({ x, y }) => [x, y]).includes([loc.x, loc.y]))
+ .map(({ x, y }) => ({ x: x, y: y, orientation: Math.floor(Math.random()*4)}))
 
 console.log(JSON.stringify(neighbors, null, '  '));
