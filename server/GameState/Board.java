@@ -13,6 +13,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.json.*;
+
 public class Board implements Serializable {
 
     /*
@@ -231,6 +233,24 @@ public class Board implements Serializable {
 
         return board.containsKey(point);
 
+    }
+
+    public JsonArray toJSON() {
+      JsonArrayBuilder res = Json.createArrayBuilder();
+
+      for(Map.Entry<Point,PlacedTile> entry : board.entrySet()){
+        PlacedTile t = entry.getValue();
+        res.add(
+          Json
+            .createObjectBuilder()
+            .add("x", t.location.x)
+            .add("y", t.location.y)
+            .add("orientation", t.placementOrientation.toString())
+            .add("name", t.tile.toString())
+        );
+      }
+
+      return res.build();
     }
 
     private void putTileInMap(Point location, Tile tile, Orientation orientation) {

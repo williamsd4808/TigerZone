@@ -28,13 +28,6 @@ const tiles = [
 ];
 
 console.log(JSON.stringify({
-<<<<<<< HEAD
-  id: "Quadruple crossroads",
-  subgrid: [[]],
-  x: 70,
-  y: 70
-=======
   id: tiles[Math.floor(Math.random()*tiles.length)],
   subgrid: [[]]
->>>>>>> origin/master
 }));
