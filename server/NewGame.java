@@ -14,14 +14,14 @@ public class NewGame {
       .build();
 
     try{
-      PrintWriter writer = new PrintWriter("datastore.json", "UTF-8");
+      PrintWriter writer = new PrintWriter("server/datastore.json", "UTF-8");
 
       writer.println(res);
       writer.close();
-      
+
       System.out.println(res);
-    }catch (Exception e) {
-     System.out.println(e);
+    } catch (Exception e) {
+      System.out.println(e);
     }
   }
 }
