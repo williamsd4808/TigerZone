@@ -3,3 +3,6 @@
 *.iml
 .class
 .dat
+*.class
+*/*.class
+*/*/*.class
