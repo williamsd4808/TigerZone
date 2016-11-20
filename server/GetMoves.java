@@ -48,15 +48,6 @@ public class GetMoves {
               .add("orientation", orientationsJSON)
           );
       }
-      //
-      // for (Point point : points.keySet()) {
-      //   a.add(
-      //     Json
-      //       .createObjectBuilder()
-      //       .add("x", point.x)
-      //       .add("y", point.y)
-      //   );
-      // }
 
       System.out.println(a.build());
     } catch (Exception e) {
