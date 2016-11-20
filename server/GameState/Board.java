@@ -45,6 +45,9 @@ public class Board implements Serializable {
 
     public static class PlacedTile implements Serializable {
 
+        private int meepleLocation = 0;
+        private Meeple placedMeeple;
+
         private static final HashMap<Orientation, Transform> conversionMatrices = new HashMap<Orientation, Transform>() {
 
             {
@@ -84,6 +87,60 @@ public class Board implements Serializable {
         public Feature getFeature(Point point) {
 
             return getFeature(point.x, point.y);
+
+        }
+
+        //If meepleLocation = 0, no meeple on the tile.
+        public int getMeepleLocation() {
+
+            return meepleLocation;
+        }
+
+        //To remove meeple from the tile, call this with meeplePlacement = 0
+        //This is used to place meeple
+        public void setMeepleLocation(int meeplePlacement, Meeple placedMeeple) {
+
+            meepleLocation = meeplePlacement;
+            this.placedMeeple = placedMeeple;
+
+        }
+
+        public Feature getMeepleFeature() {
+            if(meepleLocation == 0) {
+                //return the "HOLE" feature type?
+                System.out.println("No meeple present on tile");
+                return null;
+            } else {
+                
+                //return Meeple mapped feature
+                switch(meepleLocation) {
+                    case 1 :
+                        return getFeature(1,1);
+                    case 2 :
+                        return getFeature(0,2);
+                    case 3 :
+                        return getFeature(1,3);
+                    case 4 :
+                        return getFeature(2,0);
+                    case 5 :
+                        return getFeature(2,2);
+                    case 6 :
+                        return getFeature(2,4);
+                    case 7 :
+                        return getFeature(3,1);
+                    case 8 :
+                        return getFeature(4,2);
+                    case 9 :
+                        return getFeature(3,3);
+                    default :
+                        return null;
+                }
+            }
+        }
+
+        public Player getMeepleOwner() {
+
+            return placedMeeple.getOwner();
 
         }
 
