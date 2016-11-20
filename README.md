@@ -10,4 +10,26 @@ The client now allows you to add tiles and view possible moves. It does not curr
 
 ## Java Server
 
-To run the Java server, use the shell scripts provided.
+### Building:
+
+```
+$ cd server/ApiEndpoints
+server/ApiEndpoints/$ sh build.sh
+```
+
+### Running endpoints
+
+
+**Creating a new game**
+```
+$ ./server/ApiEndpoints/new-game
+
+> {"id":"x6pxgn3dm1","players":[],"turn":0,"board":[{"x":0,"y":0,"orientation":"NORTH","name":"Single bubble city with straight road"}]}
+```
+
+**Joining a game**
+```
+$ ./server/ApiEndpoints/join-game game_id name
+
+> {"id":"x6pxgn3dm1","players":["James"],"turn":0,"board":[{"x":0,"y":0,"orientation":"NORTH","name":"Single bubble city with straight road"}]}
+```

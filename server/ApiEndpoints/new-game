@@ -19,7 +19,7 @@ const base_JSON = JSON.stringify({
   ]
 });
 
-fs.writeFile(`server/${game_id}.json`, base_JSON, function(err) {
+fs.writeFile(`server/ApiEndpoints/${game_id}.json`, base_JSON, function(err) {
     if(err) {
         return console.log(err);
     }

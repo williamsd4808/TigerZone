@@ -13,7 +13,7 @@ json
 
 const res = JSON.stringify(json);
 
-fs.writeFile(`server/${game_id}.json`, res, function(err) {
+fs.writeFile(`server/ApiEndpoints/${game_id}.json`, res, function(err) {
     if(err) {
         return console.log(err);
     }
