@@ -235,6 +235,18 @@ public class Board implements Serializable {
 
     }
 
+    public void fromJSON(JsonObject json) {
+      JsonArray tiles = json.getJsonArray("board");
+
+      for (JsonObject rawTile : tiles.getValuesAs(JsonObject.class)) {
+        Tile tile = new Tile(rawTile.getString("name"));
+        Point point = new Point(rawTile.getInt("x"), rawTile.getInt("y"));
+
+        // Orientation needs to be updated, so for now we just pass in NORTH as a default
+        putTileInMap(point, tile, Orientation.NORTH);
+      }
+    }
+
     public JsonArray toJSON() {
       JsonArrayBuilder res = Json.createArrayBuilder();
 
