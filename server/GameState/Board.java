@@ -235,35 +235,7 @@ public class Board implements Serializable {
 
     }
 
-    public void fromJSON(JsonObject json) {
-      JsonArray tiles = json.getJsonArray("board");
 
-      for (JsonObject rawTile : tiles.getValuesAs(JsonObject.class)) {
-        Tile tile = new Tile(rawTile.getString("name"));
-        Point point = new Point(rawTile.getInt("x"), rawTile.getInt("y"));
-
-        // Orientation needs to be updated, so for now we just pass in NORTH as a default
-        putTileInMap(point, tile, Orientation.NORTH);
-      }
-    }
-
-    public JsonArray toJSON() {
-      JsonArrayBuilder res = Json.createArrayBuilder();
-
-      for(Map.Entry<Point,PlacedTile> entry : board.entrySet()){
-        PlacedTile t = entry.getValue();
-        res.add(
-          Json
-            .createObjectBuilder()
-            .add("x", t.location.x)
-            .add("y", t.location.y)
-            .add("orientation", t.placementOrientation.toString())
-            .add("name", t.tile.toString())
-        );
-      }
-
-      return res.build();
-    }
 
     private void putTileInMap(Point location, Tile tile, Orientation orientation) {
 
@@ -271,15 +243,42 @@ public class Board implements Serializable {
 
     }
 
-    private void readObject(ObjectInputStream inputStream) throws ClassNotFoundException, IOException {
+    public static Board fromJson(JsonObject json) {
 
-        inputStream.defaultReadObject();
+        Board board = new Board();
+
+        JsonArray tiles = json.getJsonArray("tiles");
+
+        for (JsonObject rawTile : tiles.getValuesAs(JsonObject.class)) {
+
+            Tile tile = new Tile(rawTile.getString("name"));
+            Point point = new Point(rawTile.getInt("x"), rawTile.getInt("y"));
+            Orientation orientation = Orientation.values()[rawTile.getInt("orientation")];
+
+            board.putTileInMap(point, tile, orientation);
+
+        }
+
+        return board;
 
     }
-    private void writeObject(ObjectOutputStream outputStream) throws IOException {
 
-        outputStream.defaultWriteObject();
+    public static JsonObject toJson(Board board) {
+        JsonArrayBuilder res = Json.createArrayBuilder();
 
+        for(Map.Entry<Point,PlacedTile> entry : board.board.entrySet()){
+            PlacedTile t = entry.getValue();
+            res.add(
+                    Json
+                            .createObjectBuilder()
+                            .add("x", t.location.x)
+                            .add("y", t.location.y)
+                            .add("orientation", t.placementOrientation.ordinal())
+                            .add("name", t.tile.getName())
+            );
+        }
+
+        return Json.createObjectBuilder().add("tiles", res.build()).build();
     }
 
 }

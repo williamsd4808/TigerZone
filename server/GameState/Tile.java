@@ -33,9 +33,15 @@ public class Tile implements Serializable {
 
 	public String toString() {
 
-        return name;
+        return getName();
 
 	}
+
+	public String getName() {
+
+        return name;
+
+    }
 
 	private Feature[][] initializeSubGrid(String name) {
 
