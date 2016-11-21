@@ -5,17 +5,13 @@ import Utilities.PointUtilities;
 import Utilities.Tuple;
 
 import java.awt.Point;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.json.*;
 
-public class Board implements Serializable {
+public class Board {
 
     /*
      * Do NOT modify this enumeration. The order of this enumeration is connascent with the PointUtilities class implementation
@@ -43,7 +39,7 @@ public class Board implements Serializable {
 
     }
 
-    public static class PlacedTile implements Serializable {
+    public static class PlacedTile {
 
         private static final HashMap<Orientation, Transform> conversionMatrices = new HashMap<Orientation, Transform>() {
 
@@ -57,8 +53,6 @@ public class Board implements Serializable {
             }
 
         };
-
-        private static final long serialVersionUID = -1486570415012074966L;
 
         public final Tile tile;
         public final Orientation placementOrientation;
@@ -112,8 +106,6 @@ public class Board implements Serializable {
         }
 
     }
-
-    private static final long serialVersionUID = -6037642475395251125L;
 
     private HashMap<Point, PlacedTile> board = new HashMap<>();
 

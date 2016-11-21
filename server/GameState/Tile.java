@@ -3,9 +3,7 @@ package GameState;
 import java.awt.*;
 import java.io.*;
 
-public class Tile implements Serializable {
-
-    private static final long serialVersionUID = -1400979803257642370L;
+public class Tile {
 
     //2d array 5x5 of tile attributes
 	private Feature[][] subGrid;
@@ -250,19 +248,6 @@ public class Tile implements Serializable {
             default:
                 throw new RuntimeException("Invalid tile created!");
         }
-
-    }
-
-    private void readObject(ObjectInputStream inputStream) throws ClassNotFoundException, IOException {
-
-        String name = (String) inputStream.readObject();
-        this.name = name;
-        this.subGrid = initializeSubGrid(name);
-
-    }
-    private void writeObject(ObjectOutputStream outputStream) throws IOException {
-
-        outputStream.writeObject(name);
 
     }
 

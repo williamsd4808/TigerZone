@@ -4,6 +4,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,16 @@ public class Engine {
 	public List<Player> players = new ArrayList<>();
 	public Deck deck;
 	public Board board;
+    public int turn = 0;
+
+    public void addTileToBoard(Point point, Tile tile, Board.Orientation orientation) {
+
+        board.addTile(point, tile, orientation);
+        turn = turn++ % 2;
+
+    }
+
+    // Add functions here that deal with all of carcassonne
 
     public void setPlayers(List<Player> players) {
 
@@ -48,6 +59,8 @@ public class Engine {
             JsonReader jsonReader = Json.createReader(new StringReader(str));
             JsonObject obj = jsonReader.readObject();
 
+            engine.turn = obj.getInt("turn");
+
             JsonObject player1obj = obj.getJsonObject("Player1");
 
             if (player1obj != null) {
@@ -80,6 +93,8 @@ public class Engine {
     public static void toJson(String saveName, Engine engine) {
 
         JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+
+        objectBuilder.add("turn", engine.turn);
 
         if (engine.players.size() == 1) {
 

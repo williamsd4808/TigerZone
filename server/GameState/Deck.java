@@ -127,14 +127,16 @@ public class Deck {
 
         JsonObjectBuilder res = Json.createObjectBuilder();
 
-        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        JsonArrayBuilder tiles = Json.createArrayBuilder();
 
         while (deck.hasTileToDraw()) {
 
             Tile tile = deck.drawTile();
-            arrayBuilder.add(Json.createObjectBuilder().add("name", tile.getName()));
+            tiles.add(Json.createObjectBuilder().add("name", tile.getName()).build());
 
         }
+
+        res.add("tiles", tiles);
 
         return res.build();
     }
