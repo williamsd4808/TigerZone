@@ -1,0 +1,32 @@
+.players {
+  position: absolute;
+  left: 1em;
+  padding: 0 2em 1.5em;
+  top: 1em;
+  background-color: #3F51B5;
+  color: white;
+  opacity: 0.8;
+}
+
+.players h3 {
+  color: #FF9E80;
+}
+
+.next-tile {
+  position: absolute;
+  right: 1em;
+  padding: 0 2em 1.5em;
+  top: 1em;
+  background-color: #3F51B5;
+  color: white;
+  opacity: 0.8;
+}
+
+.next-tile h3 {
+  color: #FF9E80;
+}
+
+#tile-img {
+  height: 90px;
+  width: 90px;
+}

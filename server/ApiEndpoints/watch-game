@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const argv = require('process').argv;
+const exec = require('child_process').exec;
+
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
+fs.watch(`server/ApiEndpoints/SavedGames/${argv[2]}.json`, debounce((curr, prev) => {
+  fs.readFile(`server/ApiEndpoints/SavedGames/${argv[2]}.json`, 'utf8', (err, data) => {
+    if (err) console.log(err, data);
+    console.log(data);
+  });
+}, 250));
+
+exec(`touch server/ApiEndpoints/SavedGames/${argv[2]}.json`)
