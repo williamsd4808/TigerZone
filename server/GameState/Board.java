@@ -43,6 +43,7 @@ public class Board {
 
         private int meepleLocation = 0;
         private Meeple placedMeeple;
+        private int numMeeples;
 
         private static final HashMap<Orientation, Transform> conversionMatrices = new HashMap<Orientation, Transform>() {
 
@@ -66,6 +67,7 @@ public class Board {
             this.tile = tile;
             this.placementOrientation = placementOrientation;
             this.location = location;
+            numMeeples = 0;
 
         }
 
@@ -90,9 +92,34 @@ public class Board {
             return meepleLocation;
         }
 
-        //To remove meeple from the tile, call this with meeplePlacement = 0
-        //This is used to place meeple
+        public int getNumMeeples() {
+
+            return numMeeples;
+        }
+
+        //This should be called only when a player has drawn a tile that cannot be placed and
+        //has decided to place a meeple on top of another meeple of theirs.
+        public void incrementMeeple() {
+            numMeeples++;
+        }
+
+        //This exists to take care of the rare case of an unplayable tile being drawn
+        //and the player chooses to pick up a meeple that was preciously placed on top
+        //of another meeple.
+        public void decrementMeeple() {
+            numMeeples--;
+        }
+
+        //To remove all meeples from the tile, call this with meeplePlacement = 0
+        //This is used to place the first meeple on a tile
+        //Do not use this to place a meeple on top of another meeple
         public void setMeepleLocation(int meeplePlacement, Meeple placedMeeple) {
+
+            if(meeplePlacement != 0) {
+                numMeeples = 1;
+            } else {
+                numMeeples = 0;
+            }
 
             meepleLocation = meeplePlacement;
             this.placedMeeple = placedMeeple;
