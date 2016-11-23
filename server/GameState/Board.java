@@ -5,9 +5,7 @@ import Utilities.PointUtilities;
 import Utilities.Tuple;
 
 import java.awt.Point;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import javax.json.*;
 
@@ -33,9 +31,9 @@ public class Board {
 
     }
 
-    private interface Transform {
+    public interface Transform {
 
-        Tuple<Integer, Integer> Transform(int x, int y);
+        Point Transform(Point point);
 
     }
 
@@ -45,10 +43,10 @@ public class Board {
 
             {
 
-                put(Orientation.NORTH, (x, y) -> Tuple.Create(x, y));
-                put(Orientation.EAST, (x, y) -> Tuple.Create(4 - y, x));
-                put(Orientation.SOUTH, (x, y) -> Tuple.Create(4 - x, 4 - y));
-                put(Orientation.WEST, (x, y) -> Tuple.Create(y, 4 - x));
+                put(Orientation.NORTH, (point) -> new Point(point.x, point.y));
+                put(Orientation.EAST, (point) -> new Point(4 - point.y, point.x));
+                put(Orientation.SOUTH, (point) -> new Point(4 - point.x, 4 - point.y));
+                put(Orientation.WEST, (point) -> new Point(point.y, 4 - point.x));
 
             }
 
@@ -68,16 +66,14 @@ public class Board {
 
         public Feature getFeature(int x, int y) {
 
-            Transform transformationMatrix = conversionMatrices.get(placementOrientation);
-            Tuple<Integer, Integer> newValues = transformationMatrix.Transform(x, y);
-
-            return tile.getFeature(newValues.item1, newValues.item2);
+            return getFeature(new Point(x, y));
 
         }
 
         public Feature getFeature(Point point) {
 
-            return getFeature(point.x, point.y);
+            Point transformedPoint = conversionMatrices.get(placementOrientation).Transform(point);
+            return tile.getFeature(transformedPoint);
 
         }
 
