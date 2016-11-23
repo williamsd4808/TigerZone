@@ -73,6 +73,7 @@ div.potential {
   background-image: url(tiles/potential.png);
   box-sizing: border-box;
   background-position: center;
+  transition: 0.25s;
 }
 div.potential:hover {
   border: 4px solid #b2ebf2;
