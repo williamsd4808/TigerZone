@@ -1,47 +1,35 @@
 package ApiEndpoints;
 
-import javax.json.*;
-import java.io.*;
-
-import GameState.Board;
+import GameState.Engine;
+import GameState.Player;
 
 public class JoinGame {
-  public static void main(String[] args) {
-    try {
-      File file = new File("server/datastore.json");
-      FileInputStream fis = new FileInputStream(file);
-      byte[] data = new byte[(int) file.length()];
-      fis.read(data);
-      fis.close();
 
-      String str = new String(data, "UTF-8");
+    public static void main(String[] args) {
 
-      JsonReader jsonReader = Json.createReader(new StringReader(str));
-      JsonObject obj = jsonReader.readObject();
+        String savedEngine = args[0]; // The name of the saved engine state
+        String newPlayerName = args[1]; // The name of the player to add to the game
 
-      JsonArray players = obj.getJsonArray("players");
-      JsonArrayBuilder newPlayers = Json.createArrayBuilder();
+        BaseApiEndpoint endpoint = new BaseMutableApiEndpoint() {
 
-      for (JsonValue player : players) {
-  			newPlayers.add(player);
-  		}
+          protected void doExecute(Engine engine) {
 
-      newPlayers.add(args[0]);
+              if (engine.players.size() > 1) {
 
-      JsonObject newGameState = Json.createObjectBuilder()
-        .add("players", newPlayers)
-        .add("turn", obj.get("turn"))
-        .add("board", obj.get("board"))
-        .build();
+                  System.err.println("\"error\":\"The player cannot be added to the game as the game is full\"");
+                  return;
 
-      PrintWriter writer = new PrintWriter("server/datastore.json", "UTF-8");
+              }
 
-      writer.println(newGameState);
-      writer.close();
+              Player player = new Player(newPlayerName);
+              engine.players.add(player);
 
-      System.out.println(newGameState);
-    } catch (Exception e) {
-      System.out.println(e);
+          }
+
+      };
+
+      endpoint.execute(savedEngine);
+
     }
-  }
+
 }

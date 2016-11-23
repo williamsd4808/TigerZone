@@ -1,29 +1,30 @@
 package ApiEndpoints;
 
-import javax.json.*;
-import java.io.PrintWriter;
-
 import GameState.Board;
+import GameState.Deck;
+import GameState.Engine;
+
+import java.util.ArrayList;
 
 public class NewGame {
-  public static void main(String[] args) {
-    Board board = new Board();
+    public static void main(String[] args) {
 
-    JsonObject res = Json.createObjectBuilder()
-      .add("players", Json.createArrayBuilder())
-      .add("turn", 0)
-      .add("board", board.toJSON())
-      .build();
+        String savedEngine = args[0]; // The name of the saved engine state
 
-    try{
-      PrintWriter writer = new PrintWriter("server/datastore.json", "UTF-8");
+        BaseApiEndpoint endpoint = new BaseMutableApiEndpoint() {
 
-      writer.println(res);
-      writer.close();
+            protected void doExecute(Engine engine) {
 
-      System.out.println(res);
-    } catch (Exception e) {
-      System.out.println(e);
+                engine.setPlayers(new ArrayList<>());
+                engine.setDeck(new Deck(System.currentTimeMillis()));
+                engine.setBoard(new Board());
+
+            }
+
+        };
+
+        endpoint.execute(savedEngine);
+
     }
-  }
+
 }

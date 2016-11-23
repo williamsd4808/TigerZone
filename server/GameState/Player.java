@@ -1,5 +1,9 @@
 package GameState;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+
 class OutofMeeplesException extends Exception {
 	public OutofMeeplesException(String msg) {
 		super(msg);
@@ -7,9 +11,15 @@ class OutofMeeplesException extends Exception {
 }
 
 public class Player {
-	private final String name;
+	private String name;
 	private int score;
 	private int numOfMeeples;
+
+    private Player() {
+        this.name = "";
+        this.score = 0;
+        this.numOfMeeples = 7;
+    }
 
 	public Player(String name) {
 		this.name = name;
@@ -44,6 +54,31 @@ public class Player {
 
 	public String toString() {
 		return this.name;
-	}	
+	}
+
+    public static Player fromJson(JsonObject json) {
+
+        Player player = new Player();
+
+        player.name = json.getString("name");
+        player.score = json.getInt("score");
+        player.numOfMeeples = json.getInt("numOfMeeples");
+
+        return player;
+
+    }
+
+    public static JsonObject toJson(Player player) {
+
+        JsonObjectBuilder res = Json.createObjectBuilder();
+
+        res
+                .add("name", player.name)
+                .add("score", player.score)
+                .add("numOfMeeples", player.numOfMeeples);
+
+
+        return res.build();
+    }
 
 }
