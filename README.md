@@ -17,18 +17,18 @@ $ cd server/ApiEndpoints
 server/ApiEndpoints/$ sh build.sh
 ```
 
-### Running endpoints
+### Running endpoints:
 
 
 **Creating a new game**
-```
+```javascript
 $ ./server/ApiEndpoints/new-game
 
 > {"id":"x6pxgn3dm1","players":[],"turn":0,"board":[{"x":0,"y":0,"orientation":"NORTH","name":"Single bubble city with straight road"}]}
 ```
 
 **Joining a game**
-```
+```javascript
 $ ./server/ApiEndpoints/join-game game_id name
 
 > {"id":"x6pxgn3dm1","players":["James"],"turn":0,"board":[{"x":0,"y":0,"orientation":"NORTH","name":"Single bubble city with straight road"}]}
