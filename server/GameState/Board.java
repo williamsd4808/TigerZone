@@ -39,6 +39,10 @@ public class Board {
 
     public static class PlacedTile {
 
+        private int meepleLocation = 0;
+        private Meeple placedMeeple;
+        private int numMeeples;
+
         private static final HashMap<Orientation, Transform> conversionMatrices = new HashMap<Orientation, Transform>() {
 
             {
@@ -61,6 +65,7 @@ public class Board {
             this.tile = tile;
             this.placementOrientation = placementOrientation;
             this.location = location;
+            numMeeples = 0;
 
         }
 
@@ -74,6 +79,85 @@ public class Board {
 
             Point transformedPoint = conversionMatrices.get(placementOrientation).Transform(point);
             return tile.getFeature(transformedPoint);
+
+        }
+
+        //If meepleLocation = 0, no meeple on the tile.
+        public int getMeepleLocation() {
+
+            return meepleLocation;
+        }
+
+        public int getNumMeeples() {
+
+            return numMeeples;
+        }
+
+        //This should be called only when a player has drawn a tile that cannot be placed and
+        //has decided to place a meeple on top of another meeple of theirs.
+        public void incrementMeeple() {
+            numMeeples++;
+        }
+
+        //This exists to take care of the rare case of an unplayable tile being drawn
+        //and the player chooses to pick up a meeple that was preciously placed on top
+        //of another meeple.
+        public void decrementMeeple() {
+            numMeeples--;
+        }
+
+        //To remove all meeples from the tile, call this with meeplePlacement = 0
+        //This is used to place the first meeple on a tile
+        //Do not use this to place a meeple on top of another meeple
+        public void setMeepleLocation(int meeplePlacement, Meeple placedMeeple) {
+
+            if(meeplePlacement != 0) {
+                numMeeples = 1;
+            } else {
+                numMeeples = 0;
+            }
+
+            meepleLocation = meeplePlacement;
+            this.placedMeeple = placedMeeple;
+
+        }
+
+        public Feature getMeepleFeature() {
+            if(meepleLocation == 0) {
+                //return the "HOLE" feature type?
+                System.out.println("No meeple present on tile");
+                return null;
+            } else {
+                
+                //return Meeple mapped feature
+                switch(meepleLocation) {
+                    case 1 :
+                        return getFeature(1,1);
+                    case 2 :
+                        return getFeature(0,2);
+                    case 3 :
+                        return getFeature(1,3);
+                    case 4 :
+                        return getFeature(2,0);
+                    case 5 :
+                        return getFeature(2,2);
+                    case 6 :
+                        return getFeature(2,4);
+                    case 7 :
+                        return getFeature(3,1);
+                    case 8 :
+                        return getFeature(4,2);
+                    case 9 :
+                        return getFeature(3,3);
+                    default :
+                        return null;
+                }
+            }
+        }
+
+        public Player getMeepleOwner() {
+
+            return placedMeeple.getOwner();
 
         }
 
