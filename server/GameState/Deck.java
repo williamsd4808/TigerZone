@@ -2,6 +2,7 @@ package GameState;
 
 import Utilities.UniformPicker;
 
+import javax.json.*;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -39,6 +40,8 @@ public class Deck {
      */
 
 	private final Queue<Tile> deck = new LinkedBlockingQueue<>(TILE_COUNT);
+
+    private Deck() {}
 
 	public Deck(long seed) {
 
@@ -102,6 +105,40 @@ public class Deck {
 
         }
 
+    }
+
+    public static Deck fromJson(JsonObject json) {
+
+        Deck deck = new Deck();
+
+        JsonArray tiles = json.getJsonArray("tiles");
+
+        for (JsonObject rawTile : tiles.getValuesAs(JsonObject.class)) {
+
+            deck.deck.add(new Tile(rawTile.getString("name")));
+
+        }
+
+        return deck;
+
+    }
+
+    public static JsonObject toJson(Deck deck) {
+
+        JsonObjectBuilder res = Json.createObjectBuilder();
+
+        JsonArrayBuilder tiles = Json.createArrayBuilder();
+
+        while (deck.hasTileToDraw()) {
+
+            Tile tile = deck.drawTile();
+            tiles.add(Json.createObjectBuilder().add("name", tile.getName()).build());
+
+        }
+
+        res.add("tiles", tiles);
+
+        return res.build();
     }
 
 }
