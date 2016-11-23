@@ -2,4 +2,9 @@
 
 # This will need to eventually get removed, but it resolves a bug for now
 touch server/ApiEndpoints/SavedGames/$1.json
-java -classpath "lib/javax.json-1.0.jar:server" ApiEndpoints.NewGame $1
+
+if [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+  java -classpath "lib/javax.json-1.0.jar;server" ApiEndpoints.NewGame $1
+else
+  java -classpath "lib/javax.json-1.0.jar:server" ApiEndpoints.NewGame $1
+fi

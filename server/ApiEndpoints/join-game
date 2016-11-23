@@ -1,3 +1,7 @@
 #!/usr/bin/env sh
 
-java -classpath "lib/javax.json-1.0.jar:server" ApiEndpoints.JoinGame $1 $2
+if [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+  java -classpath "lib/javax.json-1.0.jar;server" ApiEndpoints.JoinGame $1 $2
+else
+  java -classpath "lib/javax.json-1.0.jar:server" ApiEndpoints.JoinGame $1 $2
+fi
