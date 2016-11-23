@@ -48,7 +48,7 @@ public class Engine {
 
         try {
 
-            File file = new File("server\\ApiEndpoints\\SavedGames\\" + saveName + ".json");
+            File file = new File("server/ApiEndpoints/SavedGames/" + saveName + ".json");
             FileInputStream fis = new FileInputStream(file);
             byte[] data = new byte[(int) file.length()];
             fis.read(data);
@@ -112,7 +112,7 @@ public class Engine {
 
         try {
 
-            File file = new File("server\\ApiEndpoints\\SavedGames\\" + saveName + ".json");
+            File file = new File("server/ApiEndpoints/SavedGames/" + saveName + ".json");
             OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file));
 
             writer.write(objectBuilder.build().toString());

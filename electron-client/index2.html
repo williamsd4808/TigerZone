@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TigerZone!</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="start-screen" class="container page-header">
+      <div class="jumbotron">
+        <h1 class="text-center">Welcome to TigerZone!</h1>
+        <hr/>
+        <div class="row">
+          <button type="button" class="btn btn-primary center-block" id="new-game-button">Create a new game</button>
+          <div id="new-game-dialogue" class="hidden center-block text-center" style="padding:2em 0 1em 0;">
+            <form class="form-inline">
+              <div class="form-group">
+                <label class="sr-only" for="new-game-id">Game id</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="new-game-id" placeholder="Game name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="new-game-player">Player name</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="new-game-player" placeholder="Your name">
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary" id="new-game-submit">Go</button>
+            </form>
+          </div>
+          <div class="center-block text-muted text-center" style="padding:1em;">&mdash;or&mdash;</div>
+          <button type="button" class="btn btn-default center-block" id="join-game-button">Join an existing game</button>
+          <div id="join-game-dialogue" class="hidden center-block text-center" style="padding:2em 0 1em 0;">
+            <form class="form-inline">
+              <div class="form-group">
+                <label class="sr-only" for="join-game-id">Game id</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="join-game-id" placeholder="Game name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="join-game-player">Player name</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="join-game-player" placeholder="Your name">
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary" id="join-game-submit">Go</button>
+            </form>
+          </div>
+          <div class="center-block text-muted text-center" style="padding:1em;">&mdash;or&mdash;</div>
+          <button type="button" class="btn btn-default center-block" id="load-game-button">Load an existing game</button>
+          <div id="load-game-dialogue" class="hidden center-block text-center" style="padding:2em 0 1em 0;">
+            <form class="form-inline">
+              <div class="form-group">
+                <label class="sr-only" for="load-game-id">Game id</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="load-game-id" placeholder="Game name">
+                </div>
+              </div>
+              <button type="button" class="btn btn-default" id="load-game-submit">Go</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="game-screen" class="container hidden">
+      <div class="players">
+        <div id="player1" class="player">
+          <h3 id="name1">Waiting...</h3>
+          <div><em>Meeples: </em> <span id="meeples1">0</span></div>
+          <div><em>Score: </em> <span id="score1">0</span></div>
+        </div>
+        <div id="player2" class="player">
+          <h3 id="name2">Waiting...</h3>
+          <div><em>Meeples: </em> <span id="meeples2">0</span></div>
+          <div><em>Score: </em> <span id="score2">0</span></div>
+        </div>
+      </div>
+      <div class="next-tile">
+        <h3>Next up:</h3>
+        <div id="tile-img" data-orientation="0"></div>
+        <small>[space] to rotate</small>
+      </div>
+      <div id="board">
+
+      </div>
+    </div>
+    <script src="client2.js"></script>
+  </body>
+</html>

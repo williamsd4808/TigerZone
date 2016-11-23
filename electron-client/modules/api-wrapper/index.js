@@ -13,46 +13,46 @@ class Server extends ServerRecord {
     return execPromise(`${this.location}${route}`);
   }
 
-  POST(route, data) {
-    const json_data = encodeURIComponent(JSON.stringify(data));
+  POST(route, args) {
+    const json_data = args.join(" ");
 
     return execPromise(`${this.location}${route} ${json_data}`);
   }
 
-  LISTEN(route, out, err) {
+  LISTEN(route, game, out, err) {
     const location = this.location;
 
-    const endpoint = exec(`${location}${route}`);
+    const endpoint = exec(`${location}${route} ${game}`);
 
     endpoint.stdout.on('data', (data) => out(JSON.parse(data)));
-    endpoint.stderr.on('data', (data) => err(JSON.parse(data)));
+    endpoint.stderr.on('data', (data) => err(data));
 
     return this;
   }
 }
 
 class TigerZone extends Server {
-  new_game() {
+  new_game(name) {
     return this
-      .GET('/new-game')
+      .POST('/new-game', [name])
       .then(JSON.parse);
   }
 
-  draw_card() {
+  join_game(game, player) {
     return this
-      .GET('/draw-card')
+      .POST('/join-game', [game, player])
       .then(JSON.parse);
   }
 
-  get_moves(card) {
+  get_moves(game, card) {
     return this
-      .GET('/get-moves')
+      .POST('/get-moves', [game, `"${card}"`])
       .then(JSON.parse);
   }
 
-  place_card(card, location) {
+  place_tile(game, card, x, y, orientation) {
     return this
-      .POST('/place-card', { card: card, location: location })
+      .POST('/place-tile', [game, `"${card}"`, x, y, orientation])
       .then(JSON.parse);
   }
 
@@ -62,9 +62,10 @@ class TigerZone extends Server {
       .then(JSON.parse);
   }
 
-  watch_board(out, err) {
+  watch_game(game, out, err) {
+    console.log(game, out, err);
     return this
-      .LISTEN('/watch-board', out, err);
+      .LISTEN('/watch-game', game, out, err);
   }
 }
 

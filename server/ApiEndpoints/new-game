@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+# This will need to eventually get removed, but it resolves a bug for now
+touch server/ApiEndpoints/SavedGames/$1.json
+java -classpath "lib/javax.json-1.0.jar:server" ApiEndpoints.NewGame $1
