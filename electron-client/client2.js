@@ -95,11 +95,14 @@ const occupy = (cell, tile) => {
 const displayPotentialMoves = (moves) => {
   const boardElement = document.getElementById('board');
 
+  [].slice.apply(boardElement.querySelectorAll(".potential"))
+    .forEach((cell) => cell.classList.remove('potential'));
+
   moves
     .forEach((tile) => {
       const cell = boardElement
         .children[tile.x + 72]
-        .children[tile.y + 72];
+        .children[-tile.y + 72];
 
       cell.setAttribute('data-x', tile.x);
       cell.setAttribute('data-y', tile.y);
@@ -117,7 +120,7 @@ const updateBoard = (board) => {
   board
     .Board
     .tiles
-    .map(tile => occupy(boardElement.children[tile.x + 72].children[tile.y + 72], tile));
+    .map(tile => occupy(boardElement.children[tile.x + 72].children[-tile.y + 72], tile));
 };
 
 const getMoves = (board) => {
