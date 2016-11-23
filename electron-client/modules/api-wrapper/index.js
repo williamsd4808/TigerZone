@@ -34,25 +34,25 @@ class Server extends ServerRecord {
 class TigerZone extends Server {
   new_game(name) {
     return this
-      .POST('sh', '/new-game', [name])
+      .POST('bash', '/new-game', [name])
       .then(JSON.parse);
   }
 
   join_game(game, player) {
     return this
-      .POST('sh', '/join-game', [game, player])
+      .POST('bash', '/join-game', [game, player])
       .then(JSON.parse);
   }
 
   get_moves(game, card) {
     return this
-      .POST('sh', '/get-moves', [game, `"${card}"`])
+      .POST('bash', '/get-moves', [game, `"${card}"`])
       .then(JSON.parse);
   }
 
   place_tile(game, card, x, y, orientation) {
     return this
-      .POST('sh', '/place-tile', [game, `"${card}"`, x, y, orientation])
+      .POST('bash', '/place-tile', [game, `"${card}"`, x, y, orientation])
       .then(JSON.parse);
   }
 

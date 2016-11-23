@@ -1,3 +1,9 @@
 #!/usr/bin/env sh
 
 java -classpath "lib/javax.json-1.0.jar:server" ApiEndpoints.PlaceTile $1 "$2" $3 $4 $5
+
+if [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+  java -classpath "lib/javax.json-1.0.jar;server" ApiEndpoints.PlaceTile $1 "$2" $3 $4 $5
+else
+  java -classpath "lib/javax.json-1.0.jar:server" ApiEndpoints.PlaceTile $1 "$2" $3 $4 $5
+fi
