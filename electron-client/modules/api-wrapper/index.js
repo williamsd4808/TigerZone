@@ -9,20 +9,20 @@ const ServerRecord = Record({
 });
 
 class Server extends ServerRecord {
-  GET(route) {
-    return execPromise(`${this.location}${route}`);
+  GET(exe, route) {
+    return execPromise(`${exe} ${this.location}${route}`);
   }
 
-  POST(route, args) {
+  POST(exe, route, args) {
     const json_data = args.join(" ");
 
-    return execPromise(`${this.location}${route} ${json_data}`);
+    return execPromise(`${exe} ${this.location}${route} ${json_data}`);
   }
 
-  LISTEN(route, game, out, err) {
+  LISTEN(exe, route, game, out, err) {
     const location = this.location;
 
-    const endpoint = exec(`${location}${route} ${game}`);
+    const endpoint = exec(`${exe} ${location}${route} ${game}`);
 
     endpoint.stdout.on('data', (data) => out(JSON.parse(data)));
     endpoint.stderr.on('data', (data) => err(data));
@@ -34,25 +34,25 @@ class Server extends ServerRecord {
 class TigerZone extends Server {
   new_game(name) {
     return this
-      .POST('/new-game', [name])
+      .POST('sh', '/new-game', [name])
       .then(JSON.parse);
   }
 
   join_game(game, player) {
     return this
-      .POST('/join-game', [game, player])
+      .POST('sh', '/join-game', [game, player])
       .then(JSON.parse);
   }
 
   get_moves(game, card) {
     return this
-      .POST('/get-moves', [game, `"${card}"`])
+      .POST('sh', '/get-moves', [game, `"${card}"`])
       .then(JSON.parse);
   }
 
   place_tile(game, card, x, y, orientation) {
     return this
-      .POST('/place-tile', [game, `"${card}"`, x, y, orientation])
+      .POST('sh', '/place-tile', [game, `"${card}"`, x, y, orientation])
       .then(JSON.parse);
   }
 
@@ -63,9 +63,8 @@ class TigerZone extends Server {
   }
 
   watch_game(game, out, err) {
-    console.log(game, out, err);
     return this
-      .LISTEN('/watch-game', game, out, err);
+      .LISTEN('node', '/watch-game', game, out, err);
   }
 }
 
