@@ -9,7 +9,7 @@
 }
 
 .players h3 {
-  color: #FF9E80;
+  color: white;
 }
 
 .next-tile {
@@ -23,10 +23,57 @@
 }
 
 .next-tile h3 {
-  color: #FF9E80;
+  color: white;
 }
 
 #tile-img {
   height: 90px;
   width: 90px;
+  transition: 0.25s;
+}
+
+[data-orientation="0"] {
+  transform: rotate(0deg);
+}
+
+[data-orientation="1"] {
+  transform: rotate(90deg);
+}
+
+[data-orientation="2"] {
+  transform: rotate(180deg);
+}
+
+[data-orientation="3"] {
+  transform: rotate(270deg);
+}
+
+#board {
+  display: flex;
+  flex-shrink: 0;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  max-height: 660px;
+}
+.col {
+  flex: 1;
+}
+div.cell {
+  /*background-color: green;*/
+  height: 90px;
+}
+div.occupied {
+  width: 90px;
+  height: 90px;
+  background-color: red;
+}
+div.potential {
+  width: 90px;
+  height: 90px;
+  background-image: url(tiles/potential.png);
+  box-sizing: border-box;
+  background-position: center;
+}
+div.potential:hover {
+  border: 4px solid #b2ebf2;
 }

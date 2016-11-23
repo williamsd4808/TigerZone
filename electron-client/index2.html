@@ -51,6 +51,19 @@
               <button type="button" class="btn btn-primary" id="join-game-submit">Go</button>
             </form>
           </div>
+          <div class="center-block text-muted text-center" style="padding:1em;">&mdash;or&mdash;</div>
+          <button type="button" class="btn btn-default center-block" id="load-game-button">Load an existing game</button>
+          <div id="load-game-dialogue" class="hidden center-block text-center" style="padding:2em 0 1em 0;">
+            <form class="form-inline">
+              <div class="form-group">
+                <label class="sr-only" for="load-game-id">Game id</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="load-game-id" placeholder="Game name">
+                </div>
+              </div>
+              <button type="button" class="btn btn-default" id="load-game-submit">Go</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -69,7 +82,11 @@
       </div>
       <div class="next-tile">
         <h3>Next up:</h3>
-        <div id="tile-img"></div>
+        <div id="tile-img" data-orientation="0"></div>
+        <small>[space] to rotate</small>
+      </div>
+      <div id="board">
+
       </div>
     </div>
     <script src="client2.js"></script>

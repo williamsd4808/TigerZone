@@ -26,6 +26,7 @@ public class PlaceTile {
                 Board.Orientation orientation = Board.Orientation.values()[orientationInt];
 
                 engine.board.addTile(point, tile, orientation);
+                engine.deck.drawTile();
 
             }
 

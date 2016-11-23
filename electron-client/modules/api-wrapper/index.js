@@ -46,13 +46,13 @@ class TigerZone extends Server {
 
   get_moves(game, card) {
     return this
-      .POST('/get-moves', [game, card])
+      .POST('/get-moves', [game, `"${card}"`])
       .then(JSON.parse);
   }
 
-  place_tile(game, card, location) {
+  place_tile(game, card, x, y, orientation) {
     return this
-      .POST('/place-tile', [game, card, location.x, location.y, location.orientation])
+      .POST('/place-tile', [game, `"${card}"`, x, y, orientation])
       .then(JSON.parse);
   }
 
