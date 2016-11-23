@@ -1,10 +1,17 @@
-javac -cp ".:../../lib/javax.json-1.0.jar" -sourcepath ".:../" NewGame.java
-javac -cp ".:../../lib/javax.json-1.0.jar" -sourcepath ".:../" JoinGame.java
-javac -cp ".:../../lib/javax.json-1.0.jar" -sourcepath ".:../" GetMoves.java
-javac -cp ".:../../lib/javax.json-1.0.jar" -sourcepath ".:../" PlaceTile.java
+if [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+  javac -cp ".;../../lib/javax.json-1.0.jar" -sourcepath ".;../" NewGame.java
+  javac -cp ".;../../lib/javax.json-1.0.jar" -sourcepath ".;../" JoinGame.java
+  javac -cp ".;../../lib/javax.json-1.0.jar" -sourcepath ".;../" GetMoves.java
+  javac -cp ".;../../lib/javax.json-1.0.jar" -sourcepath ".;../" PlaceTile.java
+else
+  javac -cp ".:../../lib/javax.json-1.0.jar" -sourcepath ".:../" NewGame.java
+  javac -cp ".:../../lib/javax.json-1.0.jar" -sourcepath ".:../" JoinGame.java
+  javac -cp ".:../../lib/javax.json-1.0.jar" -sourcepath ".:../" GetMoves.java
+  javac -cp ".:../../lib/javax.json-1.0.jar" -sourcepath ".:../" PlaceTile.java
 
-chmod +x new-game
-chmod +x join-game
-chmod +x get-moves
-chmod +x place-tile
-chmod +x watch-game
+  chmod +x new-game
+  chmod +x join-game
+  chmod +x get-moves
+  chmod +x place-tile
+  chmod +x watch-game
+fi
