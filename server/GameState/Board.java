@@ -197,7 +197,7 @@ public class Board {
 
     public Board() {
 
-        putTileInMap(new Point(0, 0), new Tile("Single bubble city with straight road"), Orientation.NORTH);
+        putTileInMap(new Point(0, 0), new Tile("TLTJ-"), Orientation.NORTH);
 
     }
 

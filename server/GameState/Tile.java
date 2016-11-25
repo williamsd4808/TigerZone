@@ -8,7 +8,13 @@ public class Tile {
     //2d array 5x5 of tile attributes
 	private Feature[][] subGrid;
 	private String name;
-	private boolean shield = false;
+	// private boolean shield = false;
+    // croc is placed on tile that has a shore or game trail as long as tile tile doesn't have one already
+    private boolean croc = false;
+    //unique animals
+    private boolean buffalo = false;
+    private boolean boar = false;
+    private boolean deer = false;
 	private final int id = 0;
 
 	public Tile(String name) {
@@ -44,207 +50,239 @@ public class Tile {
 	private Feature[][] initializeSubGrid(String name) {
 
         switch(name) {
-            case "Complete shielded city":
-                this.shield = true;
+            case "JJJJ-":
                 return new Feature[][] {
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE}
                 };
-            case "3/4 city":
+            case "JJJJX":
                 return new Feature[][] {
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.FIELD, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.CITY},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.DEN, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE}
                 };
-            case "3/4 shielded city":
-                this.shield = true;
+            case "JJTJX":
                 return new Feature[][] {
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.FIELD, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.CITY},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.DEN, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE}
                 };
-            case "3/4 city with road":
+            case "TTTT-":
                 return new Feature[][] {
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.ROAD, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.CITY},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.ENDPOINT, Feature.TRAIL, Feature.TRAIL},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE}
                 };
-            case "3/4 shielded city with road":
-                this.shield = true;
+            case "TJTJ-":
                 return new Feature[][] {
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.ROAD, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.CITY},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE}
                 };
-            case "Quadruple crossroads":
+            case "TJJT-":
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.ROAD, Feature.ROAD, Feature.ENDPOINT, Feature.ROAD, Feature.ROAD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE}
                 };
-            case "Triple corssroads":
+            case "TJTT-":
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.ROAD, Feature.ROAD, Feature.ENDPOINT, Feature.ROAD, Feature.ROAD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.ENDPOINT, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE}
                 };
-            case "Straight road":
+            case "LLLL-":
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE}
                 };
-            case "Elbow road":
+            case "JLLL-":
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.ROAD, Feature.ROAD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.UNKNOWN, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.JUNGLE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE}
                 };
-            case "Monastary":
+            case "LLJJ-":
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.MONASTARY, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.UNKNOWN, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.UNKNOWN}
                 };
-            case "Monastary with road":
+            case "JLJL-":
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.MONASTARY, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.UNKNOWN, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.JUNGLE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.JUNGLE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.UNKNOWN, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.UNKNOWN}
                 };
-            // //FLOOD FILL SHOULD CHECK DIAGANOLS AS WELL BEETEEDUBS
-            case "1/2 city with elbow road":
+            case "LJLJ-":
                 return new Feature[][] {
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.ROAD},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.UNKNOWN, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.UNKNOWN, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.UNKNOWN}
                 };
-            case "1/2 shielded city with elbow road":
-                this.shield = true;
+            case "LJJJ-":
                 return new Feature[][] {
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.ROAD},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.UNKNOWN, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE}
                 };
-            case "Tunnel city":
+            case "JLLJ-":
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.CITY},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.UNKNOWN, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.UNKNOWN}
                 };
-            case "Tunnel shielded city":
-                this.shield = true;
+            case "TLJT-":
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.CITY},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.UNKNOWN}
                 };
-            case "1/2 city":
+            case "TLJTP":
+                this.boar = true;
                 return new Feature[][] {
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}
-                };
-            case "1/2 shielded city":
-                this.shield = true;
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.UNKNOWN}
+                };      
+            case "JLTT-":
                 return new Feature[][] {
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN}
                 };
-            //weird case might run into problems.
-            case "Two bubble cities side by side":
+            case "JLTTB":
+                this.buffalo = true;
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.CITY, Feature.FIELD, Feature.CITY},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.CITY},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN}
                 };
-            case "Two bubble cities across from one another":
+            //STARTING TILE
+            case "TLTJ-":
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.CITY, Feature.FIELD, Feature.CITY, Feature.CITY},
-                        new Feature[] {Feature.CITY, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.CITY},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN}
                 };
-            case "Single bubble city":
+            case "TLTJD":
+                this.deer = true;
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.CITY, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN}
                 };
-            case "Single bubble city with elbow road":
+            case "TLLL-":
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.CITY, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.ROAD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.UNKNOWN, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.LAKE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE}
                 };
-            case "Single bubble city with elbow road (other direction)":
+            case "TLTT-":
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.CITY, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.ROAD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD}
-                };
-            case "Single bubble city with triple crossroads":
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.ENDPOINT, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN}
+                };  
+            case "TLTTP":
+                this.boar = true;
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.CITY, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.ROAD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.ROAD},
-                        new Feature[] {Feature.FIELD, Feature.ROAD, Feature.ENDPOINT, Feature.ROAD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.ENDPOINT, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN}
                 };
-            //start piece
-            case "Single bubble city with straight road":
+            //flood fill should connect regions. meeple placement of lake at 6 not 8 or 9
+            case "TLLT-":
                 return new Feature[][] {
-                        new Feature[] {Feature.FIELD, Feature.CITY, Feature.CITY, Feature.CITY, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.CITY, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.ROAD, Feature.ROAD, Feature.FIELD, Feature.ROAD, Feature.ROAD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.ROAD, Feature.FIELD, Feature.FIELD},
-                        new Feature[] {Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD, Feature.FIELD}
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.UNKNOWN, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE}
+                }; 
+            case "TLLTB":
+                this.buffalo = true;
+                return new Feature[][] {
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.UNKNOWN, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE}
                 };
+            case "LJTJ-":
+                return new Feature[][] {
+                        new Feature[] {Feature.UNKNOWN, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE}
+                }; 
+            case "LJTJD":
+                this.deer = true;
+                return new Feature[][] {
+                        new Feature[] {Feature.UNKNOWN, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.UNKNOWN},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
+                        new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE}
+                };
+            case "TLLLC":
+                this.croc = true;
+                return new Feature[][] {
+                        new Feature[] {Feature.UNKNOWN, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN},
+                        new Feature[] {Feature.LAKE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
+                        new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE}
+                };                                                                                                                                                                                                                                                                                                                                                                                                                                                       
             default:
                 throw new RuntimeException("Invalid tile created!");
         }
