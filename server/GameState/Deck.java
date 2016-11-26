@@ -8,7 +8,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class Deck {
 
-    private static int TILE_COUNT = 71;
+    private static int TILE_COUNT = 76;
 
     /*
      * Tile distribution
@@ -46,30 +46,61 @@ public class Deck {
 	public Deck(long seed) {
 
         UniformPicker<Tile> tilePicker = new UniformPicker<>(seed);
-        addTilesToPicker(tilePicker, new Tile("Complete shielded city"), 1); // 1 - complete shielded city
-        addTilesToPicker(tilePicker, new Tile("3/4 city"), 3); // 3 - 3/4 city
-        addTilesToPicker(tilePicker, new Tile("3/4 shielded city"), 1); // 1 - 3/4 shielded city
-        addTilesToPicker(tilePicker, new Tile("3/4 city with road"), 1); // 1 - 3/4 city with road
-        addTilesToPicker(tilePicker, new Tile("3/4 shielded city with road"), 2); // 2 - 3/4 shielded city with road
-        addTilesToPicker(tilePicker, new Tile("Quadruple crossroads"), 1); // 1 - quadruple crossroads
-        addTilesToPicker(tilePicker, new Tile("Triple corssroads"), 4); // 4 - triple crossroads
-        addTilesToPicker(tilePicker, new Tile("Straight road"), 8); // 8 - straight road
-        addTilesToPicker(tilePicker, new Tile("Elbow road"), 9); // 9 - elbow road
-        addTilesToPicker(tilePicker, new Tile("Monastary"), 4); // 4 - monestary
-        addTilesToPicker(tilePicker, new Tile("Monastary with road"), 2); // 2 - monestary with road
-        addTilesToPicker(tilePicker, new Tile("1/2 city with elbow road"), 3); // 3 - 1/2 city with elbow road
-        addTilesToPicker(tilePicker, new Tile("1/2 shielded city with elbow road"), 2); // 2 - 1/2 shielded city with elbow road
-        addTilesToPicker(tilePicker, new Tile("Tunnel city"), 1); // 1 - tunnel city
-        addTilesToPicker(tilePicker, new Tile("Tunnel shielded city"), 2); // 2 - tunnel shielded city
-        addTilesToPicker(tilePicker, new Tile("1/2 city"), 3); // 3 - 1/2 city
-        addTilesToPicker(tilePicker, new Tile("1/2 shielded city"), 2); // 2 - 1/2 shielded city
-        addTilesToPicker(tilePicker, new Tile("Two bubble cities side by side"), 2); // 2 - two bubble cities side by side
-        addTilesToPicker(tilePicker, new Tile("Two bubble cities across from one another"), 3); // 3 - two bubble cities across from one another
-        addTilesToPicker(tilePicker, new Tile("Single bubble city"), 5); // 5 - single bubble city
-        addTilesToPicker(tilePicker, new Tile("Single bubble city with elbow road"), 3); // 3 - single bubble city with elbow road
-        addTilesToPicker(tilePicker, new Tile("Single bubble city with elbow road (other direction)"), 3); // 3 - single bubble city with elbow road (other direction)
-        addTilesToPicker(tilePicker, new Tile("Single bubble city with triple crossroads"), 3); // 3 - single bubble city with triple crossroads
-        addTilesToPicker(tilePicker, new Tile("Single bubble city with straight road"), 3); // 3 + 1 (start) - single bubble city with straight road
+        addTilesToPicker(tilePicker, new Tile("JJJJ-"), 1);
+        addTilesToPicker(tilePicker, new Tile("JJJJX"), 4);
+        addTilesToPicker(tilePicker, new Tile("JJTJX"), 2);
+        addTilesToPicker(tilePicker, new Tile("TTTT-"), 1);
+        addTilesToPicker(tilePicker, new Tile("TJTJ-"), 8);
+        addTilesToPicker(tilePicker, new Tile("TJJT-"), 9);
+        addTilesToPicker(tilePicker, new Tile("TJTT-"), 4);
+
+        addTilesToPicker(tilePicker, new Tile("LLLL-"), 1);
+        addTilesToPicker(tilePicker, new Tile("JLLL-"), 4);
+        addTilesToPicker(tilePicker, new Tile("LLJJ-"), 5);
+        addTilesToPicker(tilePicker, new Tile("JLJL-"), 3);
+        addTilesToPicker(tilePicker, new Tile("LJLJ-"), 3);
+        addTilesToPicker(tilePicker, new Tile("LJJJ-"), 5);
+        addTilesToPicker(tilePicker, new Tile("JLLJ-"), 2);
+
+        addTilesToPicker(tilePicker, new Tile("TLJT-"), 1);
+        addTilesToPicker(tilePicker, new Tile("TLJTP"), 2);
+        addTilesToPicker(tilePicker, new Tile("JLTT-"), 1);
+        addTilesToPicker(tilePicker, new Tile("JLTTB"), 2);
+        addTilesToPicker(tilePicker, new Tile("TLTJ-"), 2); //STARTING TILE 
+        addTilesToPicker(tilePicker, new Tile("TLTJD"), 2);
+        addTilesToPicker(tilePicker, new Tile("TLLL-"), 1);
+
+        addTilesToPicker(tilePicker, new Tile("TLTT-"), 1);
+        addTilesToPicker(tilePicker, new Tile("TLTTP"), 2);
+        addTilesToPicker(tilePicker, new Tile("TLLT-"), 3);
+        addTilesToPicker(tilePicker, new Tile("TLLTB"), 2);
+        addTilesToPicker(tilePicker, new Tile("LJTJ-"), 1);
+        addTilesToPicker(tilePicker, new Tile("LJTJD"), 2);
+        addTilesToPicker(tilePicker, new Tile("TLLLC"), 2);                                                                                                                                                                                                                                                                                                                                                
+        // addTilesToPicker(tilePicker, new Tile("Complete shielded city"), 1); // 1 - complete shielded city
+        // addTilesToPicker(tilePicker, new Tile("3/4 city"), 3); // 3 - 3/4 city
+        // addTilesToPicker(tilePicker, new Tile("3/4 shielded city"), 1); // 1 - 3/4 shielded city
+        // addTilesToPicker(tilePicker, new Tile("3/4 city with road"), 1); // 1 - 3/4 city with road
+        // addTilesToPicker(tilePicker, new Tile("3/4 shielded city with road"), 2); // 2 - 3/4 shielded city with road
+        // addTilesToPicker(tilePicker, new Tile("Quadruple crossroads"), 1); // 1 - quadruple crossroads
+        // addTilesToPicker(tilePicker, new Tile("Triple corssroads"), 4); // 4 - triple crossroads
+        // addTilesToPicker(tilePicker, new Tile("Straight road"), 8); // 8 - straight road
+        // addTilesToPicker(tilePicker, new Tile("Elbow road"), 9); // 9 - elbow road
+        // addTilesToPicker(tilePicker, new Tile("Monastary"), 4); // 4 - monestary
+        // addTilesToPicker(tilePicker, new Tile("Monastary with road"), 2); // 2 - monestary with road
+        // addTilesToPicker(tilePicker, new Tile("1/2 city with elbow road"), 3); // 3 - 1/2 city with elbow road
+        // addTilesToPicker(tilePicker, new Tile("1/2 shielded city with elbow road"), 2); // 2 - 1/2 shielded city with elbow road
+        // addTilesToPicker(tilePicker, new Tile("Tunnel city"), 1); // 1 - tunnel city
+        // addTilesToPicker(tilePicker, new Tile("Tunnel shielded city"), 2); // 2 - tunnel shielded city
+        // addTilesToPicker(tilePicker, new Tile("1/2 city"), 3); // 3 - 1/2 city
+        // addTilesToPicker(tilePicker, new Tile("1/2 shielded city"), 2); // 2 - 1/2 shielded city
+        // addTilesToPicker(tilePicker, new Tile("Two bubble cities side by side"), 2); // 2 - two bubble cities side by side
+        // addTilesToPicker(tilePicker, new Tile("Two bubble cities across from one another"), 3); // 3 - two bubble cities across from one another
+        // addTilesToPicker(tilePicker, new Tile("Single bubble city"), 5); // 5 - single bubble city
+        // addTilesToPicker(tilePicker, new Tile("Single bubble city with elbow road"), 3); // 3 - single bubble city with elbow road
+        // addTilesToPicker(tilePicker, new Tile("Single bubble city with elbow road (other direction)"), 3); // 3 - single bubble city with elbow road (other direction)
+        // addTilesToPicker(tilePicker, new Tile("Single bubble city with triple crossroads"), 3); // 3 - single bubble city with triple crossroads
+        // addTilesToPicker(tilePicker, new Tile("Single bubble city with straight road"), 3); // 3 + 1 (start) - single bubble city with straight road
 
         while(tilePicker.validDecisionsToPick()) {
 
