@@ -69,6 +69,10 @@ const updatePlayerHUD = (board) => {
 };
 
 const updateNextCardHUD = (board) => {
+  if (board.Deck.tiles.length === 0) {
+    return board;
+  }
+
   activeCard = board.Deck.tiles[0].name;
   const url = tileLookup(activeCard);
 
@@ -124,6 +128,10 @@ const updateBoard = (board) => {
 };
 
 const getMoves = (board) => {
+  if (board.Deck.tiles.length === 0) {
+    return board;
+  }
+  
   const nextTile = board.Deck.tiles[0].name;
 
   tigerzone
