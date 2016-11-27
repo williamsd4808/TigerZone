@@ -2,6 +2,7 @@ package GameState;
 
 import Utilities.BoardUtilities;
 import Utilities.PointUtilities;
+import Utilities.FeatureUtilities;
 import Utilities.Tuple;
 
 import java.awt.Point;
@@ -128,7 +129,7 @@ public class Board {
                 System.out.println("No meeple present on tile");
                 return null;
             } else {
-                
+
                 //return Meeple mapped feature
                 switch(meepleLocation) {
                     case 1 :
@@ -150,7 +151,7 @@ public class Board {
                     case 9 :
                         return getFeature(3,3);
                     default :
-                        return null;
+                        throw new RuntimeException("Error: cannot place meeple in location outside of index [0,9]");
                 }
             }
         }
@@ -188,6 +189,7 @@ public class Board {
     }
 
     private HashMap<Point, PlacedTile> board = new HashMap<>();
+    private Engine engine;
 
     /*
      * The board ensures that tiles are only added to the map on spots that aren't already occupied,
@@ -195,9 +197,10 @@ public class Board {
      *
      */
 
-    public Board() {
+    public Board(Engine engine) {
 
         putTileInMap(new Point(0, 0), new Tile("TLTJ-"), Orientation.NORTH);
+        this.engine = engine;
 
     }
 
@@ -311,13 +314,48 @@ public class Board {
 
     private void putTileInMap(Point location, Tile tile, Orientation orientation) {
 
-        board.put(location, new PlacedTile(tile, orientation, location));
+        PlacedTile newPlacedTile = new PlacedTile(tile, orientation, location);
+
+        board.put(location, newPlacedTile); // Add the tile to the board
+
+        // Then we will flood fill and adjust scores accordingly!
+
+        ArrayList<Point> globalFeaturePointsInNewTile = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+
+            for (int j = 0; j < 5; j++) {
+
+                globalFeaturePointsInNewTile.add(FeatureUtilities.getGlobalFeaturePoint(newPlacedTile, new Point(i, j)));
+
+            }
+
+        }
+
+        while (!globalFeaturePointsInNewTile.isEmpty()) {
+
+            Point removedPoint = globalFeaturePointsInNewTile.get(0);
+            globalFeaturePointsInNewTile.remove(0);
+            Point removedLocalFeaturePoint = FeatureUtilities.getLocalFeaturePoint(removedPoint);
+            Point removedGlobalTilePoint = FeatureUtilities.getGlobalTilePoint(removedPoint);
+            Feature removedFeature = getTile(removedGlobalTilePoint).getFeature(removedLocalFeaturePoint);
+            Set<Point> featureExtent = FeatureUtilities.getExtentOfFeature(this, removedPoint, removedFeature);
+
+            for (Point featureExtentPoint : featureExtent) {
+
+                globalFeaturePointsInNewTile.remove(featureExtentPoint); // Attempt to remove elements of this extent from the points in the new tile as they have already been accounted for
+
+            }
+
+
+
+        }
 
     }
 
-    public static Board fromJson(JsonObject json) {
+    public static Board fromJson(Engine engine, JsonObject json) {
 
-        Board board = new Board();
+        Board board = new Board(engine);
 
         JsonArray tiles = json.getJsonArray("tiles");
 

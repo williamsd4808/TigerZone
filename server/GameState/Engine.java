@@ -15,6 +15,31 @@ public class Engine {
 	public Board board;
     public int turn = 0;
 
+    public void newGame() {
+
+        players = new ArrayList<>();
+        deck = new Deck(this, System.currentTimeMillis());
+        board = new Board();
+        turn = 0;
+
+    }
+
+    public void playerJoin(String playerName) {
+
+        if (players.size() > 2) {
+
+            players.add(new Player(playerName));
+
+        }
+
+    }
+
+    public Tile drawTile() {
+
+        return deck.drawTile();
+
+    }
+
     public void addTileToBoard(Point point, Tile tile, Board.Orientation orientation) {
 
         board.addTile(point, tile, orientation);
@@ -77,8 +102,8 @@ public class Engine {
 
             }
 
-            engine.deck = Deck.fromJson(obj.getJsonObject("Deck"));
-            engine.board = Board.fromJson(obj.getJsonObject("Board"));
+            engine.deck = Deck.fromJson(engine, obj.getJsonObject("Deck"));
+            engine.board = Board.fromJson(engine, obj.getJsonObject("Board"));
 
         } catch (Exception e) {
 

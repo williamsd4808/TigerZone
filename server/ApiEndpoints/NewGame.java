@@ -16,8 +16,8 @@ public class NewGame {
             protected void doExecute(Engine engine) {
 
                 engine.setPlayers(new ArrayList<>());
-                engine.setDeck(new Deck(System.currentTimeMillis()));
-                engine.setBoard(new Board());
+                engine.setDeck(new Deck(engine, System.currentTimeMillis()));
+                engine.setBoard(new Board(engine));
 
             }
 
