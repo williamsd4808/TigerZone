@@ -2,6 +2,7 @@ package Utilities;
 
 import GameState.Board;
 import GameState.Feature;
+import Utilities.MathUtilities;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -64,18 +65,26 @@ public class FeatureUtilities {
     // Expects: the board you intend to find the extent of
     // Expects: a start point in terms of global feature locations
     // Expects: the type of feature you are trying to find the extent of
-    // Returns a map of points and collections of orientations that tile can be validly placed in
+    // Returns a map of global feature points that are connected to this feature on this start point
 
     public static Set<Point> getExtentOfFeature(Board board, Point startFeaturePoint, Feature featureType) {
 
         HashSet<Point> featureExtent = new HashSet<>();
         Queue<Point> featurePointQueue = new LinkedBlockingQueue<>();
+
+        if (board.getTile(getGlobalTilePoint(startFeaturePoint)).getFeature(getLocalFeaturePoint(startFeaturePoint)) != featureType) {
+
+            return featureExtent;
+
+        }
+
         featurePointQueue.offer(startFeaturePoint);
         Point originalGlobalTilePoint = getGlobalTilePoint(startFeaturePoint);
 
         while (!featurePointQueue.isEmpty()) {
 
             Point globalFeaturePoint = featurePointQueue.poll();
+            featureExtent.add(globalFeaturePoint);
 
             Map<Point, Feature> neighborFeatures = getNeighborFeatures(board, globalFeaturePoint);
 
@@ -91,7 +100,11 @@ public class FeatureUtilities {
 
                     if (originalGlobalTilePoint.equals(entryGlobalTilePoint) || entryLocalFeaturePoint.x == 2 || entryLocalFeaturePoint.y == 2) {
 
-                        featurePointQueue.offer(entryPoint);
+                        if (!featureExtent.contains(entryPoint)) {
+
+                            featurePointQueue.offer(entryPoint);
+
+                        }
 
                     }
 
@@ -112,8 +125,6 @@ public class FeatureUtilities {
         for (Point extentPoint : extentOfFeature) {
 
             Point localFeaturePoint = getLocalFeaturePoint(extentPoint);
-
-            // If we're on a connection point, i.e. x or y == 2
 
             if (isConnectionPoint(extentPoint)) {
 
@@ -194,13 +205,15 @@ public class FeatureUtilities {
 
     public static Point getGlobalTilePoint(Point point) {
 
-        return new Point(point.x / 5, point.y / 5);
+        return new Point((int) Math.floor(point.getX() / 5.0), (int) Math.floor(point.getY() / 5.0));
 
     }
 
     public static Point getLocalFeaturePoint(Point point) {
 
-        return new Point(point.x % 5, point.y % 5);
+        Point globalTilePoint = getGlobalTilePoint(point);
+
+        return new Point(5 - ((globalTilePoint.x + 1) * 5 - point.x), 5 - ((globalTilePoint.y + 1) * 5 - point.y));
 
     }
 

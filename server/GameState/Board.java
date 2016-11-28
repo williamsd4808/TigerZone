@@ -336,9 +336,11 @@ public class Board {
 
             Point removedPoint = globalFeaturePointsInNewTile.get(0);
             globalFeaturePointsInNewTile.remove(0);
+
             Point removedLocalFeaturePoint = FeatureUtilities.getLocalFeaturePoint(removedPoint);
-            Point removedGlobalTilePoint = FeatureUtilities.getGlobalTilePoint(removedPoint);
-            Feature removedFeature = getTile(removedGlobalTilePoint).getFeature(removedLocalFeaturePoint);
+
+            Feature removedFeature = getTile(location).getFeature(removedLocalFeaturePoint);
+
             Set<Point> featureExtent = FeatureUtilities.getExtentOfFeature(this, removedPoint, removedFeature);
 
             for (Point featureExtentPoint : featureExtent) {
@@ -347,7 +349,7 @@ public class Board {
 
             }
 
-
+            // Score here
 
         }
 
