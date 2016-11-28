@@ -64,7 +64,6 @@ public class FeatureUtilities {
     // Expects: the board you intend to find the extent of
     // Expects: a start point in terms of global feature locations
     // Expects: the type of feature you are trying to find the extent of
-    // Returns a map of points and collections of orientations that tile can be validly placed in
 
     public static Set<Point> getExtentOfFeature(Board board, Point startFeaturePoint, Feature featureType) {
 
