@@ -25,7 +25,7 @@ public class Tile {
 
 	public Feature getFeature(int x, int y) {
 
-		return subGrid[x][y];
+		return subGrid[y][x];
 
 	}
 
