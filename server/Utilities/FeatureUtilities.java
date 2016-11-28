@@ -65,7 +65,6 @@ public class FeatureUtilities {
     // Expects: the board you intend to find the extent of
     // Expects: a start point in terms of global feature locations
     // Expects: the type of feature you are trying to find the extent of
-    // Returns a map of global feature points that are connected to this feature on this start point
 
     public static Set<Point> getExtentOfFeature(Board board, Point startFeaturePoint, Feature featureType) {
 

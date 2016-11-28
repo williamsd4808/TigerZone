@@ -83,6 +83,35 @@ public class Board {
 
         }
 
+        //Valid Meeple placements
+        public Set<Point> getValidMeeplePlacements(Board board) {
+
+            boolean canPlaceMeeple = true;
+            Set<Point> currentExtent = FeatureUtilities.getExtentOfFeature(board, location, getFeature(FeatureUtilities.getGlobalFeaturePoint(this, new Point(0,0))));
+            for(Point myPoint : currentExtent) {
+                if(board.getTile(FeatureUtilities.getGlobalTilePoint(myPoint)).getNumMeeples() > 0) {
+                    
+                    canPlaceMeeple = false;
+                }
+
+                /*
+                for (int i = 0; i < 5 ; i++) {
+                    for (int j = 0; j < 5; j++) {
+                        if(myPoint == FeatureUtilities.getLocalFeaturePoint(i,j)) {
+
+                        }
+                    }
+                } 
+                */               
+            }
+
+            
+
+
+            //This is not the right return, we need to analyze for meeples already placed as well as least diamond-grid location for each extent
+            return currentExtent;
+        }
+
         //If meepleLocation = 0, no meeple on the tile.
         public int getMeepleLocation() {
 
