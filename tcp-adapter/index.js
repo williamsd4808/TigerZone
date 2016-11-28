@@ -19,6 +19,10 @@ module.exports = class TCPAdapter {
     this.send(`GAME ${gid} MOVE ${move_count} PLACE ${tile} AT ${x} ${y} ${orientation * 90} NONE`);
   }
 
+  place_tiger(gid, move_count, tile, x, y, orientation, tigerzone) {
+    this.send(`GAME ${gid} MOVE ${move_count} PLACE ${tile} AT ${x} ${y} ${orientation * 90} TIGER ${tigerzone}`);
+  }
+
   unplaceable_tile(gid, tile) {
     this.send(`GAME ${gid} TILE ${tile} UNPLACEABLE PASS`);
   }
@@ -80,6 +84,7 @@ module.exports = class TCPAdapter {
         'orientation': parseInt(tokens[7], 10) / 90
       };
     }
+
     // THE REMAINING <number_tiles> TILES ARE [ <tiles> ]
     // THE REMAINING 6 TILES ARE [ TLTTP LJTJ- JLJL- JJTJX JLTTB TLLT- ]
     if (tokens[0] === 'THE') {
@@ -183,12 +188,19 @@ module.exports = class TCPAdapter {
   static parse_move(tokens) {
     // PLACED <tile> AT <x> <y> <orientation> NONE
     if (tokens[0] === 'PLACED') {
+      let meeple = 'none';
+
+      if (tokens[6] === 'TIGER') {
+        meeple = parseInt(tokens[7], 10);
+      }
+
       return {
         'type': 'place-tile',
         'tile': tokens[1],
         'x': parseInt(tokens[3], 10),
         'y': parseInt(tokens[4], 10),
-        'orientation': parseInt(tokens[5], 10) / 90
+        'orientation': parseInt(tokens[5], 10) / 90,
+        'meeple': meeple
       };
     }
 

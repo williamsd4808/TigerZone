@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Engine {
-	public List<Player> players = new ArrayList<>();
+	public List<Player> players;
 	public Deck deck;
 	public Board board;
     public int turn = 0;
@@ -19,7 +19,7 @@ public class Engine {
 
         players = new ArrayList<>();
         deck = new Deck(this, System.currentTimeMillis());
-        board = new Board();
+        board = new Board(this);
         turn = 0;
 
     }

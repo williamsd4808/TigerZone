@@ -178,7 +178,7 @@ public class Tile {
                         new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
                         new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE},
                         new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.UNKNOWN}
-                };      
+                };
             case "JLTT-":
                 return new Feature[][] {
                         new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.UNKNOWN},
@@ -229,7 +229,7 @@ public class Tile {
                         new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.ENDPOINT, Feature.JUNGLE, Feature.LAKE},
                         new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
                         new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.UNKNOWN}
-                };  
+                };
             case "TLTTP":
                 this.boar = true;
                 return new Feature[][] {
@@ -247,7 +247,7 @@ public class Tile {
                         new Feature[] {Feature.TRAIL, Feature.TRAIL, Feature.TRAIL, Feature.JUNGLE, Feature.LAKE},
                         new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.JUNGLE, Feature.LAKE},
                         new Feature[] {Feature.UNKNOWN, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE}
-                }; 
+                };
             case "TLLTB":
                 this.buffalo = true;
                 return new Feature[][] {
@@ -264,7 +264,7 @@ public class Tile {
                         new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
                         new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE},
                         new Feature[] {Feature.JUNGLE, Feature.JUNGLE, Feature.TRAIL, Feature.JUNGLE, Feature.JUNGLE}
-                }; 
+                };
             case "LJTJD":
                 this.deer = true;
                 return new Feature[][] {
@@ -282,7 +282,7 @@ public class Tile {
                         new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
                         new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE},
                         new Feature[] {Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE, Feature.LAKE}
-                };                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+                };
             default:
                 throw new RuntimeException("Invalid tile created!");
         }

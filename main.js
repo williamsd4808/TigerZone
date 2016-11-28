@@ -108,7 +108,17 @@ client.on('data', (res) => {
 
           const { x, y, orientation } = AI.queryTile(message.tile, moves);
           console.log(x, y, orientation, message.gid);
-          tcpAdapter.place_tile(message.gid, message.move_count, message.tile, x, y, orientation);
+
+					// If it's the first move & we're the first player,
+					// We can always place a tiger at zone 1
+					// We can also always
+					if (message.tile[4] === 'X') {
+						tcpAdapter.place_tiger(message.gid, message.move_count, message.tile, x, y, orientation, 5);
+					} else if (message.move_count === 1 && message.gid === 'A') {
+ 						tcpAdapter.place_tiger(message.gid, message.move_count, message.tile, x, y, orientation, 1);
+ 					} else {
+						tcpAdapter.place_tile(message.gid, message.move_count, message.tile, x, y, orientation);
+					}
 
           return tigerzone
             .place_tile(message.gid, message.tile, x, y, orientation);
@@ -122,9 +132,13 @@ client.on('data', (res) => {
         break;
       }
 
+			// Remember to place meeple
+			// message.move.meeple := 'none' if none was placed
+
       tigerzone
         .place_tile(message.gid, message.move.tile, message.move.x, message.move.y, message.move.orientation)
         .catch((data) => data);
+
       break;
     case 'forfeit':
       // Do nothing?
