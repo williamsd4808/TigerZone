@@ -82,12 +82,13 @@ public class FeatureUtilities {
         }
 
         featurePointQueue.offer(startFeaturePoint);
-        Point originalGlobalTilePoint = getGlobalTilePoint(startFeaturePoint);
 
         while (!featurePointQueue.isEmpty()) {
 
             Point globalFeaturePoint = featurePointQueue.poll();
+
             featureExtent.add(globalFeaturePoint);
+            Point globalTilePoint = getGlobalTilePoint(globalFeaturePoint);
 
             Map<Point, Feature> neighborFeatures = getNeighborFeatures(board, globalFeaturePoint);
 
@@ -101,7 +102,7 @@ public class FeatureUtilities {
                     Point entryGlobalTilePoint = getGlobalTilePoint(entryPoint);
                     Point entryLocalFeaturePoint = getLocalFeaturePoint(entryPoint);
 
-                    if (originalGlobalTilePoint.equals(entryGlobalTilePoint) || entryLocalFeaturePoint.x == 2 || entryLocalFeaturePoint.y == 2) {
+                    if (globalTilePoint.equals(entryGlobalTilePoint) || isConnectionPoint(entryLocalFeaturePoint)) {
 
                         if (!featureExtent.contains(entryPoint)) {
 
@@ -127,13 +128,11 @@ public class FeatureUtilities {
 
         for (Point extentPoint : extentOfFeature) {
 
-            Point localFeaturePoint = getLocalFeaturePoint(extentPoint);
-
             if (isConnectionPoint(extentPoint)) {
 
                 Point correspondingConnectionPoint = getCorrespondingConnectionPoint(extentPoint);
 
-                if (extentOfFeature.contains(correspondingConnectionPoint)) {
+                if (!extentOfFeature.contains(correspondingConnectionPoint)) {
 
                     count++;
 
