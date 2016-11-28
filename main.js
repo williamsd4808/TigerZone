@@ -108,7 +108,7 @@ client.on('data', (res) => {
 
           const { x, y, orientation } = AI.queryTile(message.tile, moves);
           console.log(x, y, orientation, message.gid);
-          tcpAdapter.place_tile(message.gid, message.tile, x, y, orientation);
+          tcpAdapter.place_tile(message.gid, message.move_count, message.tile, x, y, orientation);
 
           return tigerzone
             .place_tile(message.gid, message.tile, x, y, orientation);

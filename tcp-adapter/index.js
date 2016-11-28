@@ -15,8 +15,8 @@ module.exports = class TCPAdapter {
     this.send(`I AM ${username} ${password}`);
   }
 
-  place_tile(gid, tile, x, y, orientation) {
-    this.send(`GAME ${gid} PLACE ${tile} AT ${x} ${y} ${orientation * 90} NONE`);
+  place_tile(gid, move_count, tile, x, y, orientation) {
+    this.send(`GAME ${gid} MOVE ${move_count} PLACE ${tile} AT ${x} ${y} ${orientation * 90} NONE`);
   }
 
   unplaceable_tile(gid, tile) {
