@@ -18,15 +18,15 @@ public class MeepleUtilities {
 
         {
 
-            put(1, new Point(1,1));
-            put(2, new Point(0,2));
-            put(3, new Point(1,3));
-            put(4, new Point(2,0));
+            put(1, new Point(1,3));
+            put(2, new Point(2,4));
+            put(3, new Point(3,3));
+            put(4, new Point(0,2));
             put(5, new Point(2,2));
-            put(6, new Point(2,4));
-            put(7, new Point(3,1));
-            put(8, new Point(4,2));
-            put(9, new Point(3,3));
+            put(6, new Point(4,2));
+            put(7, new Point(1,1));
+            put(8, new Point(2,0));
+            put(9, new Point(3,1));
 
         }
 
@@ -36,15 +36,15 @@ public class MeepleUtilities {
 
         {
 
-            put(new Point(1,1), 1);
-            put(new Point(0,2), 2);
-            put(new Point(1,3), 3);
-            put(new Point(2,0), 4);
+            put(new Point(1,3), 1);
+            put(new Point(2,4), 2);
+            put(new Point(3,3), 3);
+            put(new Point(0,2), 4);
             put(new Point(2,2), 5);
-            put(new Point(2,4), 6);
-            put(new Point(3,1), 7);
-            put(new Point(4,2), 8);
-            put(new Point(3,3), 9);
+            put(new Point(4,2), 6);
+            put(new Point(1,1), 7);
+            put(new Point(2,0), 8);
+            put(new Point(3,1), 9);
 
         }
 

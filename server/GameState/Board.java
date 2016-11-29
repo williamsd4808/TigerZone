@@ -76,12 +76,6 @@ public class Board {
 
         }
 
-        public Meeple getMeeple() {
-
-            return placedMeeple;
-
-        }
-
         public Feature getFeature(Point point) {
 
             Point transformedPoint = conversionMatrices.get(placementOrientation).Transform(point);
@@ -122,6 +116,13 @@ public class Board {
         public int getMeepleLocation() {
 
             return meepleLocation;
+        }
+
+        public Point meepleLocationToPoint() {
+            switch(meepleLocation) {
+                case 1: 
+                    return (1,1)
+            }
         }
 
         public int getNumMeeples() {
@@ -168,23 +169,23 @@ public class Board {
                 //return Meeple mapped feature
                 switch(meepleLocation) {
                     case 1 :
-                        return getFeature(1,1);
-                    case 2 :
-                        return getFeature(0,2);
-                    case 3 :
                         return getFeature(1,3);
+                    case 2 :
+                        return getFeature(2,4);
+                    case 3 :
+                        return getFeature(3,3);
                     case 4 :
-                        return getFeature(2,0);
+                        return getFeature(0,2);
                     case 5 :
                         return getFeature(2,2);
                     case 6 :
-                        return getFeature(2,4);
-                    case 7 :
-                        return getFeature(3,1);
-                    case 8 :
                         return getFeature(4,2);
+                    case 7 :
+                        return getFeature(1,1);
+                    case 8 :
+                        return getFeature(2,0);
                     case 9 :
-                        return getFeature(3,3);
+                        return getFeature(3,1);
                     default :
                         throw new RuntimeException("Error: cannot place meeple in location outside of index [0,9]");
                 }
@@ -203,13 +204,13 @@ public class Board {
 
             builder.append("\n");
 
-            for (int y = 0; y < 5; y++) {
+            for (int i = 0; i < 5; i++) {
 
                 builder.append("\t");
 
-                for (int x = 0; x < 5; x++) {
+                for (int j = 0; j < 5; j++) {
 
-                    builder.append(getFeature(x, y) + (x == 4 ? "" : ", "));
+                    builder.append(getFeature(i, j) + (j == 4 ? "" : ", "));
 
                 }
 
