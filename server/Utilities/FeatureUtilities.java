@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Collection;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -219,6 +220,26 @@ public class FeatureUtilities {
     public static Point getGlobalFeaturePoint(Board.PlacedTile placedTile, Point localFeaturePoint) {
 
         return new Point(placedTile.location.x * 5 + localFeaturePoint.x, placedTile.location.y * 5 + localFeaturePoint.y);
+
+    }
+
+    public static Collection<Point> getPlacedTilesInExtent(Board board, Set<Point> extent) {
+
+        HashSet<Point> visitedPlacedTileLocations = new HashSet<>();
+
+        for (Point extentPoint : extent) {
+
+            Point featurePoint = FeatureUtilities.getGlobalTilePoint(extentPoint);
+
+            if (!visitedPlacedTileLocations.contains(featurePoint)) {
+
+                visitedPlacedTileLocations.add(featurePoint);
+
+            }
+
+        }
+
+        return visitedPlacedTileLocations;
 
     }
 

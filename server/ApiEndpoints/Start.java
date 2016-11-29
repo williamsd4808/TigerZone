@@ -6,6 +6,8 @@ import Utilities.*;
 import java.awt.*;
 import java.util.Set;
 
+import static Utilities.MeepleUtilities.meepleLocations;
+
 public class Start {
 
     public static void main(String[] args) {
@@ -26,6 +28,13 @@ public class Start {
         System.out.println(extent.size());
 
         System.out.println(FeatureUtilities.getOpenEdgesInExtent(extent));
+
+        System.out.println("Valid meeple placements on tile (0, 0):");
+        for (int i : MeepleUtilities.getValidMeeplePlacements(engine.board, engine.board.getTile(new Point(0, 0)))) {
+
+            System.out.println("\t" + i + " | " + engine.board.getTile(new Point(0, 0)).getFeature((MeepleUtilities.meepleLocations.get(i))));
+
+        }
 
     }
 

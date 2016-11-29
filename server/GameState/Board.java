@@ -76,6 +76,12 @@ public class Board {
 
         }
 
+        public Meeple getMeeple() {
+
+            return placedMeeple;
+
+        }
+
         public Feature getFeature(Point point) {
 
             Point transformedPoint = conversionMatrices.get(placementOrientation).Transform(point);
