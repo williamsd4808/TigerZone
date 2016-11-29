@@ -76,6 +76,12 @@ public class Board {
 
         }
 
+        public Meeple getMeeple() {
+
+            return placedMeeple;
+
+        }
+
         public Feature getFeature(Point point) {
 
             Point transformedPoint = conversionMatrices.get(placementOrientation).Transform(point);
@@ -197,13 +203,13 @@ public class Board {
 
             builder.append("\n");
 
-            for (int i = 0; i < 5; i++) {
+            for (int y = 0; y < 5; y++) {
 
                 builder.append("\t");
 
-                for (int j = 0; j < 5; j++) {
+                for (int x = 0; x < 5; x++) {
 
-                    builder.append(getFeature(i, j) + (j == 4 ? "" : ", "));
+                    builder.append(getFeature(x, y) + (x == 4 ? "" : ", "));
 
                 }
 

@@ -15,10 +15,10 @@ public class Engine {
 	public Board board;
     public int turn = 0;
 
-    public void newGame() {
+    public void newGame(long seed) {
 
         players = new ArrayList<>();
-        deck = new Deck(this, System.currentTimeMillis());
+        deck = new Deck(this, seed);
         board = new Board(this);
         turn = 0;
 
