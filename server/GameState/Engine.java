@@ -34,6 +34,20 @@ public class Engine {
 
     }
 
+    public Player getPlayer(String playerName) {
+
+        //TESTPRINTS
+        System.out.println("Entered getplayer");
+        System.out.println(players.size());
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getName() == playerName) {
+                return players.get(i);
+            }
+        }
+        //Will only return null if player not in list
+        return null;
+    }
+
     public Tile drawTile() {
 
         return deck.drawTile();
@@ -70,6 +84,8 @@ public class Engine {
     public static Engine fromJson(String saveName) {
 
         Engine engine = new Engine();
+        //TESTPRINT
+        System.out.println("Entered load");
 
         try {
 
@@ -85,6 +101,9 @@ public class Engine {
             JsonObject obj = jsonReader.readObject();
 
             engine.turn = obj.getInt("turn");
+
+            //TEST
+            System.out.println("About to attempt player adding");
 
             JsonObject player1obj = obj.getJsonObject("Player1");
 

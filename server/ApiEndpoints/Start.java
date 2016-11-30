@@ -35,6 +35,8 @@ public class Start {
             System.out.println("\t" + i + " | " + engine.board.getTile(new Point(0, 0)).getFeature((MeepleUtilities.meepleLocations.get(i))));
 
         }
+        
+        
 
     }
 

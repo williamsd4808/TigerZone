@@ -84,6 +84,7 @@ public class Board {
         }
 
         //Valid Meeple placements
+        
         public Set<Point> getValidMeeplePlacements(Board board) {
 
             boolean canPlaceMeeple = true;
@@ -118,11 +119,19 @@ public class Board {
             return meepleLocation;
         }
 
+        //appears to be a broken method
         public Point meepleLocationToPoint() {
             switch(meepleLocation) {
                 case 1: 
-                    return (1,1)
+                    return new Point(1,1);
             }
+            //REMOVE THIS LATER
+            return null;
+        }
+
+        //I need to test other things, not sure what this actually needs to do.
+        public Meeple getMeeple() {
+            return placedMeeple;
         }
 
         public int getNumMeeples() {

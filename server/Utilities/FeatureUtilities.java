@@ -40,29 +40,26 @@ public class FeatureUtilities {
 
     }
 
-    // getNeighborFeatures => getNeighboringSupertiles
+    public static Map<Point, Feature> getNeighborFeatures(Board board, Point point) {
 
-    public static Map<Point, Feature> getNeighborFeatures(Board board, Point superpoint) {
+        Map<Point, Feature> neighborFeatures = new HashMap<>();
 
-        Map<Point, Feature> neighboringSupertiles = new HashMap<>();
-
-        // We want to grab
         for (Board.Orientation orientation : Board.Orientation.values()) {
 
-            Point rawOrientedPoint = neighborTilesTransform.get(orientation).Transform(superpoint);
-            Point orientedSubpoint = getLocalFeaturePoint(rawOrientedSuperpoint);
-            Point orientedPoint = getGlobalTilePoint(rawOrientedSuperpoint);
+            Point rawOrientedFeaturePoint = neighborTilesTransform.get(orientation).Transform(point);
+            Point orientedFeaturePoint = getLocalFeaturePoint(rawOrientedFeaturePoint);
+            Point orientedPlacedTile = getGlobalTilePoint(rawOrientedFeaturePoint);
 
-            if (board.containsElement(orientedSuperpoint)) {
+            if (board.containsElement(orientedPlacedTile)) {
 
-                Board.PlacedTile placedTile = board.getTile(orientedPoint);
-                neighboringSupertiles.put(rawOrientedPoint, placedTile.getFeature(orientedSubpoint));
+                Board.PlacedTile placedTile = board.getTile(orientedPlacedTile);
+                neighborFeatures.put(rawOrientedFeaturePoint, placedTile.getFeature(orientedFeaturePoint));
 
             }
 
         }
 
-        return neighboringSupertiles;
+        return neighborFeatures;
 
     }
 

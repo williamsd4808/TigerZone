@@ -18,10 +18,6 @@ public class PlaceTile {
         int tileX = Integer.parseInt(args[2]); // The X location of the tile
         int tileY = Integer.parseInt(args[3]); // The Y location of the tile
         int orientationInt = Integer.parseInt(args[4]); // The orientation to place the tile in
-        int meepleLocation = Integer.parseInt(args[5]); //The location of the meeple to be placed. Call with 0 as arg[5] for no meeple placement
-        Player meepleOwner = new Player(args[6]);
-        Meeple playerMeeple = new Meeple(meepleOwner);
-
         BaseApiEndpoint endpoint = new BaseMutableApiEndpoint() {
 
             protected void doExecute(Engine engine) {
@@ -31,7 +27,6 @@ public class PlaceTile {
                 Board.Orientation orientation = Board.Orientation.values()[orientationInt];
 
                 engine.board.addTile(point, tile, orientation);
-                engine.board.getTile(point).setMeepleLocation(meepleLocation, playerMeeple);
                 engine.deck.drawTile();
 
             }
