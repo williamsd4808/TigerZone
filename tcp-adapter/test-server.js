@@ -25,11 +25,12 @@ function handleConnection(conn) {
       return false;
     }
 
+    console.log('[%s] sending data: %j', Date.now(), data);
     conn.write(data);
   });
 
   function onConnData(d) {
-    console.log('connection data from %s: %j', remoteAddress, d);
+    console.log('[%s] connection data from %s: %j', Date.now(), remoteAddress, d);
   }
 
   function onConnClose() {

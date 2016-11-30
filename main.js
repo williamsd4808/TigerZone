@@ -28,6 +28,8 @@ const tournament = argv[4];
 const username = argv[5];
 const password = argv[6];
 
+let gids = [];
+
 // This is a cheaty method that allows us to force-set the deck
 const setDeck = require('./modules/set-deck.js');
 
@@ -60,7 +62,8 @@ client.on('data', (res) => {
       console.log(`We will be playing ${message.rounds} rounds in challenge ${message.cid}`);
       break;
     case 'begin-round':
-			// Bug: joining a game does not work
+			gids = [];
+
       tigerzone
         .new_game('A')
         .catch(data => console.log(data))
@@ -96,22 +99,41 @@ client.on('data', (res) => {
       // Do nothing?
       break;
     case 'make-move':
+			if (message.move_count === 1) {
+				if (Object.keys(gids).length === 0) {
+					gids[message.gid] = 'A';
+				} else {
+					gids[message.gid] = 'B';
+				}
+			}
       // Query AI and place tile
       tigerzone
-        .get_moves(message.gid, message.tile)
+        .get_moves(gids[message.gid], message.tile)
         .then((moves) => {
-          console.log(moves);
-
+					console.log(moves);
           if (moves.length === 0) {
             return tcpAdapter.unplaceable_tile(message.gid, message.tile);
           }
 
           const { x, y, orientation } = AI.queryTile(message.tile, moves);
-          console.log(x, y, orientation, message.gid);
-          tcpAdapter.place_tile(message.gid, message.tile, x, y, orientation);
 
-          return tigerzone
-            .place_tile(message.gid, message.tile, x, y, orientation);
+					let res = tigerzone
+            .place_tile(gids[message.gid], message.tile, x, y, orientation)
+						.catch(() => false)
+						.then((data) => {
+							// If it's the first move & we're the first player,
+							// We can always place a tiger at zone 1
+							// We can also always
+							if (message.tile[4] === 'X') {
+								tcpAdapter.place_tiger(message.gid, message.move_count, message.tile, x, y, orientation, 5);
+							} else {
+								tcpAdapter.place_tile(message.gid, message.move_count, message.tile, x, y, orientation);
+							}
+						});
+
+
+
+          return res;
         })
         .then((data) => console.log(data))
         .catch((data) => data);
@@ -122,14 +144,28 @@ client.on('data', (res) => {
         break;
       }
 
+			if (message.move_count === 1) {
+				if (Object.keys(gids).length === 0) {
+					gids[message.gid] = 'A';
+				} else {
+					gids[message.gid] = 'B';
+				}
+			}
+
+			// Remember to place meeple
+			// message.move.meeple := 'none' if none was placed
+
       tigerzone
-        .place_tile(message.gid, message.move.tile, message.move.x, message.move.y, message.move.orientation)
+        .place_tile(gids[message.gid], message.move.tile, message.move.x, message.move.y, message.move.orientation)
         .catch((data) => data);
+
       break;
     case 'forfeit':
+			console.log(message);
       // Do nothing?
       break;
     case 'game-over':
+			console.log(message);
       // Do nothing?
       break;
     case 'round-end':
@@ -144,6 +180,8 @@ client.on('data', (res) => {
     case 'thank-you':
       // Do nothing?
       break;
+		default:
+			break;
   }
 });
 
