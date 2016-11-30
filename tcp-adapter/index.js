@@ -16,11 +16,11 @@ module.exports = class TCPAdapter {
   }
 
   place_tile(gid, move_count, tile, x, y, orientation) {
-    this.send(`GAME ${gid} MOVE ${move_count} PLACE ${tile} AT ${x} ${y} ${orientation * 90} NONE`);
+    this.send(`GAME ${gid} MOVE ${move_count} PLACE ${tile} AT ${x} ${y} ${(360 - orientation * 90) % 360} NONE`);
   }
 
   place_tiger(gid, move_count, tile, x, y, orientation, tigerzone) {
-    this.send(`GAME ${gid} MOVE ${move_count} PLACE ${tile} AT ${x} ${y} ${orientation * 90} TIGER ${tigerzone}`);
+    this.send(`GAME ${gid} MOVE ${move_count} PLACE ${tile} AT ${x} ${y} ${(360 - orientation * 90) % 360} TIGER ${tigerzone}`);
   }
 
   unplaceable_tile(gid, tile) {
@@ -81,7 +81,7 @@ module.exports = class TCPAdapter {
         'tile': tokens[3],
         'x': parseInt(tokens[5], 10),
         'y': parseInt(tokens[6], 10),
-        'orientation': parseInt(tokens[7], 10) / 90
+        'orientation': (4 - parseInt(tokens[7], 10) / 90) % 4
       };
     }
 
@@ -199,7 +199,7 @@ module.exports = class TCPAdapter {
         'tile': tokens[1],
         'x': parseInt(tokens[3], 10),
         'y': parseInt(tokens[4], 10),
-        'orientation': parseInt(tokens[5], 10) / 90,
+        'orientation': (4 - parseInt(tokens[5], 10) / 90) % 4,
         'meeple': meeple
       };
     }
