@@ -36,8 +36,6 @@ public class Engine {
 
     public Player getPlayer(String playerName) {
 
-        
-        System.out.println(players.size());
         for (int i = 0; i < players.size(); i++) {
             if (players.get(i).getName() == playerName) {
                 return players.get(i);

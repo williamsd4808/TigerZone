@@ -10,7 +10,7 @@ import GameState.Player;
 import GameState.Meeple;
 
 
-//So far untested
+//So far tested, not working. Not called anywhere
 public class PlaceTiger {
 
     public static void main(String[] args) {
