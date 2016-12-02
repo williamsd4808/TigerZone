@@ -20,10 +20,10 @@ public class TileUtilities {
 
         {
 
-            put(Board.Orientation.NORTH, Tuple.Create(new Point(0, 2), new Point(4, 2)));
-            put(Board.Orientation.EAST, Tuple.Create(new Point(2, 4), new Point(2, 0)));
-            put(Board.Orientation.SOUTH, Tuple.Create(new Point(4, 2), new Point(0, 2)));
-            put(Board.Orientation.WEST, Tuple.Create(new Point(2, 0), new Point(2, 4)));
+            put(Board.Orientation.NORTH, Tuple.Create(new Point(2, 0), new Point(2, 4)));
+            put(Board.Orientation.EAST, Tuple.Create(new Point(4, 2), new Point(0, 2)));
+            put(Board.Orientation.SOUTH, Tuple.Create(new Point(2, 4), new Point(2, 0)));
+            put(Board.Orientation.WEST, Tuple.Create(new Point(0, 2), new Point(4, 2)));
 
         }
 
