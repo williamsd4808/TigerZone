@@ -9,6 +9,8 @@ import java.net.*;
 import java.awt.Point;
 import java.util.*;
 
+import static Utilities.MeepleUtilities.meepleLocations;
+
 // import java.util.Scanner;
 // import java.util.regex.Matcher;
 // import java.util.regex.Pattern;
@@ -171,6 +173,7 @@ public class Client {
 						gid = sp8[5];
 						moveCount = Integer.parseInt(sp8[10]);
 						String currTile = sp8[12];
+						Tile tile = new Tile(currTile);
 						int x = 0;
 						int y = 0;
 						int orient = 0;
@@ -199,12 +202,25 @@ public class Client {
 						orient = randomOrientation.ordinal();
 						//GET MOVE SET FROM GID RETURN X Y ORIENTATION AND MEEPLE PLACEMENT HERE
 						if(placeMeeple.equals(" TIGER")){
-							out.println("GAME " + gid + " MOVE " + moveCount + " PLACE " + currTile + " AT " + x + " " + y + " " + orient + placeMeeple + " " + 5);
-							System.out.println("GAME " + gid + " MOVE " + moveCount + " PLACE " + currTile + " AT " + x + " " + y + " " + orient + placeMeeple + " " + 5);							
+							out.println("GAME " + gid + " MOVE " + moveCount + " PLACE " + currTile + " AT " + x + " " + y + " " + (orient*90) + placeMeeple + " " + 5);
+							if(gid.equals("1")) {
+								game1.board.addTile(randomPoint, tile, Board.Orientation.values()[orient]);
+							}
+							else if(gid.equals("2")) {
+								game2.board.addTile(randomPoint, tile, Board.Orientation.values()[orient]);
+								
+							}							
+							System.out.println("GAME " + gid + " MOVE " + moveCount + " PLACE " + currTile + " AT " + x + " " + y + " " + (orient*90) + placeMeeple + " " + 5);							
 						}
 						else {
-							out.println("GAME " + gid + " MOVE " + moveCount + " PLACE " + currTile + " AT " + x + " " + y + " " + orient + placeMeeple);
-							System.out.println("GAME " + gid + " MOVE " + moveCount + " PLACE " + currTile + " AT " + x + " " + y + " " + orient + placeMeeple);							
+							out.println("GAME " + gid + " MOVE " + moveCount + " PLACE " + currTile + " AT " + x + " " + y + " " + (orient*90) + placeMeeple);
+							if(gid.equals("1")) {
+								game1.board.addTile(randomPoint, tile, Board.Orientation.values()[orient]);
+							}
+							else if(gid.equals("2")) {
+								game2.board.addTile(randomPoint, tile, Board.Orientation.values()[orient]);
+							}
+							System.out.println("GAME " + gid + " MOVE " + moveCount + " PLACE " + currTile + " AT " + x + " " + y + " " + (orient*90)  + placeMeeple);							
 						}
 						break;
 					case GAME:
@@ -220,6 +236,7 @@ public class Client {
 						moveCount = Integer.parseInt(sp9[3]);
 						String who = sp9[5];
 						String typeMove = sp9[6];
+						// String whatTile = sp9[7];
 						if(who.equals(pid2)) {
 							if(typeMove.equals("FORFEITED:")) {
 								//END GAME OTHER PLAYER
@@ -229,8 +246,17 @@ public class Client {
 
 							}
 							else if(typeMove.equals("PLACE")) {
-								//PLACE TILE IN GID FOR PLAYER PID2 AKA NOT US PLACE DIRECTLY
-								//IF THIS RETURNS ERROR THEN ITS THE SERVER'S FAULT
+								Tile whatTile = new Tile(sp9[7]);
+								int x2 = Integer.parseInt(sp9[9]);
+								int y2 = Integer.parseInt(sp9[10]);
+								int orient2 = Integer.parseInt(sp9[11])/90;								
+								Point newPoint = new Point(x2, y2);
+								if(gid.equals("1")) {
+									game1.board.addTile(newPoint, whatTile, Board.Orientation.values()[orient2]);
+								}
+								else if(gid.equals("2")) {
+									game2.board.addTile(newPoint, whatTile, Board.Orientation.values()[orient2]);
+								}								
 							}
 							else if(typeMove.equals("TILE")) {
 								//CASE WHERE UNPLACABLE OR GET SOMETHING
