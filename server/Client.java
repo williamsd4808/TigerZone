@@ -1,17 +1,19 @@
-package GameState;
+package ApiEndpoints;
+
+import GameState.*;
 import Utilities.*;
 
 import java.io.*;
 import java.net.*;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.*;
 
 // import java.util.Scanner;
 // import java.util.regex.Matcher;
 // import java.util.regex.Pattern;
 
-public class Main {
+public class Client {
 	public enum Token {
 		// AUTH, CHALLENGE, ROUND, MATCH, MOVE, UNKNOWN;
 		TPASS, AUTH, WELCOME, NEW, EOC, ROUND, EOR, OPPONENT, STILE, DECK, MOVE, GAME, GAMEOVER, UNKNOWN;
@@ -172,10 +174,15 @@ public class Main {
 						int x = 0;
 						int y = 0;
 						int orient = 0;
-
+						// Map<Point, Collection<Board.Orientation>> points = new HashMap<>();
+						// if(gid.equals("1")) {
+						// 	points = BoardUtilities.getValidAdjacentPoints(new Tile(currTile), game1.board);
+						// }
+						// else if(gid.equals("2")) {
+						// 	points = BoardUtilities.getValidAdjacentPoints(new Tile(currTile), game2.board);							
+						// } 		     				
 						//GET MOVE SET FROM GID RETURN X Y ORIENTATION AND MEEPLE PLACEMENT HERE
-
-						out.println("GAME " + gid + " MOVE " + moveCount + " PLACE " + currTile + " AT " + x + " " + y + " " + orient + " NONE");
+						out.println("GAME " + gid + " MOVE " + moveCount + " PLACE " + currTile + " AT " + "y" + " " + "y" + " " + orient + " NONE");
 						break;
 					case GAME:
 						//translate game data;
