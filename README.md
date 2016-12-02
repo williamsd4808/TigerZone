@@ -21,6 +21,7 @@ https://github.com/rickydtran
 https://github.com/jw6
 
 #### Patrick Bradley
+https://github.com/bradley734
 
 #### Daniel Williams
 
