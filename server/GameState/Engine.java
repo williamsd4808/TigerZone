@@ -70,6 +70,7 @@ public class Engine {
     public static Engine fromJson(String saveName) {
 
         Engine engine = new Engine();
+        engine.players = new ArrayList<>();
 
         try {
 

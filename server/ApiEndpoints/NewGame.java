@@ -11,13 +11,13 @@ public class NewGame {
 
         String savedEngine = args[0]; // The name of the saved engine state
 
-        BaseApiEndpoint endpoint = new BaseMutableApiEndpoint() {
+        BaseApiEndpoint endpoint = new BaseApiEndpoint() {
 
-            protected void doExecute(Engine engine) {
+            public final void execute(String saveName) {
 
-                engine.setPlayers(new ArrayList<>());
-                engine.setDeck(new Deck(engine, System.currentTimeMillis()));
-                engine.setBoard(new Board(engine));
+                Engine engine = new Engine();
+                engine.newGame(System.currentTimeMillis());
+                Engine.toJson(saveName, engine);
 
             }
 

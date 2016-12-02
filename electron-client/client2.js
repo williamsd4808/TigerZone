@@ -131,7 +131,7 @@ const getMoves = (board) => {
   if (board.Deck.tiles.length === 0) {
     return board;
   }
-  
+
   const nextTile = board.Deck.tiles[0].name;
 
   tigerzone

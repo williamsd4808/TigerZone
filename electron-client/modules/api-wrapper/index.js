@@ -49,7 +49,7 @@ class TigerZone extends Server {
   }
 
   place_tile(game, card, x, y, orientation) {
-    return this
+  return this
       .POST('bash', '/place-tile', [game, `"${card}"`, x, y, orientation]);
   }
 

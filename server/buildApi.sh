@@ -1,4 +1,6 @@
 cd ApiEndpoints
-sh build.sh
+# sh build.sh
 cd ..
-java -cp ".;../lib/javax.json-1.0.jar" ApiEndpoints.Start
+cd ..
+java -cp "lib/javax.json-1.0.jar;server" ApiEndpoints.GetMoves A1 LJJJ-
+cd server

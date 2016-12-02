@@ -37,15 +37,15 @@
 }
 
 [data-orientation="1"] {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
 }
 
 [data-orientation="2"] {
-  transform: rotate(180deg);
+  transform: rotate(-180deg);
 }
 
 [data-orientation="3"] {
-  transform: rotate(270deg);
+  transform: rotate(-270deg);
 }
 
 #board {

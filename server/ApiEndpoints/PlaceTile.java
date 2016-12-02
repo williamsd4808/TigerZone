@@ -17,6 +17,8 @@ public class PlaceTile {
         int tileY = Integer.parseInt(args[3]); // The Y location of the tile
         int orientationInt = Integer.parseInt(args[4]); // The orientation to place the tile in
 
+        System.out.println("EngineName: " + savedEngine + "\nTileName: " + tileName + "\nPoint: (" + tileX + ", " + tileY + ")\nOrientation: " + orientationInt);
+
         BaseApiEndpoint endpoint = new BaseMutableApiEndpoint() {
 
             protected void doExecute(Engine engine) {
@@ -25,8 +27,16 @@ public class PlaceTile {
                 Tile tile = new Tile(tileName);
                 Board.Orientation orientation = Board.Orientation.values()[orientationInt];
 
-                engine.board.addTile(point, tile, orientation);
-                engine.deck.drawTile();
+                try {
+
+                    engine.board.addTile(point, tile, orientation);
+                    engine.deck.drawTile();
+
+                } catch (RuntimeException e) {
+
+                    System.out.println(e.getStackTrace());
+
+                }
 
             }
 

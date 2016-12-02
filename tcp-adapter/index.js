@@ -16,11 +16,11 @@ module.exports = class TCPAdapter {
   }
 
   place_tile(gid, move_count, tile, x, y, orientation) {
-    this.send(`GAME ${gid} MOVE ${move_count} PLACE ${tile} AT ${x} ${y} ${(360 - orientation * 90) % 360} NONE`);
+    this.send(`GAME ${gid} MOVE ${move_count} PLACE ${tile} AT ${x} ${y} ${(orientation * 90)} NONE`);
   }
 
   place_tiger(gid, move_count, tile, x, y, orientation, tigerzone) {
-    this.send(`GAME ${gid} MOVE ${move_count} PLACE ${tile} AT ${x} ${y} ${(360 - orientation * 90) % 360} TIGER ${tigerzone}`);
+    this.send(`GAME ${gid} MOVE ${move_count} PLACE ${tile} AT ${x} ${y} ${(orientation * 90)} TIGER ${tigerzone}`);
   }
 
   unplaceable_tile(gid, tile) {
