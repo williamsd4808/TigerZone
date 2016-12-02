@@ -15,9 +15,7 @@ public class Deck {
     private Engine engine;
 
     private Deck(Engine engine) {
-
         this.engine = engine;
-
     }
 
 	public Deck(Engine engine, long seed) {
@@ -84,6 +82,12 @@ public class Deck {
 		return drawnTile;
 
 	}
+
+    // public void generateDeck(String[] deckFromServer, int numOfTiles) {
+    //     for(int i = 0; i < numOfTiles; i++) {
+    //         deck.add(deckFromServer[i]);
+    //     }
+    // }
 
 	public boolean hasTileToDraw() {
 
