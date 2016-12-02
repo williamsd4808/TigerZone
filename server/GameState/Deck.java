@@ -19,7 +19,7 @@ public class Deck {
         this.engine = engine;
 
     }
-
+    
 	public Deck(Engine engine, long seed) {
 
         this.engine = engine;

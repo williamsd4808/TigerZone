@@ -1,6 +1,11 @@
+package GameState;
+
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
+
+// import java.util.Scanner;
+// import java.util.regex.Matcher;
+// import java.util.regex.Pattern;
 
 public class Main {
 	public enum Token {
@@ -32,18 +37,25 @@ public class Main {
 		//Begin parsing server data
 		boolean done = false;
 		String input, fromServer;
-		String pid1, pid2;
-		int cid, rounds, rid;
+		String pid1, pid2, gid;
+		pid1 = "";
+		pid2 = "";
+		gid = "";
+		int cid, rounds, rid, moveCount;
+		moveCount = 0;
 		cid = 0;
 		rounds = 0;
 		rid = 0;
+		Engine game1 = new Engine();
+		Engine game2 = new Engine();
+		// Player player1 = new Player("ricky");
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));			
 		//Scanner scan = new Scanner(System.in);	
 		try {
 			while(done != true) {
 				Token token = Token.UNKNOWN;				
 				fromServer = in.readLine();
-				System.out.println(fromServer);
+				System.out.println(fromServer); //UNCOMMENT THIS LINE TO SEE WHAT'S COMING FROM SERVER
 				token = getToken(fromServer);
 				switch(token) {
 					case TPASS:
@@ -54,6 +66,7 @@ public class Main {
 						break;
 					case WELCOME:
 						//GET PID
+						System.out.println("CONNECTED TO SERVER!");
     					String[] sp = fromServer.split(" ");
     					pid1 = sp[1];
     					// System.out.println(pid1); //test
@@ -68,7 +81,7 @@ public class Main {
     							cid = Integer.parseInt(sp2[2]);
     							rounds = Integer.parseInt(sp2[6]);
     							//test parsing data stuff
-    							// System.out.println(rid + " " + rounds);
+    							// System.out.println(cid + " " + rounds);
     							break;
     						}
     					}
@@ -76,20 +89,22 @@ public class Main {
     				case EOC:
     					//chances are 1 challenge really do nothing
     					break;
+    				//INSTANTIATE TWO ENGINES (GAMES) LOAD AI AS US (PID1) LOAD OPPONENT AS PLAYER. THEIR MOVE WILL BE SENT FROM THE SERVER VIA GAME	
 					case ROUND:
 						String sp3[] = fromServer.split(" ");
 						rid = Integer.parseInt(sp3[2]);
 						//CREATE TWO NEW GAMES 
+						game1.newGame(1000);
+						game2.newGame(1000);		
 						break;
 					case EOR:
 						//increment counter. if less than equal to rounds then wait
-						rid++;
-						if(rid > rounds) {
+						if(rid == rounds) {
 							//spinlock till next match
 	    					while(true) {
 	    						token = Token.UNKNOWN;
 	    						fromServer = in.readLine();
-								System.out.println(fromServer);    						
+								// System.out.println(fromServer);    						
 	    						token = getToken(fromServer);
 	    						if(token == Token.ROUND) {
 									String sp4[] = fromServer.split(" ");
@@ -98,27 +113,106 @@ public class Main {
 	    							// System.out.println(rid + " " + rounds);
 	    							break;
 	    						}
+	    						else if(token == Token.EOC) {
+	    							System.out.println(fromServer);
+	    							break;
+	    						}	    						
 	    					}
 	    					break;							
 						}
 					case OPPONENT:
 						String sp5[] = fromServer.split(" ");
 						pid2 = sp5[4];
+						// System.out.println(fromServer);
 						//add player to each game
+						game1.playerJoin(pid1);
+						game1.playerJoin(pid2);
+
+						game2.playerJoin(pid2);
+						game2.playerJoin(pid1);
 						break;
 					case STILE:
 						//DO NOTHING. Board already does it on new game
+						//I GUESS I CAN START THE GAME
 						break;
 					case DECK:
-						//COPY DECK TO THERE DECK.
+						//COPY DECK
+						String sp7[] = fromServer.split(" ");
+						int numOfTiles = Integer.parseInt(sp7[2]);
+						// System.out.println(fromServer); //
+						// Pattern pattern = Pattern.compile("[ (.*?) ]");
+						// Matcher matcher = pattern.matcher(fromServer);
+						// String word = "";
+						// while(matcher.find()) {
+						// 	word = matcher.group(1);
+
+						// }
+						String getTiles = fromServer.substring(fromServer.indexOf("[") + 2, fromServer.indexOf("]"));							
+						String sp6[] = getTiles.split(" ");
+					// int numOfTiles = sp6.length(); //0-8
+						// for(int i = 0; i < numOfTiles; i++) {
+						// 	System.out.print(sp6[i] + " ");
+						// }
+						// System.out.println();
+
+						//sp6 contains string array of tiles in respective order
 						break;
 					case MOVE:
 						//do valid move from our AI;
+						//GET AVAILABLE MOVES. PICK ONE RANDOMLY AND PLACE TILE
+						//MAKE YOUR MOVE IN GAME <gid> WITHIN <time move > SECOND: MOVE <#> PLACE <tile>					
+						String sp8[] = fromServer.split(" ");
+						gid = sp8[5];
+						moveCount = Integer.parseInt(sp8[10]);
+						String currTile = sp8[12];
+						int x = 0;
+						int y = 0;
+						int orient = 0;
+
+						//GET MOVE SET FROM GID RETURN X Y ORIENTATION AND MEEPLE PLACEMENT HERE
+
+						out.println("GAME " + gid + " MOVE " + moveCount + " PLACE " + currTile + " AT " + x + " " + y + " " + orient + " NONE");
 						break;
 					case GAME:
 						//translate game data;
+						//we dont really care about us so only do something
+						//when PID != US
+						String sp9[] = fromServer.split(" ");
+						gid = sp9[1];
+						String type = sp9[2];
+						if(type.equals("OVER")) {
+							break;
+						}
+						moveCount = Integer.parseInt(sp9[3]);
+						String who = sp9[5];
+						String typeMove = sp9[6];
+						if(who.equals(pid2)) {
+							if(typeMove.equals("FORFEITED:")) {
+								//END GAME OTHER PLAYER
+								//EITHER CLOSE GAME/ENGINE OR JUST DO NOTHING SINCE IT GETS REINSTAIATED
+								String message = fromServer.substring(fromServer.indexOf(":")) + 1;
+								// System.out.println(pid2 + " FORFEITED: " + message);
+
+							}
+							else if(typeMove.equals("PLACE")) {
+								//PLACE TILE IN GID FOR PLAYER PID2 AKA NOT US PLACE DIRECTLY
+								//IF THIS RETURNS ERROR THEN ITS THE SERVER'S FAULT
+							}
+							else if(typeMove.equals("TILE")) {
+								//CASE WHERE UNPLACABLE OR GET SOMETHING
+								//DO NOTHING I SUPPOSE
+							}	
+						}
+						if(who.equals(pid1)) {
+							//ALL WE CARE IS IF WE FORFEIT AND WHY
+							if(typeMove.equals("FORFEITED:")) {
+								String message2 = fromServer.substring(fromServer.indexOf(":")) + 1;
+								// System.out.println(pid1 + " FORFEITED: " + message2);
+							}
+						}
 						break;
 					case GAMEOVER:
+						//EXITS CLIENT WHEN SERVER TERMINATES
 						done = true;
 						break;
 				}	
@@ -163,9 +257,12 @@ public class Main {
 		else if(fromServer.startsWith("GAME")) {
 			return Token.GAME;
 		}									
-		else if(fromServer.startsWith("END")) {
+		else if(fromServer.startsWith("END OF ROUND")) {
 			return Token.EOR;
-		}																		
+		}											
+		else if(fromServer.startsWith("END OF CHALLENGES")) {
+			return Token.EOC;
+		}							
 		else if(fromServer.startsWith("THANK")) {
 			return Token.GAMEOVER;
 		}
