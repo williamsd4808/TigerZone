@@ -1,3 +1,5 @@
+package src;
+
 import org.junit.Assert;
 
 import static org.junit.Assert.*;
@@ -9,6 +11,8 @@ public class BoardTest {
 
     @org.junit.Test
     public void addTileOverExistingTile() throws Exception {
+
+
 
     }
 
