@@ -1,5 +1,6 @@
 // TCP connection
 const net = require('net');
+const fs = require('fs');
 
 // argv -- App params
 const argv = require('process').argv;
@@ -28,8 +29,6 @@ const tournament = argv[4];
 const username = argv[5];
 const password = argv[6];
 
-let gids = [];
-
 // This is a cheaty method that allows us to force-set the deck
 const setDeck = require('./modules/set-deck.js');
 
@@ -43,7 +42,13 @@ client.on('error', err => console.log(err));
 // This will get called every time we receive a response (res) from the TCP server
 client.on('data', (res) => {
   // Parse the server response
-  const message = TCPAdapter.parse(res);
+	console.log(res.trim());
+  const message = TCPAdapter.parse(res.trim());
+
+	if (!message) {
+		console.log('Unrecognized message: did the server crash?');
+		return false;
+	}
 
   // We need to handle each possible response from the server
   switch (message.type) {
@@ -62,27 +67,32 @@ client.on('data', (res) => {
       console.log(`We will be playing ${message.rounds} rounds in challenge ${message.cid}`);
       break;
     case 'begin-round':
-			gids = [];
+			fs.truncateSync('server/ApiEndpoints/SavedGames/1.json', 0);
+			fs.truncateSync('server/ApiEndpoints/SavedGames/2.json', 0);
 
       tigerzone
-        .new_game('A')
+        .new_game('1')
         .catch(data => console.log(data))
-        .then(() => tigerzone.join_game('A', username))
-        .catch(data => console.log(data));
+        .then(() => tigerzone.join_game('1', username))
+        .catch(data => data);
 
       tigerzone
-        .new_game('B')
+        .new_game('2')
         .catch(data => console.log(data))
-        .then(() => tigerzone.join_game('B', username));
+        .then(() => tigerzone.join_game('2', username))
+        .catch(data => data);
 
       console.log(`Beginning round ${message.rid}/${message.rounds}`);
       break;
     case 'opponent':
-      tigerzone
-        .join_game('A', message.pid);
+      // tigerzone
+      //   .join_game('1', message.pid.trim())
+      //   .catch(data => console.log(data));
+			//
+      // tigerzone
+      //   .join_game('2', message.pid.trim())
+      //   .catch(data => console.log(data));
 
-      tigerzone
-        .join_game('B', message.pid);
       console.log(`${message.pid} has joined`);
       break;
     case 'starting-tile':
@@ -92,23 +102,16 @@ client.on('data', (res) => {
       // Load deck
       const deck = message.tiles;
 
-      setDeck('A', deck);
-      setDeck('B', deck);
+      setDeck('1', deck);
+      setDeck('2', deck);
       break;
     case 'planning':
       // Do nothing?
       break;
     case 'make-move':
-			if (message.move_count === 1) {
-				if (Object.keys(gids).length === 0) {
-					gids[message.gid] = 'A';
-				} else {
-					gids[message.gid] = 'B';
-				}
-			}
       // Query AI and place tile
       tigerzone
-        .get_moves(gids[message.gid], message.tile)
+        .get_moves(message.gid, message.tile)
         .then((moves) => {
 					console.log(moves);
           if (moves.length === 0) {
@@ -118,7 +121,7 @@ client.on('data', (res) => {
           const { x, y, orientation } = AI.queryTile(message.tile, moves);
 
 					let res = tigerzone
-            .place_tile(gids[message.gid], message.tile, x, y, orientation)
+            .place_tile(message.gid, message.tile, x, y, orientation)
 						.catch(() => false)
 						.then((data) => {
 							// If it's the first move & we're the first player,
@@ -126,12 +129,12 @@ client.on('data', (res) => {
 							// We can also always
 							if (message.tile[4] === 'X') {
 								tcpAdapter.place_tiger(message.gid, message.move_count, message.tile, x, y, orientation, 5);
-							} else {
+							} else if (message.move_count === 1) {
+  							tcpAdapter.place_tiger(message.gid, message.move_count, message.tile, x, y, orientation, 1);
+  						} else {
 								tcpAdapter.place_tile(message.gid, message.move_count, message.tile, x, y, orientation);
 							}
 						});
-
-
 
           return res;
         })
@@ -139,25 +142,17 @@ client.on('data', (res) => {
         .catch((data) => data);
       break;
     case 'move':
+			console.log(message);
       // Add move on behalf of opponent
       if (message.move.type !== 'place-tile' || message.pid === username) {
         break;
       }
 
-			if (message.move_count === 1) {
-				if (Object.keys(gids).length === 0) {
-					gids[message.gid] = 'A';
-				} else {
-					gids[message.gid] = 'B';
-				}
-			}
-
 			// Remember to place meeple
 			// message.move.meeple := 'none' if none was placed
-
+			// We have to synchronously place the tile in order to avoid a nasty bug
       tigerzone
-        .place_tile(gids[message.gid], message.move.tile, message.move.x, message.move.y, message.move.orientation)
-        .catch((data) => data);
+        .force_place_tile(message.gid, message.move.tile, message.move.x, message.move.y, message.move.orientation);
 
       break;
     case 'forfeit':

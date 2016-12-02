@@ -1,0 +1,355 @@
+Connected
+THIS IS SPARTA!
+[sent]: JOIN TIGERZONE
+HELLO!
+[sent]: I AM TEAMQ IAMQ
+WELCOME TEAMQ PLEASE WAIT FOR THE NEXT CHALLENGE
+Waiting for other player to join...
+NEW CHALLENGE 1 YOU WILL PLAY 7 MATCHES
+We will be playing 7 rounds in challenge 1
+BEGIN ROUND 1 OF 7
+Beginning round 1/7
+END OF ROUND 1 OF 7 PLEASE WAIT FOR THE NEXT MATCH
+BEGIN ROUND 2 OF 7
+Beginning round 2/7
+YOUR OPPONENT IS PLAYER TEAMP
+TEAMP has joined
+STARTING TILE IS TLTJ- AT 0 0 0
+THE REMAINING 76 TILES ARE [ JJJJX JLTT- LLLL- TJJT- TJTJ- LLJJ- LJLJ- LLJJ- TLLLC TLLTB TJJT- JLLL- LJJJ- TLJT- TLTTP TJTJ- TLTJ- LJJJ- JLTTB JLLJ- LLJJ- JLLL- TJJT- LJTJD TLLT- TJJT- TJJT- LLJJ- TJTJ- TJTT- TLTJ- TJJT- JJJJX TLLTB TJTT- JLTTB TJTT- TLTTP JJJJX TTTT- TJTJ- JJJJX TLJTP TLLT- TLTJD TLLLC TLLL- JLJL- TLLT- TLTJD LJLJ- TJTT- JLJL- LJTJ- TJJT- JJTJX TJTJ- JLLJ- JJTJX LJTJD LJJJ- LLJJ- TJJT- JLLL- LJJJ- TLJTP LJJJ- TJTJ- JLLL- TLTT- TJTJ- LJLJ- JLJL- TJJT- JJJJ- TJTJ- ]
+MATCH BEGINS IN 10 SECONDS
+MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 1 PLACE JJJJX
+[ { x: -1, y: 0, orientation: [ 0, 3, 2, 1 ] } ]
+[sent]: GAME 1 MOVE 1 PLACE JJJJX AT -1 0 90 TIGER 5
+undefined
+GAME 1 MOVE 1 PLAYER TEAMQ PLACED JJJJX AT -1 0 90 TIGER 5
+{ type: 'move',
+  gid: '1',
+  move_count: 1,
+  pid: 'TEAMQ',
+  move: 
+   { type: 'place-tile',
+     tile: 'JJJJX',
+     x: -1,
+     y: 0,
+     orientation: 3,
+     meeple: 5 } }
+GAME 2 MOVE 1 PLAYER TEAMP FORFEITED: TIMEOUT
+GAME 1 MOVE 2 PLAYER TEAMP FORFEITED: TIMEOUT
+GAME 1 OVER PLAYER TEAMQ WIN PLAYER TEAMP FORFEITED
+Unrecognized message: did the server crash?
+GAME 2 OVER PLAYER TEAMP FORFEITED PLAYER TEAMQ WIN
+Unrecognized message: did the server crash?
+END OF ROUND 2 OF 7 PLEASE WAIT FOR THE NEXT MATCH
+BEGIN ROUND 3 OF 7
+YOUR OPPONENT IS PLAYER TEAMG
+STARTING TILE IS TLTJ- AT 0 0 0
+THE REMAINING 76 TILES ARE [ JJJJX JLTT- LLLL- TJJT- TJTJ- LLJJ- LJLJ- LLJJ- TLLLC TLLTB TJJT- JLLL- LJJJ- TLJT- TLTTP TJTJ- TLTJ- LJJJ- JLTTB JLLJ- LLJJ- JLLL- TJJT- LJTJD TLLT- TJJT- TJJT- LLJJ- TJTJ- TJTT- TLTJ- TJJT- JJJJX TLLTB TJTT- JLTTB TJTT- TLTTP JJJJX TTTT- TJTJ- JJJJX TLJTP TLLT- TLTJD TLLLC TLLL- JLJL- TLLT- TLTJD LJLJ- TJTT- JLJL- LJTJ- TJJT- JJTJX TJTJ- JLLJ- JJTJX LJTJD LJJJ- LLJJ- TJJT- JLLL- LJJJ- TLJTP LJJJ- TJTJ- JLLL- TLTT- TJTJ- LJLJ- JLJL- TJJT- JJJJ- TJTJ- ]
+MATCH BEGINS IN 10 SECONDS
+Beginning round 3/7
+MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 1 PLACE JJJJX
+[ { x: -1, y: 0, orientation: [ 0, 3, 2, 1 ] } ]
+[sent]: GAME 2 MOVE 1 PLACE JJJJX AT -1 0 0 TIGER 5
+undefined
+GAME 1 MOVE 1 PLAYER TEAMG PLACED JJJJX AT -1 0 0 TIGER 5
+{ type: 'move',
+  gid: '1',
+  move_count: 1,
+  pid: 'TEAMG',
+  move: 
+   { type: 'place-tile',
+     tile: 'JJJJX',
+     x: -1,
+     y: 0,
+     orientation: 0,
+     meeple: 5 } }
+GAME 2 MOVE 1 PLAYER TEAMQ PLACED JJJJX AT -1 0 0 TIGER 5
+MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 2 PLACE JLTT-
+{ type: 'move',
+  gid: '2',
+  move_count: 1,
+  pid: 'TEAMQ',
+  move: 
+   { type: 'place-tile',
+     tile: 'JJJJX',
+     x: -1,
+     y: 0,
+     orientation: 0,
+     meeple: 5 } }
+GAME 1 MOVE 2 PLAYER TEAMQ FORFEITED: TIMEOUT
+{ type: 'move',
+  gid: '1',
+  move_count: 2,
+  pid: 'TEAMQ',
+  move: { type: 'unknown' } }
+GAME 2 MOVE 2 PLAYER TEAMG FORFEITED: ILLEGAL TILE PLACEMENT
+{ type: 'move',
+  gid: '2',
+  move_count: 2,
+  pid: 'TEAMG',
+  move: { type: 'unknown' } }
+GAME 1 OVER PLAYER TEAMG WIN PLAYER TEAMQ FORFEITED
+GAME 2 OVER PLAYER TEAMQ WIN PLAYER TEAMG FORFEITED
+Unrecognized message: did the server crash?
+END OF ROUND 3 OF 7 PLEASE WAIT FOR THE NEXT MATCH
+BEGIN ROUND 4 OF 7
+YOUR OPPONENT IS PLAYER TEAMJ
+STARTING TILE IS TLTJ- AT 0 0 0
+THE REMAINING 76 TILES ARE [ JJJJX JLTT- LLLL- TJJT- TJTJ- LLJJ- LJLJ- LLJJ- TLLLC TLLTB TJJT- JLLL- LJJJ- TLJT- TLTTP TJTJ- TLTJ- LJJJ- JLTTB JLLJ- LLJJ- JLLL- TJJT- LJTJD TLLT- TJJT- TJJT- LLJJ- TJTJ- TJTT- TLTJ- TJJT- JJJJX TLLTB TJTT- JLTTB TJTT- TLTTP JJJJX TTTT- TJTJ- JJJJX TLJTP TLLT- TLTJD TLLLC TLLL- JLJL- TLLT- TLTJD LJLJ- TJTT- JLJL- LJTJ- TJJT- JJTJX TJTJ- JLLJ- JJTJX LJTJD LJJJ- LLJJ- TJJT- JLLL- LJJJ- TLJTP LJJJ- TJTJ- JLLL- TLTT- TJTJ- LJLJ- JLJL- TJJT- JJJJ- TJTJ- ]
+MATCH BEGINS IN 10 SECONDS
+Beginning round 4/7
+MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 1 PLACE JJJJX
+[ { x: -1, y: 0, orientation: [ 0, 3, 2, 1 ] } ]
+[sent]: GAME 2 MOVE 1 PLACE JJJJX AT -1 0 270 TIGER 5
+undefined
+GAME 1 MOVE 1 PLAYER TEAMJ PLACED JJJJX AT -1 0 0 TIGER 5
+{ type: 'move',
+  gid: '1',
+  move_count: 1,
+  pid: 'TEAMJ',
+  move: 
+   { type: 'place-tile',
+     tile: 'JJJJX',
+     x: -1,
+     y: 0,
+     orientation: 0,
+     meeple: 5 } }
+GAME 2 MOVE 1 PLAYER TEAMQ PLACED JJJJX AT -1 0 270 TIGER 5
+{ type: 'move',
+  gid: '2',
+  move_count: 1,
+  pid: 'TEAMQ',
+  move: 
+   { type: 'place-tile',
+     tile: 'JJJJX',
+     x: -1,
+     y: 0,
+     orientation: 1,
+     meeple: 5 } }
+MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 2 PLACE JLTT-
+[ { x: 0, y: 1, orientation: [ 0, 3 ] },
+  { x: 0, y: -1, orientation: [ 2, 1 ] },
+  { x: 1, y: 0, orientation: [ 2 ] },
+  { x: -1, y: 1, orientation: [ 2 ] },
+  { x: -2, y: 0, orientation: [ 1 ] },
+  { x: -1, y: -1, orientation: [ 0 ] } ]
+[sent]: GAME 1 MOVE 2 PLACE JLTT- AT -1 -1 0 NONE
+undefined
+GAME 1 MOVE 2 PLAYER TEAMQ PLACED JLTT- AT -1 -1 0 NONE
+{ type: 'move',
+  gid: '1',
+  move_count: 2,
+  pid: 'TEAMQ',
+  move: 
+   { type: 'place-tile',
+     tile: 'JLTT-',
+     x: -1,
+     y: -1,
+     orientation: 0,
+     meeple: 'none' } }
+GAME 2 MOVE 2 PLAYER TEAMJ PLACED JLTT- AT 1 0 180 TIGER 1
+{ type: 'move',
+  gid: '2',
+  move_count: 2,
+  pid: 'TEAMJ',
+  move: 
+   { type: 'place-tile',
+     tile: 'JLTT-',
+     x: 1,
+     y: 0,
+     orientation: 2,
+     meeple: 1 } }
+MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 3 PLACE LLLL-
+[]
+[sent]: GAME 2 TILE LLLL- UNPLACEABLE PASS
+undefined
+GAME 1 MOVE 3 PLAYER TEAMJ PLACED LLLL- AT 1 0 0 TIGER 1
+{ type: 'move',
+  gid: '1',
+  move_count: 3,
+  pid: 'TEAMJ',
+  move: 
+   { type: 'place-tile',
+     tile: 'LLLL-',
+     x: 1,
+     y: 0,
+     orientation: 0,
+     meeple: 1 } }
+GAME 2 MOVE 3 PLAYER TEAMQ FORFEITED: ILLEGAL MESSAGE RECEIVED 
+MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 4 PLACE TJJT-
+{ type: 'move',
+  gid: '2',
+  move_count: 3,
+  pid: 'TEAMQ',
+  move: { type: 'unknown' } }
+GAME 1 MOVE 4 PLAYER TEAMQ FORFEITED: TIMEOUT
+{ type: 'move',
+  gid: '1',
+  move_count: 4,
+  pid: 'TEAMQ',
+  move: { type: 'unknown' } }
+GAME 1 OVER PLAYER TEAMJ WIN PLAYER TEAMQ FORFEITED
+GAME 2 OVER PLAYER TEAMQ FORFEITED PLAYER TEAMJ WIN
+Unrecognized message: did the server crash?
+END OF ROUND 4 OF 7 PLEASE WAIT FOR THE NEXT MATCH
+BEGIN ROUND 5 OF 7
+Beginning round 5/7
+YOUR OPPONENT IS PLAYER TEAME
+STARTING TILE IS TLTJ- AT 0 0 0
+THE REMAINING 76 TILES ARE [ JJJJX JLTT- LLLL- TJJT- TJTJ- LLJJ- LJLJ- LLJJ- TLLLC TLLTB TJJT- JLLL- LJJJ- TLJT- TLTTP TJTJ- TLTJ- LJJJ- JLTTB JLLJ- LLJJ- JLLL- TJJT- LJTJD TLLT- TJJT- TJJT- LLJJ- TJTJ- TJTT- TLTJ- TJJT- JJJJX TLLTB TJTT- JLTTB TJTT- TLTTP JJJJX TTTT- TJTJ- JJJJX TLJTP TLLT- TLTJD TLLLC TLLL- JLJL- TLLT- TLTJD LJLJ- TJTT- JLJL- LJTJ- TJJT- JJTJX TJTJ- JLLJ- JJTJX LJTJD LJJJ- LLJJ- TJJT- JLLL- LJJJ- TLJTP LJJJ- TJTJ- JLLL- TLTT- TJTJ- LJLJ- JLJL- TJJT- JJJJ- TJTJ- ]
+MATCH BEGINS IN 10 SECONDS
+TEAME
+STARTING has joined
+MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 1 PLACE JJJJX
+[ { x: -1, y: 0, orientation: [ 0, 3, 2, 1 ] } ]
+[sent]: GAME 2 MOVE 1 PLACE JJJJX AT -1 0 0 TIGER 5
+undefined
+GAME 1 MOVE 1 PLAYER TEAME PLACED JJJJX AT -1 0 270 TIGER 5
+{ type: 'move',
+  gid: '1',
+  move_count: 1,
+  pid: 'TEAME',
+  move: 
+   { type: 'place-tile',
+     tile: 'JJJJX',
+     x: -1,
+     y: 0,
+     orientation: 1,
+     meeple: 5 } }
+GAME 2 MOVE 1 PLAYER TEAMQ PLACED JJJJX AT -1 0 0 TIGER 5
+MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 2 PLACE JLTT-
+{ type: 'move',
+  gid: '2',
+  move_count: 1,
+  pid: 'TEAMQ',
+  move: 
+   { type: 'place-tile',
+     tile: 'JJJJX',
+     x: -1,
+     y: 0,
+     orientation: 0,
+     meeple: 5 } }
+GAME 1 MOVE 2 PLAYER TEAMQ FORFEITED: TIMEOUT
+{ type: 'move',
+  gid: '1',
+  move_count: 2,
+  pid: 'TEAMQ',
+  move: { type: 'unknown' } }
+GAME 2 MOVE 2 PLAYER TEAME PLACED JLTT- AT 0 -1 180 TIGER 2
+{ type: 'move',
+  gid: '2',
+  move_count: 2,
+  pid: 'TEAME',
+  move: 
+   { type: 'place-tile',
+     tile: 'JLTT-',
+     x: 0,
+     y: -1,
+     orientation: 2,
+     meeple: 2 } }
+MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 3 PLACE LLLL-
+[]
+[sent]: GAME 2 TILE LLLL- UNPLACEABLE PASS
+undefined
+GAME 2 MOVE 3 PLAYER TEAMQ FORFEITED: ILLEGAL MESSAGE RECEIVED
+{ type: 'move',
+  gid: '2',
+  move_count: 3,
+  pid: 'TEAMQ',
+  move: { type: 'unknown' } }
+GAME 1 OVER PLAYER TEAME WIN PLAYER TEAMQ FORFEITED
+GAME 2 OVER PLAYER TEAMQ FORFEITED PLAYER TEAME WIN
+Unrecognized message: did the server crash?
+END OF ROUND 5 OF 7 PLEASE WAIT FOR THE NEXT MATCH
+BEGIN ROUND 6 OF 7
+Beginning round 6/7
+YOUR OPPONENT IS PLAYER TEAMR
+STARTING TILE IS TLTJ- AT 0 0 0
+THE REMAINING 76 TILES ARE [ JJJJX JLTT- LLLL- TJJT- TJTJ- LLJJ- LJLJ- LLJJ- TLLLC TLLTB TJJT- JLLL- LJJJ- TLJT- TLTTP TJTJ- TLTJ- LJJJ- JLTTB JLLJ- LLJJ- JLLL- TJJT- LJTJD TLLT- TJJT- TJJT- LLJJ- TJTJ- TJTT- TLTJ- TJJT- JJJJX TLLTB TJTT- JLTTB TJTT- TLTTP JJJJX TTTT- TJTJ- JJJJX TLJTP TLLT- TLTJD TLLLC TLLL- JLJL- TLLT- TLTJD LJLJ- TJTT- JLJL- LJTJ- TJJT- JJTJX TJTJ- JLLJ- JJTJX LJTJD LJJJ- LLJJ- TJJT- JLLL- LJJJ- TLJTP LJJJ- TJTJ- JLLL- TLTT- TJTJ- LJLJ- JLJL- TJJT- JJJJ- TJTJ- ]
+MATCH BEGINS IN 10 SECONDS
+TEAMR
+STARTING has joined
+MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 1 PLACE JJJJX
+[ { x: -1, y: 0, orientation: [ 0, 3, 2, 1 ] } ]
+[sent]: GAME 2 MOVE 1 PLACE JJJJX AT -1 0 270 TIGER 5
+undefined
+GAME 1 MOVE 1 PLAYER TEAMR PLACED JJJJX AT -1 0 180 TIGER 5
+{ type: 'move',
+  gid: '1',
+  move_count: 1,
+  pid: 'TEAMR',
+  move: 
+   { type: 'place-tile',
+     tile: 'JJJJX',
+     x: -1,
+     y: 0,
+     orientation: 2,
+     meeple: 5 } }
+GAME 2 MOVE 1 PLAYER TEAMQ PLACED JJJJX AT -1 0 270 TIGER 5
+MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 2 PLACE JLTT-
+{ type: 'move',
+  gid: '2',
+  move_count: 1,
+  pid: 'TEAMQ',
+  move: 
+   { type: 'place-tile',
+     tile: 'JJJJX',
+     x: -1,
+     y: 0,
+     orientation: 1,
+     meeple: 5 } }
+GAME 1 MOVE 2 PLAYER TEAMQ FORFEITED: TIMEOUT
+{ type: 'move',
+  gid: '1',
+  move_count: 2,
+  pid: 'TEAMQ',
+  move: { type: 'unknown' } }
+GAME 2 MOVE 2 PLAYER TEAMR PLACED JLTT- AT 0 -1 180 NONE
+MAKE YOUR MOVE IN GAME 2 WITHIN 1 SECOND: MOVE 3 PLACE LLLL-
+{ type: 'move',
+  gid: '2',
+  move_count: 2,
+  pid: 'TEAMR',
+  move: 
+   { type: 'place-tile',
+     tile: 'JLTT-',
+     x: 0,
+     y: -1,
+     orientation: 2,
+     meeple: 'none' } }
+GAME 2 MOVE 3 PLAYER TEAMQ FORFEITED: TIMEOUT
+{ type: 'move',
+  gid: '2',
+  move_count: 3,
+  pid: 'TEAMQ',
+  move: { type: 'unknown' } }
+GAME 1 OVER PLAYER TEAMR WIN PLAYER TEAMQ FORFEITED
+GAME 2 OVER PLAYER TEAMQ FORFEITED PLAYER TEAMR WIN
+END OF ROUND 6 OF 7 PLEASE WAIT FOR THE NEXT MATCH
+BEGIN ROUND 7 OF 7
+Unrecognized message: did the server crash?
+YOUR OPPONENT IS PLAYER TEAMI
+STARTING TILE IS TLTJ- AT 0 0 0
+THE REMAINING 76 TILES ARE [ JJJJX JLTT- LLLL- TJJT- TJTJ- LLJJ- LJLJ- LLJJ- TLLLC TLLTB TJJT- JLLL- LJJJ- TLJT- TLTTP TJTJ- TLTJ- LJJJ- JLTTB JLLJ- LLJJ- JLLL- TJJT- LJTJD TLLT- TJJT- TJJT- LLJJ- TJTJ- TJTT- TLTJ- TJJT- JJJJX TLLTB TJTT- JLTTB TJTT- TLTTP JJJJX TTTT- TJTJ- JJJJX TLJTP TLLT- TLTJD TLLLC TLLL- JLJL- TLLT- TLTJD LJLJ- TJTT- JLJL- LJTJ- TJJT- JJTJX TJTJ- JLLJ- JJTJX LJTJD LJJJ- LLJJ- TJJT- JLLL- LJJJ- TLJTP LJJJ- TJTJ- JLLL- TLTT- TJTJ- LJLJ- JLJL- TJJT- JJJJ- TJTJ- ]
+MATCH BEGINS IN 10 SECONDS
+TEAMI
+STARTING has joined
+MAKE YOUR MOVE IN GAME 1 WITHIN 1 SECOND: MOVE 1 PLACE JJJJX
+[ { x: -1, y: 1, orientation: [ 0, 3, 2, 1 ] },
+  { x: -2, y: 0, orientation: [ 0, 3, 2, 1 ] },
+  { x: -1, y: -1, orientation: [ 0, 3, 2, 1 ] } ]
+[sent]: GAME 1 MOVE 1 PLACE JJJJX AT -2 0 0 TIGER 5
+undefined
+GAME 1 MOVE 1 PLAYER TEAMQ FORFEITED: ILLEGAL TILE PLACEMENT
+{ type: 'move',
+  gid: '1',
+  move_count: 1,
+  pid: 'TEAMQ',
+  move: { type: 'unknown' } }
+GAME 2 MOVE 1 PLAYER TEAMI FORFEITED: TIMEOUT
+GAME 1 OVER PLAYER TEAMQ FORFEITED PLAYER TEAMI WIN
+GAME 2 OVER PLAYER TEAMI FORFEITED PLAYER TEAMQ WIN
+Unrecognized message: did the server crash?
+{ Error: read ECONNRESET
+    at exports._errnoException (util.js:1012:11)
+    at TCP.onread (net.js:563:26) code: 'ECONNRESET', errno: 'ECONNRESET', syscall: 'read' }
+Connection closed

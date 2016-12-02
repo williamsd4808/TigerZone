@@ -66,8 +66,8 @@ public class FeatureUtilities {
     // Expects: the board you intend to find the extent of
     // Expects: a start point in terms of global feature locations
     // Expects: the type of feature you are trying to find the extent of
+    // Returns a map of global feature points that are connected to this feature on this start point
 
-    // getFloodplain
     public static Set<Point> getExtentOfFeature(Board board, Point startFeaturePoint, Feature featureType) {
 
         HashSet<Point> featureExtent = new HashSet<>();
@@ -213,7 +213,6 @@ public class FeatureUtilities {
 
         Point globalTilePoint = getGlobalTilePoint(point);
 
-        // return new Point(point.x - globalTilePoint.x * 5, point.y - globalTilePoint.y * 5)
         return new Point(5 - ((globalTilePoint.x + 1) * 5 - point.x), 5 - ((globalTilePoint.y + 1) * 5 - point.y));
 
     }

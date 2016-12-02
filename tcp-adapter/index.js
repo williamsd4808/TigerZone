@@ -4,6 +4,7 @@ module.exports = class TCPAdapter {
   }
 
   send(message) {
+    console.log(`[sent]: ${message}`);
     this.client.write(`${message}\r\n`);
   }
 
@@ -68,6 +69,10 @@ module.exports = class TCPAdapter {
 
     // YOUR OPPONENT IS PLAYER <pid>
     if (tokens[0] === 'YOUR') {
+      if (tokens[4].includes('\r\n')) {
+        tokens[4] = tokens[4].split('\r\n')[0];
+      }
+
       return {
         'type': 'opponent',
         'pid': tokens[4].trim()
