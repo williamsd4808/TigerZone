@@ -2,6 +2,8 @@ const Promise = require('promise');
 const execPromise = Promise.denodeify(require('child_process').exec);
 const exec = require('child_process').exec;
 
+const forcePlace = require('../../../modules/force-place.js');
+
 const Record = require('immutable').Record;
 
 const ServerRecord = Record({
@@ -51,6 +53,10 @@ class TigerZone extends Server {
   place_tile(game, card, x, y, orientation) {
     return this
       .POST('bash', '/place-tile', [game, `"${card}"`, x, y, orientation]);
+  }
+
+  force_place_tile(game, card, x, y, orientation) {
+    forcePlace(game, card, x, y, orientation);
   }
 
   place_meeple(board, location) {
