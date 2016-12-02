@@ -83,11 +83,11 @@ public class Deck {
 
 	}
 
-    public void generateDeck(String[] deckFromServer, int numOfTiles) {
-        for(int i = 0; i < numOfTiles; i++) {
-            deck.add(deckFromServer[i]);
-        }
-    }
+    // public void generateDeck(String[] deckFromServer, int numOfTiles) {
+    //     for(int i = 0; i < numOfTiles; i++) {
+    //         deck.add(deckFromServer[i]);
+    //     }
+    // }
 
 	public boolean hasTileToDraw() {
 
