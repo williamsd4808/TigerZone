@@ -124,6 +124,10 @@ public class Board {
                 numMeeples = 0;
             }
 
+            if(meeplePlacement < 0 || meeplePlacement > 9) {
+                throw new RuntimeException("Error: invalid Meeple placement");
+            }
+
             meepleLocation = meeplePlacement;
             this.placedMeeple = placedMeeple;
 
@@ -246,7 +250,7 @@ public class Board {
                 hasNeighbor = true;
                 break;
 
-            }
+            }   
 
         }
 

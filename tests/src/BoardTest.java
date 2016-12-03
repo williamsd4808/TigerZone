@@ -23,16 +23,7 @@ public class BoardTest {
     }
 
     @org.junit.Test(expected = RuntimeException.class)
-    public void getTile() throws Exception {
-    	Engine engine = new Engine();
-		Random generator = new Random();
-		long i = generator.nextLong();
-		engine.newGame(i);
-    	engine.board.getTile(new Point(1, 1));
-    }
-
-    @org.junit.Test(expected = RuntimeException.class)
-    public void getTileNeighbor() throws Exception {
+    public void getInexistentTileNeighborTest() throws Exception {
     	Engine engine = new Engine();
 		Random generator = new Random();
 		long i = generator.nextLong();
@@ -42,7 +33,41 @@ public class BoardTest {
     }
 
     @org.junit.Test
-    public void getMeepleFeatureOfInvalidMeepleLocation() throws Exception {
+    public void getValidFeatureTest() {
+    	Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		Board.PlacedTile t = engine.board.getTile(new Point(0,0));
+		Feature f = t.getFeature(new Point(2,4));
+		Feature f2 = Feature.TRAIL;
+		assertEquals(f2, f);
+    }
+
+    @org.junit.Test
+    public void getTileInexistentNeighborTest() {
+    	Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		Board.PlacedTile t = engine.board.getTileNeighbor(new Point(0, 0), Board.Orientation.NORTH);
+		assertNull(t);
+    }
+
+    @org.junit.Test
+    public void getTileNeighborThatExistsTest() {
+    	Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		Tile t = new Tile("JJJJ-");
+		engine.board.addTile(new Point(-1, 0), t, Board.Orientation.NORTH);
+		Board.PlacedTile t2 = engine.board.getTileNeighbor(new Point(0, 0), Board.Orientation.WEST);
+		assertNotNull(t2);
+    }
+
+    @org.junit.Test(expected = RuntimeException.class)
+    public void setInvalidMeepleLocation() throws Exception {
     	Player p = new Player("Dan");
     	Meeple m = new Meeple(p);
     	Engine engine = new Engine();
@@ -50,6 +75,19 @@ public class BoardTest {
 		long i = generator.nextLong();
 		engine.newGame(i);
     	engine.board.getTile(new Point (0,0)).setMeepleLocation(12, m);
+    }
+
+    @org.junit.Test
+    public void setValidMeepleLocation() {
+    	Player p = new Player("Dan");
+    	Meeple m = new Meeple(p);
+    	Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		Board.PlacedTile t = engine.board.getTile(new Point (0,0));
+		t.setMeepleLocation(1, m);
+		assertEquals(1, engine.board.getTile(new Point (0,0)).getMeepleLocation());
     }
 
     @org.junit.Test
@@ -77,11 +115,59 @@ public class BoardTest {
     	Board.PlacedTile t = engine.board.getTile(new Point (0, 0));
 		t.setMeepleLocation(1, m);
 		t.incrementMeeple();
-		assertTrue(t.getNumMeeples() == 2);
+		assertTrue(2 == t.getNumMeeples());
     }
 
-/*
+    @org.junit.Test(expected = RuntimeException.class)
+    public void getInexistentTileTest() throws Exception{
+    	Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		engine.board.getTile(new Point(1, 1));		
+    }
+
     @org.junit.Test
-    public void 
-  */  
+    public void getExistentTileTest() {
+    	Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		Board.PlacedTile t = engine.board.getTile(new Point(0, 0));
+		assertNotNull(t);
+    }
+
+    //Add a tile where its features conflict with connectiveness
+    //for features of neighboring tiles
+    @org.junit.Test(expected = RuntimeException.class)
+    public void addTileInvalidConnectionTest() {
+    	Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		Tile t = new Tile("JJJJ-");
+		engine.board.addTile(new Point(1, 0), t, Board.Orientation.NORTH);
+    }
+
+    //Add a tile at a location such that it has no neighbors
+    @org.junit.Test(expected = RuntimeException.class)
+    public void addTileNotConnectedTest() {
+    	Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		Tile t = new Tile("JJJJ-");
+		engine.board.addTile(new Point(1, 1), t, Board.Orientation.NORTH);
+    }
+
+    @org.junit.Test
+    public void getTilesTest() {
+    	Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		Map<Point, Board.PlacedTile> map = engine.board.getTiles();
+		assertNotNull(map);
+    }
+
 }
