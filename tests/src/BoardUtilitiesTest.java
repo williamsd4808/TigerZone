@@ -7,7 +7,6 @@ import java.awt.Point;
 import java.util.*;
 
 import static org.junit.Assert.*;
-import static Utilities.TileUtilities.getValidOrientationsFromPlacedTile;
 
 public class BoardUtilitiesTest {
 
