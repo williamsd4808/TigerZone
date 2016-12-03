@@ -95,4 +95,78 @@ public class FeatureUtilitiesTest {
 		assertEquals(2, p.y);
 	}
 
+	@org.junit.Test
+	public void isValidConnectionPointTest() {
+		Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		boolean connectionPoint = FeatureUtilities.isConnectionPoint(new Point(4,2));
+		assertTrue(connectionPoint);
+	}
+
+	@org.junit.Test
+	public void isInvalidConnectionPointTest() {
+		Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		boolean connectionPoint = FeatureUtilities.isConnectionPoint(new Point(1,2));
+		assertFalse(connectionPoint);
+	}
+
+	@org.junit.Test
+	public void getGlobalTilePointTest() {
+		Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		Point globalPoint = FeatureUtilities.getGlobalTilePoint(new Point(8,3));
+		assertEquals(1, globalPoint.x);
+		assertEquals(0, globalPoint.y);
+	}
+
+
+	@org.junit.Test
+	public void getLocalFeaturePointTest() {
+		Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		Point localFeaturePoint = FeatureUtilities.getLocalFeaturePoint(new Point(14,22));
+		assertEquals(4, localFeaturePoint.x);
+		assertEquals(2, localFeaturePoint.y);
+	}
+
+	@org.junit.Test
+	public void getGlobalFeaturePointTest() {
+		Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		engine.board.addTile(new Point(1,0), new Tile("TLTJ-"), Board.Orientation.SOUTH);
+		engine.board.addTile(new Point(2,0), new Tile("JJJJ-"), Board.Orientation.NORTH);
+		engine.board.addTile(new Point(2,1), new Tile("JJJJ-"), Board.Orientation.NORTH);
+		Board.PlacedTile t = engine.board.getTile(new Point(2,1));
+		Point globalFeaturePoint = FeatureUtilities.getGlobalFeaturePoint(t, new Point(4,2));
+		assertEquals(14, globalFeaturePoint.x);
+		assertEquals(7, globalFeaturePoint.y);
+	}
+
+	@org.junit.Test
+	public void getPlacedTilesInExtentTest() {
+		Engine engine = new Engine();
+		Random generator = new Random();
+		long i = generator.nextLong();
+		engine.newGame(i);
+		engine.board.addTile(new Point(1,0), new Tile("TLTJ-"), Board.Orientation.SOUTH);
+		engine.board.addTile(new Point(2,0), new Tile("JJJJ-"), Board.Orientation.NORTH);
+		engine.board.addTile(new Point(2,1), new Tile("JJJJ-"), Board.Orientation.NORTH);
+		Board.PlacedTile t = engine.board.getTile(new Point(2,1));
+		Point globalFeaturePoint = FeatureUtilities.getGlobalFeaturePoint(t, new Point(4,2));
+		Set<Point> extent = FeatureUtilities.getExtentOfFeature(engine.board, globalFeaturePoint, Feature.JUNGLE);
+		Collection<Point> tilesInExtent = FeatureUtilities.getPlacedTilesInExtent(engine.board, extent);
+		assertEquals(3, tilesInExtent.size());
+	}
+
 }
