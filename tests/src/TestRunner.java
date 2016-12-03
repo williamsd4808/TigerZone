@@ -8,7 +8,7 @@ public class TestRunner {
 
    public static void main(String[] args) {
 
-      Result result = JUnitCore.runClasses(BoardTest.class);
+      Result result = JUnitCore.runClasses(BoardTest.class, EngineTest.class);
 
       for (Failure failure : result.getFailures()) {
 
