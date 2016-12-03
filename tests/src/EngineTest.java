@@ -49,12 +49,4 @@ public class EngineTest {
 		assertNotNull(previousTurn < engine.turn);
     }
 
-    @org.junit.Test
-    public void something() {
-    	Engine engine = new Engine();
-		Random generator = new Random();
-		long i = generator.nextLong();
-		engine.newGame(i);
-    }
-
 }
